@@ -1,0 +1,47 @@
+#springdoc:
+#  api-docs:
+#    enabled: true
+#    path: /v3/api-docs/class
+#  server:
+#    url: http://localhost:6600
+#    is_rewrite_by_gateway: false
+#
+#server:
+#  port: 6611
+#
+#spring:
+#  profiles:
+#    active: dev
+#  application:
+#    name: class-service
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+##    url: jdbc:mysql://localhost:3306/hit-tech?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#    url: jdbc:mysql://localhost:3306/hit-tech
+#    username: root
+#    password: 0108
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQL5Dialect
+#    properties:
+#      hibernate:
+#        globally_quoted_identifiers: true
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#
+#management:
+#  endpoints:
+#    web:
+#      base-path: /actuator
+#      exposure:
+#        include: [ "configprops", "env", "health", "info", "threaddump" ]
+#  endpoint:
+#    health:
+#      show-details: when_authorized
+#  info:
+#    git:
+#      mode: full
+#
+#logging:
+#  level:
+#    com.spring.ibatis.mapper: DEBUG
+
+# Méo hiểu sao không nhận, nên dùng file.properties

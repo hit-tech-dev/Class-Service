@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# set this to your active branch
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+# regex to validate in commit msg
+commit_regex_feature='^((\[sprint-([0-9]+)\])(\[code\]|\[unittest])(.*))$'
+err_msg_feature="ERROR! The commit message must follow the rule: '[sprint-<number>][code|unitest] <commit_description>'"
+
+commit_regex_fix='^((\[sprint-([0-9]+)\])(\[bug\]|\[cr])(.*))$'
+err_msg_fix="ERROR! The commit message must follow the rule: '[sprint-<number>][bug|cr] <commit_description>'"
+
+commit_regex_config='^((\[sprint-([0-9]+)\])(.*))$'
+err_msg_config="ERROR! The commit message must follow the rule: '[sprint-<number>] <commit_description>'"
+
+commit_regex_hotfix='^((\[sprint-([0-9]+)\])(.*))$'
+err_msg_hotfix="ERROR! The commit message must follow the rule: '[sprint-<number>] <commit_description>'"
+
+commit_regex_dev='^((\[sprint-([0-9]+)\])(.*))$'
+err_msg_dev="ERROR! The commit message must follow the rule: '[sprint-<number>] <commit_description>'"
+
+commit_regex_test='^((\[sprint-([0-9]+)\])(.*))$'
+err_msg_test="ERROR! The commit message must follow the rule: '[sprint-<number>][v<version>] <commit_description>'"
+
+if [[ $current_branch == feature/* ]]; then
+	if ! grep -iqE "$commit_regex_feature" "$1"; then
+		echo "$err_msg_feature" >&2
+		exit 1
+	fi
+fi
+
+if [[ $current_branch == fix/* ]]; then
+	if ! grep -iqE "$commit_regex_fix" "$1"; then
+		echo "$err_msg_fix" >&2
+		exit 1
+	fi
+fi
+
+if [[ $current_branch == config/* ]]; then
+	if ! grep -iqE "$commit_regex_config" "$1"; then
+		echo "$err_msg_config" >&2
+		exit 1
+	fi
+fi
+
+if [[ $current_branch == hotfix/* ]]; then
+	if ! grep -iqE "$commit_regex_hotfix" "$1"; then
+		echo "$err_msg_hotfix" >&2
+		exit 1
+	fi
+fi
+
+if [[ $current_branch == "dev" ]]; then
+	if ! grep -iqE "$commit_regex_dev" "$1"; then
+		echo "$err_msg_dev" >&2
+		exit 1
+	fi
+fi
+
+if [[ $current_branch == "test" ]]; then
+	if ! grep -iqE "$commit_regex_test" "$1"; then
+		echo "$err_msg_test" >&2
+		exit 1
+	fi
+fi
