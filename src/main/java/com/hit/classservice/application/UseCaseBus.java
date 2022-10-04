@@ -1,7 +1,9 @@
 package com.hit.classservice.application;
 
-import com.hit.classservice.application.input.*;
+import com.hit.classservice.application.input.Input;
+import com.hit.classservice.application.input.category.GetListCategoryInput;
 import com.hit.classservice.application.input_boundary.UseCase;
+import com.hit.classservice.application.interator.category.GetListCategoryInterator;
 import com.hit.classservice.application.output.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -20,7 +22,8 @@ public class UseCaseBus {
   public UseCaseBus(ApplicationContext applicationContext) {
     this.applicationContext = applicationContext;
 
-//    handlerTypes.put(GetContactStockHistoryDataInput.class, GetContactStockHistoryDataInteractor.class);
+    // category
+    handlerTypes.put(GetListCategoryInput.class, GetListCategoryInterator.class);
 
   }
 

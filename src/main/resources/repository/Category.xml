@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hit.classservice.infrastructure.repository.database.DatabaseCategoryRepository">
+    <resultMap id="categoryResultMap" type="com.hit.classservice.domain.entity.Category">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="name" javaType="java.lang.String">
+            <result column="name"/>
+        </association>
+        <association property="description" javaType="java.lang.String">
+            <result column="description"/>
+        </association>
+    </resultMap>
+
+    <select id="findAll" resultMap="categoryResultMap">
+        SELECT c.id,
+               c.`name`,
+               c.description
+        FROM category c
+        WHERE c.active_flag = 1
+            AND c.delete_flag = 0;
+    </select>
+
+</mapper>
+
