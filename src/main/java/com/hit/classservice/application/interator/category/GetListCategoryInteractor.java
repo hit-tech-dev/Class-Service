@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("ApplicationGetListCategoryInterator")
-public class GetListCategoryInterator implements GetListCategoryDataCase {
+public class GetListCategoryInteractor implements GetListCategoryDataCase {
   private final CategoryRepository categoryRepository;
   private final CategoryMapper categoryMapper;
 
-  public GetListCategoryInterator(@Qualifier("DatabaseCategoryRepository") CategoryRepository categoryRepository) {
+  public GetListCategoryInteractor(@Qualifier("DatabaseCategoryRepository") CategoryRepository categoryRepository) {
     this.categoryRepository = categoryRepository;
     this.categoryMapper = Mappers.getMapper(CategoryMapper.class);
   }

@@ -26,4 +26,10 @@ public class AbstractAuditingEntity implements Serializable {
   @JsonProperty("lastModifiedDate")
   private Long lastModifiedDate;
 
+  @JsonProperty("activeFlag")
+  private boolean activeFlag;
+
+  @JsonProperty("deleteFlag")
+  private boolean deleteFlag;
+
 }
