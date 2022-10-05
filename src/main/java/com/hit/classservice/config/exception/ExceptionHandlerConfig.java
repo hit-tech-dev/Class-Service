@@ -104,7 +104,8 @@ public class ExceptionHandlerConfig {
 
     if (ex.getCause() instanceof VsException) {
       VsException vsException = (VsException) ex.getCause();
-      String message = messageSource.getMessage(vsException.getUserMessage(), null, LocaleContextHolder.getLocale());
+      String message = messageSource.getMessage(vsException.getUserMessage(), vsException.getParams(),
+          LocaleContextHolder.getLocale());
       return VsResponseUtil.error(HttpStatus.INTERNAL_SERVER_ERROR, message, vsException.getDevMessage());
     }
     if (ex.getCause() instanceof InvalidException) {

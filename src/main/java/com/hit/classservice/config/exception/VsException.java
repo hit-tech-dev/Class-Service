@@ -37,4 +37,11 @@ public class VsException extends RuntimeException {
     this.params = params;
   }
 
+  public VsException(String userMessage, String devMessage, String[] params) {
+    super(userMessage);
+    this.userMessage = userMessage;
+    this.devMessage = devMessage;
+    this.params = params;
+  }
+
 }
