@@ -7,5 +7,7 @@
     <include file="config/liquibase/changelog/20221005200000_v1_create_table_category.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221005230100_v2_update_table_category.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221005230200_v1_create_table_image.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221006153700_v1_create_table_document.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221006161600_v1_create_table_subject_schedule_relation.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>
