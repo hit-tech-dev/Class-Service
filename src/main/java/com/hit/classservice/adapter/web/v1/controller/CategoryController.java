@@ -3,23 +3,23 @@ package com.hit.classservice.adapter.web.v1.controller;
 import com.hit.classservice.adapter.web.base.RestApiV1;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.category.CreateCategoryParameter;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.category.UpdateCategoryParameter;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
 import com.hit.classservice.application.input.category.CreateCategoryInput;
 import com.hit.classservice.application.input.category.GetCategoryInput;
 import com.hit.classservice.application.input.category.GetListCategoryInput;
+import com.hit.classservice.application.input.category.UpdateCategoryInput;
 import com.hit.classservice.application.mapper.CategoryMapper;
 import com.hit.classservice.application.output.category.CreateCategoryOutput;
 import com.hit.classservice.application.output.category.GetCategoryOutput;
 import com.hit.classservice.application.output.category.GetListCategoryOutput;
+import com.hit.classservice.application.output.category.UpdateCategoryOutput;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -62,6 +62,16 @@ public class CategoryController {
     CreateCategoryInput input = categoryMapper.toCreateCategoryInput(parameter);
     // Get output
     CreateCategoryOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @PutMapping(UrlConstant.Category.UPDATE)
+  public ResponseEntity<?> updateCategory(@Valid @RequestBody UpdateCategoryParameter parameter) throws Exception {
+    // Create input
+    UpdateCategoryInput input = categoryMapper.toUpdateCategoryInput(parameter);
+    // Get output
+    UpdateCategoryOutput output = useCaseBus.handle(input);
     // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }

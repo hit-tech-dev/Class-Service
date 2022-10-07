@@ -13,6 +13,7 @@ public class UrlConstant {
     public static final String LIST = "categories";
     public static final String GET = PREFIX + "/{id}";
     public static final String CREATE = PREFIX;
+    public static final String UPDATE = PREFIX;
   }
 
 }

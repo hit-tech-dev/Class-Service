@@ -8,6 +8,7 @@ import com.hit.classservice.application.input_boundary.category.CreateCategoryDa
 import com.hit.classservice.application.output.category.CreateCategoryOutput;
 import com.hit.classservice.domain.entity.Category;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class CreateCategoryInteractor implements CreateCategoryDataCase {
   @Override
   public CreateCategoryOutput handle(CreateCategoryInput input) {
     // Check name exist
-    boolean nameExist = categoryRepository.checkNameExist(input.getName());
-    if (nameExist) {
+    Category oldCategory = categoryRepository.findByName(input.getName());
+    if (ObjectUtils.isNotEmpty(oldCategory)) {
       return new CreateCategoryOutput(CommonConstant.FALSE, String.format(DevMessageConstant.Category.NAME_IS_EXIST,
           input.getName()));
     }
