@@ -18,4 +18,10 @@ public interface DatabaseCategoryRepository extends CategoryRepository {
   @Override
   Category findById(@Param("id") Long id);
 
+  @Override
+  boolean checkNameExist(@Param("name") String name);
+
+  @Override
+  int save(@Param("item") Category category);
+
 }
