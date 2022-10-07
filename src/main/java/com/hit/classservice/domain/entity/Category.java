@@ -18,4 +18,9 @@ public class Category extends AbstractAuditingEntity {
 
   private String description;
 
+  public Category(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
+
 }

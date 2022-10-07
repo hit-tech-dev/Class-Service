@@ -10,4 +10,8 @@ public interface CategoryRepository {
 
   Category findById(Long id);
 
+  boolean checkNameExist(String name);
+
+  int save(Category category);
+
 }
