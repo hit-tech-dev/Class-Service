@@ -7,15 +7,9 @@ import com.hit.classservice.adapter.web.v1.transfer.parameter.category.UpdateCat
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
-import com.hit.classservice.application.input.category.CreateCategoryInput;
-import com.hit.classservice.application.input.category.GetCategoryInput;
-import com.hit.classservice.application.input.category.GetListCategoryInput;
-import com.hit.classservice.application.input.category.UpdateCategoryInput;
+import com.hit.classservice.application.input.category.*;
 import com.hit.classservice.application.mapper.CategoryMapper;
-import com.hit.classservice.application.output.category.CreateCategoryOutput;
-import com.hit.classservice.application.output.category.GetCategoryOutput;
-import com.hit.classservice.application.output.category.GetListCategoryOutput;
-import com.hit.classservice.application.output.category.UpdateCategoryOutput;
+import com.hit.classservice.application.output.category.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -72,6 +66,16 @@ public class CategoryController {
     UpdateCategoryInput input = categoryMapper.toUpdateCategoryInput(parameter);
     // Get output
     UpdateCategoryOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @DeleteMapping(UrlConstant.Category.DELETE)
+  public ResponseEntity<?> deleteCategory(@PathVariable("id") Long id) throws Exception {
+    // Create input
+    DeleteCategoryInput input = new DeleteCategoryInput(id);
+    // Get output
+    DeleteCategoryOutput output = useCaseBus.handle(input);
     // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
