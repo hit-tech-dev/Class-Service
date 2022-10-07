@@ -23,7 +23,7 @@ public class UpdateCategoryInteractor implements UpdateCategoryDataCase {
   @SneakyThrows
   @Override
   public UpdateCategoryOutput handle(UpdateCategoryInput input) {
-    // Find obj by name
+    // Find obj by id
     Category oldCategory = categoryRepository.findById(input.getId());
     if (ObjectUtils.isEmpty(oldCategory)) {
       return new UpdateCategoryOutput(CommonConstant.FALSE,

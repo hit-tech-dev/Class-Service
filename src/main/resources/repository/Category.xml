@@ -61,5 +61,9 @@
         WHERE id = #{item.id};
     </update>
 
+    <delete id="delete" parameterType="java.lang.Long">
+        UPDATE category SET delete_flag = 1 WHERE id = #{id}
+    </delete>
+
 </mapper>
 

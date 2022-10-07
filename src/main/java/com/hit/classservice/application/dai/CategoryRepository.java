@@ -16,4 +16,6 @@ public interface CategoryRepository {
 
   int update(Category category);
 
+  int delete(Long id);
+
 }

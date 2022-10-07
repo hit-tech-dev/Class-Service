@@ -27,4 +27,7 @@ public interface DatabaseCategoryRepository extends CategoryRepository {
   @Override
   int update(@Param("item") Category category);
 
+  @Override
+  int delete(@Param("id") Long id);
+
 }
