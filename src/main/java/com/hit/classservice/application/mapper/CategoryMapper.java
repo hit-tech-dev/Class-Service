@@ -1,7 +1,9 @@
 package com.hit.classservice.application.mapper;
 
 import com.hit.classservice.adapter.web.v1.transfer.parameter.category.CreateCategoryParameter;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.category.UpdateCategoryParameter;
 import com.hit.classservice.application.input.category.CreateCategoryInput;
+import com.hit.classservice.application.input.category.UpdateCategoryInput;
 import com.hit.classservice.application.output.category.GetCategoryOutput;
 import com.hit.classservice.application.output.category.GetListCategoryItemOutput;
 import com.hit.classservice.domain.entity.Category;
@@ -31,5 +33,7 @@ public interface CategoryMapper {
   GetCategoryOutput toGetCategoryOutput(Category category);
 
   CreateCategoryInput toCreateCategoryInput(CreateCategoryParameter parameter);
+
+  UpdateCategoryInput toUpdateCategoryInput(UpdateCategoryParameter parameter);
 
 }

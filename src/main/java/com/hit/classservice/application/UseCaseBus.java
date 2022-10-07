@@ -4,10 +4,12 @@ import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.CreateCategoryInput;
 import com.hit.classservice.application.input.category.GetCategoryInput;
 import com.hit.classservice.application.input.category.GetListCategoryInput;
+import com.hit.classservice.application.input.category.UpdateCategoryInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.CreateCategoryInteractor;
 import com.hit.classservice.application.interator.category.GetCategoryInteractor;
 import com.hit.classservice.application.interator.category.GetListCategoryInteractor;
+import com.hit.classservice.application.interator.category.UpdateCategoryInteractor;
 import com.hit.classservice.application.output.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -30,6 +32,7 @@ public class UseCaseBus {
     handlerTypes.put(GetListCategoryInput.class, GetListCategoryInteractor.class);
     handlerTypes.put(GetCategoryInput.class, GetCategoryInteractor.class);
     handlerTypes.put(CreateCategoryInput.class, CreateCategoryInteractor.class);
+    handlerTypes.put(UpdateCategoryInput.class, UpdateCategoryInteractor.class);
   }
 
   public <TInput extends Input, TOutput extends Output> TOutput handle(TInput input)

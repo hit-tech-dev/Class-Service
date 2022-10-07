@@ -35,14 +35,14 @@
             AND c.delete_flag = 0;
     </select>
 
-    <select id="checkNameExist" resultType="boolean">
-        SELECT EXISTS (
-            SELECT 1
-            FROM category c
-            WHERE name = #{name}
-                AND delete_flag = 0
-                AND active_flag = 1
-       )
+    <select id="findByName" resultMap="categoryResultMap">
+        SELECT c.id,
+            c.name,
+            c.description
+        FROM category c
+        WHERE name = #{name}
+            AND delete_flag = 0
+            AND active_flag = 1
     </select>
 
     <insert id="save" parameterType="com.hit.classservice.domain.entity.Category">
@@ -51,6 +51,15 @@
         VALUES(#{item.name}, #{item.description}, b'0', b'1', UNIX_TIMESTAMP(NOW()), #{item.createdBy},
                UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy});
     </insert>
+
+    <update id="update" parameterType="com.hit.classservice.domain.entity.Category">
+        UPDATE category
+        SET `name` = #{item.name},
+            description = #{item.description},
+            last_modified_date = UNIX_TIMESTAMP(NOW()),
+            last_modified_by = #{item.lastModifiedBy}
+        WHERE id = #{item.id};
+    </update>
 
 </mapper>
 
