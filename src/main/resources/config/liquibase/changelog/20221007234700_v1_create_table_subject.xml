@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="20221007220000" author="chien.doxuan">
+
+        <createTable tableName="subject">
+
+            <column name="id" type="bigint"/>
+            <column name="category_id" type="bigint"/>
+            <column name="name" type="nvarchar(255)"/>
+            <column name="avatar" type="varchar(255)"/>
+            <column name="description" type="nvarchar(255)"/>
+            <column name="delete_flag" type="bit(1)"/>
+            <column name="active_flag" type="bit(1)"/>
+            <column name="created_date" type="bigint"/>
+            <column name="created_by" type="nvarchar(255)"/>
+            <column name="last_modified_date" type="bigint"/>
+            <column name="last_modified_by" type="nvarchar(255)"/>
+
+        </createTable>
+
+        <addPrimaryKey tableName="subject" columnNames="id"/>
+        <addAutoIncrement columnDataType="bigint" tableName="subject" columnName="id"/>
+
+        <addNotNullConstraint tableName="subject" columnName="name" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="subject" columnName="delete_flag" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="subject" columnName="active_flag" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="subject" columnName="created_date" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="subject" columnName="created_by" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="subject" columnName="last_modified_date" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="subject" columnName="last_modified_by" columnDataType="nvarchar(255)"/>
+
+        <addDefaultValue tableName="subject" columnName="delete_flag" defaultValueBoolean="false"/>
+        <addDefaultValue tableName="subject" columnName="active_flag" defaultValueBoolean="true"/>
+
+    </changeSet>
+
+</databaseChangeLog>

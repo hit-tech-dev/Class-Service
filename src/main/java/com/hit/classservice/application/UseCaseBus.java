@@ -3,9 +3,17 @@ package com.hit.classservice.application;
 import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.GetCategoryInput;
 import com.hit.classservice.application.input.category.GetListCategoryInput;
+import com.hit.classservice.application.input.subject.DeleteSubjectInput;
+import com.hit.classservice.application.input.subject.GetListSubjectInput;
+import com.hit.classservice.application.input.subject.GetSubjectInput;
+import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.GetCategoryInteractor;
 import com.hit.classservice.application.interator.category.GetListCategoryInteractor;
+import com.hit.classservice.application.interator.subject.DeleteSubjectInteractor;
+import com.hit.classservice.application.interator.subject.GetListSubjectInteractor;
+import com.hit.classservice.application.interator.subject.GetSubjectInteractor;
+import com.hit.classservice.application.interator.subject.UpdateSubjectInteractor;
 import com.hit.classservice.application.output.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -27,6 +35,13 @@ public class UseCaseBus {
     // category
     handlerTypes.put(GetListCategoryInput.class, GetListCategoryInteractor.class);
     handlerTypes.put(GetCategoryInput.class, GetCategoryInteractor.class);
+
+    //subject
+    handlerTypes.put(GetListSubjectInput.class, GetListSubjectInteractor.class);
+    handlerTypes.put(GetSubjectInput.class, GetSubjectInteractor.class);
+    handlerTypes.put(UpdateSubjectInput.class, UpdateSubjectInteractor.class);
+    handlerTypes.put(DeleteSubjectInput.class, DeleteSubjectInteractor.class);
+
   }
 
   public <TInput extends Input, TOutput extends Output> TOutput handle(TInput input)

@@ -7,5 +7,10 @@ public class DevMessageConstant {
   public static final class Category {
     public static final String ERR_NOT_FOUND_BY_ID = "Not found category by id = %s";
   }
+  public static final class Subject {
+    public static final String ERR_NOT_FOUND_BY_ID = "Not found subject by id = %s";
+
+    public static final String DUPLICATE_NAME = "Duplicate Name";
+  }
 
 }
