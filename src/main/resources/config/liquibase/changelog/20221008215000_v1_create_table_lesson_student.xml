@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="20221008215000" author="huy.doanvan">
+
+        <createTable tableName="lesson_student">
+
+            <column name="id" type="bigint"/>
+            <column name="attendance" type="bit(1)"/>
+            <column name="lesson_id" type="bigint"/>
+            <column name="user_id" type="bigint"/>
+
+            <column name="delete_flag" type="bit(1)"/>
+            <column name="active_flag" type="bit(1)"/>
+            <column name="created_date" type="bigint"/>
+            <column name="created_by" type="nvarchar(255)"/>
+            <column name="last_modified_date" type="bigint"/>
+            <column name="last_modified_by" type="nvarchar(255)"/>
+
+        </createTable>
+
+        <addPrimaryKey tableName="lesson_student" columnNames="id"/>
+        <addAutoIncrement columnDataType="bigint" tableName="lesson_student" columnName="id"/>
+
+        <addNotNullConstraint tableName="lesson_student" columnName="delete_flag" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="lesson_student" columnName="active_flag" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="lesson_student" columnName="created_date" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="lesson_student" columnName="created_by" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="lesson_student" columnName="last_modified_date" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="lesson_student" columnName="last_modified_by" columnDataType="nvarchar(255)"/>
+
+        <addDefaultValue tableName="lesson_student" columnName="delete_flag" defaultValueBoolean="false"/>
+        <addDefaultValue tableName="lesson_student" columnName="active_flag" defaultValueBoolean="true"/>
+
+    </changeSet>
+
+</databaseChangeLog>
