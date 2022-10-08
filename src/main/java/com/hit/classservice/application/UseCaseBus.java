@@ -3,9 +3,17 @@ package com.hit.classservice.application;
 import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.GetCategoryInput;
 import com.hit.classservice.application.input.category.GetListCategoryInput;
+import com.hit.classservice.application.input.notification.CreateNotificationInput;
+import com.hit.classservice.application.input.notification.DeleteNotificationInput;
+import com.hit.classservice.application.input.notification.GetNotificationInput;
+import com.hit.classservice.application.input.notification.ReadNotificationInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.GetCategoryInteractor;
 import com.hit.classservice.application.interator.category.GetListCategoryInteractor;
+import com.hit.classservice.application.interator.notification.CreateNotificationInteractor;
+import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
+import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
+import com.hit.classservice.application.interator.notification.ReadNotificationInteractor;
 import com.hit.classservice.application.output.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -27,6 +35,12 @@ public class UseCaseBus {
     // category
     handlerTypes.put(GetListCategoryInput.class, GetListCategoryInteractor.class);
     handlerTypes.put(GetCategoryInput.class, GetCategoryInteractor.class);
+
+    // notification
+    handlerTypes.put(DeleteNotificationInput.class, DeleteNotificationInteractor.class);
+    handlerTypes.put(GetNotificationInput.class, GetNotificationInteractor.class);
+    handlerTypes.put(CreateNotificationInput.class, CreateNotificationInteractor.class);
+    handlerTypes.put(ReadNotificationInput.class, ReadNotificationInteractor.class);
   }
 
   public <TInput extends Input, TOutput extends Output> TOutput handle(TInput input)

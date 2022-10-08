@@ -8,4 +8,7 @@ public class DevMessageConstant {
     public static final String ERR_NOT_FOUND_BY_ID = "Not found category by id = %s";
   }
 
+  public static final class Notification {
+    public static final String ERR_NOT_FOUND_BY_ID = "Not found notification by id = %s";
+  }
 }

@@ -14,4 +14,16 @@ public class UrlConstant {
     public static final String GET = PREFIX + "/{id}";
   }
 
+  public static final class Notification {
+    private Notification() {
+    }
+    private static final String PREFIX = "/notification";
+    public static final String LIST = "notifications";
+    public static final String CREATE = PREFIX;
+    public static final String READ = PREFIX + "/{id}";
+    public static final String GET = PREFIX + "/{id}";
+    public static final String DELETE = PREFIX + "/{id}";
+
+  }
+
 }
