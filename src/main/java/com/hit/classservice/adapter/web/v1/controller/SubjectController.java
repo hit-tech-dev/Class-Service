@@ -15,7 +15,6 @@ import com.hit.classservice.application.output.subject.DeleteSubjectOutput;
 import com.hit.classservice.application.output.subject.GetListSubjectOutput;
 import com.hit.classservice.application.output.subject.GetSubjectOutput;
 import com.hit.classservice.application.output.subject.UpdateSubjectOutput;
-import liquibase.pro.packaged.E;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;

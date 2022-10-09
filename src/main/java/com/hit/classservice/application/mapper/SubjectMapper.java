@@ -1,13 +1,9 @@
 package com.hit.classservice.application.mapper;
 
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.UpdateSubjectParameter;
-import com.hit.classservice.application.input.subject.DeleteSubjectInput;
 import com.hit.classservice.application.input.subject.UpdateSubjectInput;
-import com.hit.classservice.application.output.category.GetListCategoryItemOutput;
 import com.hit.classservice.application.output.subject.GetListSubjectItemOutput;
 import com.hit.classservice.application.output.subject.GetSubjectOutput;
-import com.hit.classservice.application.output.subject.UpdateSubjectOutput;
-import com.hit.classservice.domain.entity.Category;
 import com.hit.classservice.domain.entity.Subject;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

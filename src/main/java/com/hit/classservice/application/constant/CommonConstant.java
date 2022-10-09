@@ -10,8 +10,4 @@ public class CommonConstant {
   public static final boolean TRUE = true;
   public static final boolean FALSE = false;
 
-  public static final String EMPTY_STRING = "";
-  public static final boolean TRUE = true;
-  public static final boolean FALSE = false;
-
 }
