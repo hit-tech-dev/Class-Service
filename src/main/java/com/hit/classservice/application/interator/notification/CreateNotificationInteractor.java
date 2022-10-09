@@ -33,7 +33,6 @@ public class CreateNotificationInteractor implements CreateNotificationDataCase 
         // Insert
         Notification notification = new Notification(input.getContent(), input.getPath(), input.getType());
         notificationRepository.save(notification);
-
         return new CreateNotificationOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
     }
 }

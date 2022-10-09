@@ -15,5 +15,4 @@ public class ReadNotificationOutput implements Output {
     private boolean status;
 
     private String message;
-
 }

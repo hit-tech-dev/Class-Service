@@ -12,14 +12,14 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel = "spring")
 public interface NotificationMapper {
 
-  @Mappings({
-      @Mapping(target = "id", source = "notification.id"),
-      @Mapping(target = "content", source = "notification.content"),
-          @Mapping(target = "path", source = "notification.path"),
-          @Mapping(target = "type", source = "notification.type"),
-          @Mapping(target = "isRead", source = "notification.isRead")
-  })
-  GetNotificationOutput toGetNotificationOutput(Notification notification);
+    @Mappings({
+            @Mapping(target = "id", source = "notification.id"),
+            @Mapping(target = "content", source = "notification.content"),
+            @Mapping(target = "path", source = "notification.path"),
+            @Mapping(target = "type", source = "notification.type"),
+            @Mapping(target = "isRead", source = "notification.isRead")
+    })
+    GetNotificationOutput toGetNotificationOutput(Notification notification);
 
-  CreateNotificationInput toCreateNotificationInput(CreateNotificationParameter parameter);
+    CreateNotificationInput toCreateNotificationInput(CreateNotificationParameter parameter);
 }

@@ -29,7 +29,6 @@ public class GetNotificationInteractor implements GetNotificationDataCase {
     @SneakyThrows
     @Override
     public GetNotificationOutput handle(GetNotificationInput input) {
-
         Notification notification = notificationRepository.findById(input.getId());
         if(ObjectUtils.isEmpty(notification)) {
             throw new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
