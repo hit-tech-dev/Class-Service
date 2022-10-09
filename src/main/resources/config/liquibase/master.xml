@@ -11,6 +11,7 @@
     <include file="config/liquibase/changelog/20221008193000_v1_create_table_user_subject_relation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221006153700_v1_create_table_document.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221006161600_v1_create_table_subject_schedule_relation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221008151600_v1_create_table_notification.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221007171000_v2_update_table_subject_schedule_relation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221008011900_v2_update_table_category.xml" relativeToChangelogFile="false"/>    
 

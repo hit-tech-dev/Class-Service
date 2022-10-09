@@ -18,4 +18,7 @@ public class UserMessageConstant {
     public static final String INVALID_FIELD_ENTERED = "invalid.field.not.valid";
   }
 
+  public static final class Notification {
+    public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.notification_id";
+  }
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="20221008151600" author="viet.nguyenvan">
+
+        <createTable tableName="notification">
+
+            <column name="id" type="bigint"/>
+            <column name="user_id" type="nvarchar(255)"/>
+            <column name="content" type="nvarchar(255)"/>
+            <column name="path" type="nvarchar(255)"/>
+            <column name="type" type="int"/>
+            <column name="is_read" type="bit(1)"/>
+            <column name="delete_flag" type="bit(1)"/>
+            <column name="active_flag" type="bit(1)"/>
+            <column name="created_date" type="bigint"/>
+            <column name="created_by" type="nvarchar(255)"/>
+            <column name="last_modified_date" type="bigint"/>
+            <column name="last_modified_by" type="nvarchar(255)"/>
+
+        </createTable>
+
+        <addPrimaryKey tableName="notification" columnNames="id"/>
+        <addAutoIncrement columnDataType="bigint" tableName="notification" columnName="id"/>
+
+        <addNotNullConstraint tableName="notification" columnName="user_id" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="notification" columnName="content" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="notification" columnName="path" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="notification" columnName="type" columnDataType="int"/>
+        <addNotNullConstraint tableName="notification" columnName="is_read" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="notification" columnName="delete_flag" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="notification" columnName="active_flag" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="notification" columnName="created_date" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="notification" columnName="created_by" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="notification" columnName="last_modified_date" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="notification" columnName="last_modified_by" columnDataType="nvarchar(255)"/>
+
+        <addDefaultValue tableName="notification" columnName="is_read" defaultValueBoolean="false"/>
+        <addDefaultValue tableName="notification" columnName="delete_flag" defaultValueBoolean="false"/>
+        <addDefaultValue tableName="notification" columnName="active_flag" defaultValueBoolean="true"/>
+
+    </changeSet>
+
+</databaseChangeLog>
