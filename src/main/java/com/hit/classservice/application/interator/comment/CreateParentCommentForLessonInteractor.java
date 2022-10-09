@@ -18,31 +18,31 @@ import org.springframework.stereotype.Service;
 @Service("ApplicationCreateParentCommentForLessonInteractor")
 public class CreateParentCommentForLessonInteractor implements CreateParentCommentForLessonDataCase {
 
-    private final CommentRepository commentRepository;
+  private final CommentRepository commentRepository;
 
-    private final LessonRepository lessonRepository;
+  private final LessonRepository lessonRepository;
 
-    public CreateParentCommentForLessonInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,
-                                                  @Qualifier("DatabaseLessonRepository") LessonRepository lessonRepository) {
-        this.commentRepository = commentRepository;
-        this.lessonRepository = lessonRepository;
+  public CreateParentCommentForLessonInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,
+                                                @Qualifier("DatabaseLessonRepository") LessonRepository lessonRepository) {
+    this.commentRepository = commentRepository;
+    this.lessonRepository = lessonRepository;
+  }
+
+  @SneakyThrows
+  @Override
+  public CreateParentCommentForLessonOutput handle(CreateParentCommentForLessonInput input) {
+    Lesson oldLesson = lessonRepository.findById(input.getLessonId());
+    if (ObjectUtils.isEmpty(oldLesson)) {
+      return new CreateParentCommentForLessonOutput(CommonConstant.FALSE, String.format(
+          DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()));
     }
 
-    @SneakyThrows
-    @Override
-    public CreateParentCommentForLessonOutput handle(CreateParentCommentForLessonInput input) {
-        Lesson oldLesson = lessonRepository.findById(input.getLessonId());
-        if (ObjectUtils.isEmpty(oldLesson)) {
-            return new CreateParentCommentForLessonOutput(CommonConstant.FALSE, String.format(
-                    DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()));
-        }
-
-        Comment comment = new Comment();
-        comment.setContent(input.getContent());
-        comment.setLessonId(input.getLessonId());
-        comment.setUserId(SecurityUtil.getCurrentUserLogin());
-        comment.setParentId(null);
-        commentRepository.createCommentForLesson(comment);
-        return new CreateParentCommentForLessonOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
-    }
+    Comment comment = new Comment();
+    comment.setContent(input.getContent());
+    comment.setLessonId(input.getLessonId());
+    comment.setUserId(SecurityUtil.getCurrentUserLogin());
+    comment.setParentId(null);
+    commentRepository.createCommentForLesson(comment);
+    return new CreateParentCommentForLessonOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
+  }
 }

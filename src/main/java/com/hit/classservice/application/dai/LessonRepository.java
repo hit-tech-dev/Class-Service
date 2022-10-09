@@ -4,5 +4,5 @@ import com.hit.classservice.domain.entity.Lesson;
 
 public interface LessonRepository {
 
-    Lesson findById(Long id);
+  Lesson findById(Long id);
 }

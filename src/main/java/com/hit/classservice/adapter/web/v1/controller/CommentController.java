@@ -28,56 +28,58 @@ import javax.validation.Valid;
 
 @RestApiV1
 public class CommentController {
-    private final UseCaseBus useCaseBus;
-    private final ResponseHeader responseHeader;
-    private final CommentMapper commentMapper;
+  private final UseCaseBus useCaseBus;
+  private final ResponseHeader responseHeader;
+  private final CommentMapper commentMapper;
 
-    public CommentController(@Qualifier("ApplicationUseCaseBus") UseCaseBus useCaseBus,
-                             @Qualifier("WebV1TransferResponseHeader") ResponseHeader responseHeader) {
-        this.useCaseBus = useCaseBus;
-        this.responseHeader = responseHeader;
-        this.commentMapper = Mappers.getMapper(CommentMapper.class);
-    }
+  public CommentController(@Qualifier("ApplicationUseCaseBus") UseCaseBus useCaseBus,
+                           @Qualifier("WebV1TransferResponseHeader") ResponseHeader responseHeader) {
+    this.useCaseBus = useCaseBus;
+    this.responseHeader = responseHeader;
+    this.commentMapper = Mappers.getMapper(CommentMapper.class);
+  }
 
-//Comment of table Lesson
-    @PostMapping(UrlConstant.Comment.CREATE_PARENT_FOR_LESSON)
-    public ResponseEntity<?> createParentCommentForLesson(@Valid @RequestBody CreateParentCommentForLessonParameter parameter) throws Exception {
-        // Create input
-        CreateParentCommentForLessonInput input = commentMapper.toCreateParentCommentForLessonInput(parameter);
-        // Get output
-        CreateParentCommentForLessonOutput output = useCaseBus.handle(input);
-        // Return output
-        return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-    }
+  //Comment of table Lesson
+  @PostMapping(UrlConstant.Comment.CREATE_PARENT_FOR_LESSON)
+  public ResponseEntity<?> createParentCommentForLesson(@Valid @RequestBody CreateParentCommentForLessonParameter parameter) throws Exception {
+    // Create input
+    CreateParentCommentForLessonInput input = commentMapper.toCreateParentCommentForLessonInput(parameter);
+    // Get output
+    CreateParentCommentForLessonOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
 
-    @PostMapping(UrlConstant.Comment.CREATE_CHILDREN_FOR_LESSON)
-    public ResponseEntity<?> createChildrenCommentForLesson(@Valid @RequestBody CreateChildrenCommentForLessonParameter parameter) throws Exception {
-        // Create input
-        CreateChildrenCommentForLessonInput input = commentMapper.toCreateChildrenCommentForLessonInput(parameter);
-        // Get output
-        CreateChildrenCommentForLessonOutput output = useCaseBus.handle(input);
-        // Return output
-        return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-    }
+  @PostMapping(UrlConstant.Comment.CREATE_CHILDREN_FOR_LESSON)
+  public ResponseEntity<?> createChildrenCommentForLesson(@Valid @RequestBody CreateChildrenCommentForLessonParameter parameter) throws Exception {
+    // Create input
+    CreateChildrenCommentForLessonInput input = commentMapper.toCreateChildrenCommentForLessonInput(parameter);
+    // Get output
+    CreateChildrenCommentForLessonOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
 
-//Comment of table Lesson Student
-    @PostMapping(UrlConstant.Comment.CREATE_PARENT_FOR_LESSON_STUDENT)
-    public ResponseEntity<?> createParentCommentForLessonStudent(@Valid @RequestBody CreateParentCommentForLessonStudentParameter parameter) throws Exception {
-        // Create input
-        CreateParentCommentForLessonStudentInput input = commentMapper.toCreateParentCommentForLessonStudentInput(parameter);
-        // Get output
-        CreateParentCommentForLessonStudentOutput output = useCaseBus.handle(input);
-        // Return output
-        return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-    }
+  //Comment of table Lesson Student
+  @PostMapping(UrlConstant.Comment.CREATE_PARENT_FOR_LESSON_STUDENT)
+  public ResponseEntity<?> createParentCommentForLessonStudent(@Valid @RequestBody CreateParentCommentForLessonStudentParameter parameter) throws Exception {
+    // Create input
+    CreateParentCommentForLessonStudentInput input =
+        commentMapper.toCreateParentCommentForLessonStudentInput(parameter);
+    // Get output
+    CreateParentCommentForLessonStudentOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
 
-    @PostMapping(UrlConstant.Comment.CREATE_CHILDREN_FOR_LESSON_STUDENT)
-    public ResponseEntity<?> createChildrenCommentForLessonStudent(@Valid @RequestBody CreateChildrenCommentForLessonStudentParameter parameter) throws Exception {
-        // Create input
-        CreateChildrenCommentForLessonStudentInput input = commentMapper.toCreateChildrenCommentForLessonStudentInput(parameter);
-        // Get output
-        CreateChildrenCommentForLessonStudentOutput output = useCaseBus.handle(input);
-        // Return output
-        return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-    }
+  @PostMapping(UrlConstant.Comment.CREATE_CHILDREN_FOR_LESSON_STUDENT)
+  public ResponseEntity<?> createChildrenCommentForLessonStudent(@Valid @RequestBody CreateChildrenCommentForLessonStudentParameter parameter) throws Exception {
+    // Create input
+    CreateChildrenCommentForLessonStudentInput input =
+        commentMapper.toCreateChildrenCommentForLessonStudentInput(parameter);
+    // Get output
+    CreateChildrenCommentForLessonStudentOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
 }

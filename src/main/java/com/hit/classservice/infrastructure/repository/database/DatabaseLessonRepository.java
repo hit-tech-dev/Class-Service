@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository("DatabaseLessonRepository")
 public interface DatabaseLessonRepository extends LessonRepository {
 
-    @Override
-    Lesson findById(@Param("id") Long id);
+  @Override
+  Lesson findById(@Param("id") Long id);
 }

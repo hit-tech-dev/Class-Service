@@ -12,17 +12,17 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Comment extends AbstractAuditingEntity {
 
-    private Long id;
+  private Long id;
 
-    private String content;
+  private String content;
 
-    private Long parentId;
+  private Long parentId;
 
-    // Foreign Key
-    private String userId;
+  // Foreign Key
+  private String userId;
 
-    private Long lessonId;
+  private Long lessonId;
 
-    private Long lessonStudentId;
+  private Long lessonStudentId;
 
 }

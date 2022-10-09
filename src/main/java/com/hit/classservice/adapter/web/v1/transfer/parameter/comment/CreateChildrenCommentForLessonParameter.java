@@ -15,14 +15,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateChildrenCommentForLessonParameter {
-    @NotBlank(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
-    private String content;
+  @NotBlank(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
+  private String content;
 
-    @NotNull(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
-    @Min(value = 1, message = UserMessageConstant.INVALID_SOME_THING_FIELD)
-    private Long lessonId;
+  @NotNull(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
+  @Min(value = 1, message = UserMessageConstant.INVALID_SOME_THING_FIELD)
+  private Long lessonId;
 
-    @NotNull(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
-    @Min(value = 1, message = UserMessageConstant.INVALID_SOME_THING_FIELD)
-    private Long parentCommentId;
+  @NotNull(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
+  @Min(value = 1, message = UserMessageConstant.INVALID_SOME_THING_FIELD)
+  private Long parentCommentId;
 }

@@ -12,6 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SubjectScheduleRelation extends AbstractAuditingEntity {
 
-    private Long id;
+  private Long id;
 
 }

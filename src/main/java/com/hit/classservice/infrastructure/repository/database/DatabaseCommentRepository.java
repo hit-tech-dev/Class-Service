@@ -10,14 +10,14 @@ import org.springframework.stereotype.Repository;
 @Repository("DatabaseCommentRepository")
 public interface DatabaseCommentRepository extends CommentRepository {
 
-    @Override
-    Comment findById(@Param("id") Long id);
+  @Override
+  Comment findById(@Param("id") Long id);
 
-    @Override
-    int createCommentForLesson(@Param("item") Comment comment);
+  @Override
+  int createCommentForLesson(@Param("item") Comment comment);
 
 
-    @Override
-    int createCommentForLessonStudent(@Param("item") Comment comment);
+  @Override
+  int createCommentForLessonStudent(@Param("item") Comment comment);
 
 }

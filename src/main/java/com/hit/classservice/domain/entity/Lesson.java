@@ -12,13 +12,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Lesson extends AbstractAuditingEntity {
 
-    private Long id;
+  private Long id;
 
-    private String name;
+  private String name;
 
-    private String content;
+  private String content;
 
-    private Long expiredTimeHomework;
+  private Long expiredTimeHomework;
 
-    private Long subjectId;
+  private Long subjectId;
 }

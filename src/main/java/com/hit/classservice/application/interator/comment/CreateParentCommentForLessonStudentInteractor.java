@@ -17,30 +17,30 @@ import org.springframework.stereotype.Service;
 @Service("ApplicationCreateParentCommentForLessonStudentInteractor")
 public class CreateParentCommentForLessonStudentInteractor implements CreateParentCommentForLessonStudentDataCase {
 
-    private final CommentRepository commentRepository;
+  private final CommentRepository commentRepository;
 
-    private final LessonStudentRepository lessonStudentRepository;
+  private final LessonStudentRepository lessonStudentRepository;
 
-    public CreateParentCommentForLessonStudentInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,
-                                                         @Qualifier("DatabaseLessonStudentRepository") LessonStudentRepository lessonStudentRepository) {
-        this.commentRepository = commentRepository;
-        this.lessonStudentRepository = lessonStudentRepository;
+  public CreateParentCommentForLessonStudentInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,
+                                                       @Qualifier("DatabaseLessonStudentRepository") LessonStudentRepository lessonStudentRepository) {
+    this.commentRepository = commentRepository;
+    this.lessonStudentRepository = lessonStudentRepository;
+  }
+
+  @Override
+  public CreateParentCommentForLessonStudentOutput handle(CreateParentCommentForLessonStudentInput input) throws Exception {
+    LessonStudent oldLessonStudent = lessonStudentRepository.findById(input.getLessonStudentId());
+    if (ObjectUtils.isEmpty(oldLessonStudent)) {
+      return new CreateParentCommentForLessonStudentOutput(CommonConstant.FALSE, String.format(
+          DevMessageConstant.LessonStudent.ERR_NOT_FOUND_BY_ID, input.getLessonStudentId()));
     }
 
-    @Override
-    public CreateParentCommentForLessonStudentOutput handle(CreateParentCommentForLessonStudentInput input) throws Exception {
-        LessonStudent oldLessonStudent = lessonStudentRepository.findById(input.getLessonStudentId());
-        if (ObjectUtils.isEmpty(oldLessonStudent)) {
-            return new CreateParentCommentForLessonStudentOutput(CommonConstant.FALSE, String.format(
-                    DevMessageConstant.LessonStudent.ERR_NOT_FOUND_BY_ID, input.getLessonStudentId()));
-        }
-
-        Comment comment = new Comment();
-        comment.setContent(input.getContent());
-        comment.setLessonStudentId(input.getLessonStudentId());
-        comment.setUserId(SecurityUtil.getCurrentUserLogin());
-        comment.setParentId(null);
-        commentRepository.createCommentForLessonStudent(comment);
-        return new CreateParentCommentForLessonStudentOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
-    }
+    Comment comment = new Comment();
+    comment.setContent(input.getContent());
+    comment.setLessonStudentId(input.getLessonStudentId());
+    comment.setUserId(SecurityUtil.getCurrentUserLogin());
+    comment.setParentId(null);
+    commentRepository.createCommentForLessonStudent(comment);
+    return new CreateParentCommentForLessonStudentOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
+  }
 }

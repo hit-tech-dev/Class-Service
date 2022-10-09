@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateChildrenCommentForLessonStudentOutput implements Output {
 
-    private boolean status;
+  private boolean status;
 
-    private String message;
+  private String message;
 }

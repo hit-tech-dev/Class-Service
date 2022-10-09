@@ -18,51 +18,51 @@ import org.springframework.stereotype.Service;
 @Service("ApplicationCreateChildrenCommentForLessonInteractor")
 public class CreateChildrenCommentForLessonInteractor implements CreateChildrenCommentForLessonDataCase {
 
-    private final CommentRepository commentRepository;
+  private final CommentRepository commentRepository;
 
-    private final LessonRepository lessonRepository;
+  private final LessonRepository lessonRepository;
 
-    public CreateChildrenCommentForLessonInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,
-                                                    @Qualifier("DatabaseLessonRepository") LessonRepository lessonRepository) {
-        this.commentRepository = commentRepository;
-        this.lessonRepository = lessonRepository;
+  public CreateChildrenCommentForLessonInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,
+                                                  @Qualifier("DatabaseLessonRepository") LessonRepository lessonRepository) {
+    this.commentRepository = commentRepository;
+    this.lessonRepository = lessonRepository;
+  }
+
+  @SneakyThrows
+  @Override
+  public CreateChildrenCommentForLessonOutput handle(CreateChildrenCommentForLessonInput input) throws Exception {
+    Lesson oldLesson = lessonRepository.findById(input.getLessonId());
+    Comment parentComment = commentRepository.findById(input.getParentCommentId());
+    if (ObjectUtils.isEmpty(oldLesson)) {
+      return new CreateChildrenCommentForLessonOutput(CommonConstant.FALSE, String.format(
+          DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()));
+    }
+    if (ObjectUtils.isEmpty(parentComment)) {
+      return new CreateChildrenCommentForLessonOutput(CommonConstant.FALSE, String.format(
+          DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getParentCommentId()));
     }
 
-    @SneakyThrows
-    @Override
-    public CreateChildrenCommentForLessonOutput handle(CreateChildrenCommentForLessonInput input) throws Exception {
-        Lesson oldLesson = lessonRepository.findById(input.getLessonId());
-        Comment parentComment = commentRepository.findById(input.getParentCommentId());
-        if (ObjectUtils.isEmpty(oldLesson)) {
-            return new CreateChildrenCommentForLessonOutput(CommonConstant.FALSE, String.format(
-                    DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()));
-        }
-        if (ObjectUtils.isEmpty(parentComment)) {
-            return new CreateChildrenCommentForLessonOutput(CommonConstant.FALSE, String.format(
-                    DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getParentCommentId()));
-        }
+    Comment comment = new Comment();
+    comment.setContent(input.getContent());
+    comment.setLessonId(input.getLessonId());
+    comment.setUserId(SecurityUtil.getCurrentUserLogin());
 
-        Comment comment = new Comment();
-        comment.setContent(input.getContent());
-        comment.setLessonId(input.getLessonId());
-        comment.setUserId(SecurityUtil.getCurrentUserLogin());
-
-        //stop comment level 2
-        int count = 0;
-        Comment checkComment = commentRepository.findById(parentComment.getParentId());
-        for(int i = 1; i < 2; i++) {
-            if(checkComment == null) {
-                break;
-            }
-            count++;
-            checkComment = commentRepository.findById(checkComment.getParentId());
-        }
-        if(count == 1) {
-            comment.setParentId(parentComment.getParentId());
-        } else {
-            comment.setParentId(input.getParentCommentId());
-        }
-        commentRepository.createCommentForLesson(comment);
-        return new CreateChildrenCommentForLessonOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
+    //stop comment level 2
+    int count = 0;
+    Comment checkComment = commentRepository.findById(parentComment.getParentId());
+    for (int i = 1; i < 2; i++) {
+      if (checkComment == null) {
+        break;
+      }
+      count++;
+      checkComment = commentRepository.findById(checkComment.getParentId());
     }
+    if (count == 1) {
+      comment.setParentId(parentComment.getParentId());
+    } else {
+      comment.setParentId(input.getParentCommentId());
+    }
+    commentRepository.createCommentForLesson(comment);
+    return new CreateChildrenCommentForLessonOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
+  }
 }
