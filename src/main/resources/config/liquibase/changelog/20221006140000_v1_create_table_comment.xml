@@ -11,7 +11,7 @@
             <column name="id" type="bigint"/>
             <column name="content" type="nvarchar(255)"/>
             <column name="parent_id" type="bigint"/>
-            <column name="user_id" type="bigint"/>
+            <column name="user_id" type="nvarchar(255)"/>
             <column name="lesson_id" type="bigint"/>
             <column name="lesson_student_id" type="bigint"/>
 
@@ -26,9 +26,6 @@
 
         <addPrimaryKey tableName="comment" columnNames="id"/>
         <addAutoIncrement columnDataType="bigint" tableName="comment" columnName="id"/>
-
-        <addForeignKeyConstraint baseTableName="comment" baseColumnNames="parent_id" constraintName="parent_comment_fk"
-                                 referencedTableName="comment" referencedColumnNames="id"/>
 
         <addNotNullConstraint tableName="comment" columnName="delete_flag" columnDataType="bit(1)"/>
         <addNotNullConstraint tableName="comment" columnName="active_flag" columnDataType="bit(1)"/>

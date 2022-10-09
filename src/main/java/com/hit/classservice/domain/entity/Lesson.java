@@ -10,19 +10,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment extends AbstractAuditingEntity {
+public class Lesson extends AbstractAuditingEntity {
 
     private Long id;
 
+    private String name;
+
     private String content;
 
-    private Long parentId;
+    private Long expiredTimeHomework;
 
-    // Foreign Key
-    private String userId;
-
-    private Long lessonId;
-
-    private Long lessonStudentId;
-
+    private Long subjectId;
 }

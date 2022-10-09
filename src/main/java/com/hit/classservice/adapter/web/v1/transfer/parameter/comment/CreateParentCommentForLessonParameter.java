@@ -20,9 +20,5 @@ public class CreateParentCommentForLessonParameter {
 
     @NotNull(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
     @Min(value = 1, message = UserMessageConstant.INVALID_SOME_THING_FIELD)
-    private Long userId;
-
-    @NotNull(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
-    @Min(value = 1, message = UserMessageConstant.INVALID_SOME_THING_FIELD)
     private Long lessonId;
 }

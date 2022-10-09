@@ -2,10 +2,14 @@ package com.hit.classservice.application;
 
 import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.*;
+import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonInput;
+import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonStudentInput;
 import com.hit.classservice.application.input.comment.CreateParentCommentForLessonInput;
 import com.hit.classservice.application.input.comment.CreateParentCommentForLessonStudentInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
+import com.hit.classservice.application.interator.comment.CreateChildrenCommentForLessonInteractor;
+import com.hit.classservice.application.interator.comment.CreateChildrenCommentForLessonStudentInteractor;
 import com.hit.classservice.application.interator.comment.CreateParentCommentForLessonInteractor;
 import com.hit.classservice.application.interator.comment.CreateParentCommentForLessonStudentInteractor;
 import com.hit.classservice.application.output.Output;
@@ -36,7 +40,9 @@ public class UseCaseBus {
 
     //comment
     handlerTypes.put(CreateParentCommentForLessonInput.class, CreateParentCommentForLessonInteractor.class);
+    handlerTypes.put(CreateChildrenCommentForLessonInput.class, CreateChildrenCommentForLessonInteractor.class);
     handlerTypes.put(CreateParentCommentForLessonStudentInput.class, CreateParentCommentForLessonStudentInteractor.class);
+    handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class, CreateChildrenCommentForLessonStudentInteractor.class);
   }
 
   public <TInput extends Input, TOutput extends Output> TOutput handle(TInput input)

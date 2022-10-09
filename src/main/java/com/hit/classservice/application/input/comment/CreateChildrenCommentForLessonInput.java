@@ -10,7 +10,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateParentCommentForLessonInput implements Input {
+public class CreateChildrenCommentForLessonInput implements Input {
     private String content;
     private Long lessonId;
+    private Long parentCommentId;
 }

@@ -11,7 +11,7 @@
         <association property="content" javaType="java.lang.String">
             <result column="content"/>
         </association>
-        <association property="parentId" javaType="java.lang.String">
+        <association property="parentId" javaType="java.lang.Long">
             <result column="parent_id"/>
         </association>
 
@@ -35,7 +35,7 @@
           AND c.delete_flag = 0;
     </select>
 
-    <insert id="createParentCommentForLesson" parameterType="com.hit.classservice.domain.entity.Comment">
+    <insert id="createCommentForLesson" parameterType="com.hit.classservice.domain.entity.Comment">
         INSERT INTO comment (content, parent_id, user_id, lesson_id, created_by, created_date,
                              active_flag, delete_flag, last_modified_date, last_modified_by)
         values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonId}, #{item.createdBy}, UNIX_TIMESTAMP(NOW()),
@@ -43,7 +43,7 @@
          )
     </insert>
 
-    <insert id="createParentCommentForLessonStudent" parameterType="com.hit.classservice.domain.entity.Comment">
+    <insert id="createCommentForLessonStudent" parameterType="com.hit.classservice.domain.entity.Comment">
         INSERT INTO comment (content, parent_id, user_id, lesson_student_id, created_by, created_date,
                              active_flag, delete_flag, last_modified_date, last_modified_by)
         values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonStudentId}, #{item.createdBy}, UNIX_TIMESTAMP(NOW()),

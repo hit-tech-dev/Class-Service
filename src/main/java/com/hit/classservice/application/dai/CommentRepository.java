@@ -5,7 +5,7 @@ import com.hit.classservice.domain.entity.Comment;
 public interface CommentRepository {
     Comment findById(Long id);
 
-    int createParentCommentForLesson(Comment comment);
+    int createCommentForLesson(Comment comment);
 
-    int createParentCommentForLessonStudent(Comment comment);
+    int createCommentForLessonStudent(Comment comment);
 }

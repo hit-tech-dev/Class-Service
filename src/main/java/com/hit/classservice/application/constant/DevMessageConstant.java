@@ -10,4 +10,16 @@ public class DevMessageConstant {
     public static final String DUPLICATE_NAME = "Duplicate category name '%s'";
   }
 
+  public static final class Lesson {
+    public static final String ERR_NOT_FOUND_BY_ID = "Not found lesson by id = %s";
+  }
+
+  public static final class LessonStudent {
+    public static final String ERR_NOT_FOUND_BY_ID = "Not found lesson student by id = %s";
+  }
+
+  public static final class Comment {
+    public static final String ERR_NOT_FOUND_BY_ID = "Not found comment by id = %s";
+  }
+
 }

@@ -26,7 +26,7 @@
         <addPrimaryKey tableName="lesson" columnNames="id"/>
         <addAutoIncrement columnDataType="bigint" tableName="lesson" columnName="id"/>
 
-        <addNotNullConstraint tableName="lesson" columnName="name" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="lesson" columnName="name" columnDataType="nvarchar(255)"/>
 
         <addNotNullConstraint tableName="lesson" columnName="delete_flag" columnDataType="bit(1)"/>
         <addNotNullConstraint tableName="lesson" columnName="active_flag" columnDataType="bit(1)"/>

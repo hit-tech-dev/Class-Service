@@ -30,6 +30,5 @@ public class UrlConstant {
     private static final String PREFIX_LESSON_STUDENT = PREFIX + "/lesson-student";
     public static final String CREATE_PARENT_FOR_LESSON_STUDENT = PREFIX_LESSON_STUDENT + "/create/parent";
     public static final String CREATE_CHILDREN_FOR_LESSON_STUDENT = PREFIX_LESSON_STUDENT + "/create/children";
-
   }
 }

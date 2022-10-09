@@ -14,8 +14,10 @@ public interface DatabaseCommentRepository extends CommentRepository {
     Comment findById(@Param("id") Long id);
 
     @Override
-    int createParentCommentForLesson(@Param("item") Comment comment);
+    int createCommentForLesson(@Param("item") Comment comment);
+
 
     @Override
-    int createParentCommentForLessonStudent(@Param("item") Comment comment);
+    int createCommentForLessonStudent(@Param("item") Comment comment);
+
 }
