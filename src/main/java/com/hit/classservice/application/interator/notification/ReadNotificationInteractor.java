@@ -16,23 +16,22 @@ import org.springframework.stereotype.Service;
 
 @Service("ApplicationReadNotificationInteractor")
 public class ReadNotificationInteractor implements ReadNotificationDataCase {
+  private final NotificationRepository notificationRepository;
 
-    private final NotificationRepository notificationRepository;
+  public ReadNotificationInteractor(@Qualifier("DatabaseNotificationRepository") NotificationRepository notificationRepository) {
+    this.notificationRepository = notificationRepository;
+  }
 
-    public ReadNotificationInteractor(@Qualifier("DatabaseNotificationRepository") NotificationRepository notificationRepository) {
-        this.notificationRepository = notificationRepository;
+  @SneakyThrows
+  @Override
+  public ReadNotificationOutput handle(ReadNotificationInput input) throws Exception {
+    Notification notification = notificationRepository.findById(input.getId());
+    if (ObjectUtils.isEmpty(notification)) {
+      throw new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Notification.ERR_NOT_FOUND_BY_ID, input.getId()),
+          new String[]{input.getId().toString()});
     }
-
-    @SneakyThrows
-    @Override
-    public ReadNotificationOutput handle(ReadNotificationInput input) throws Exception {
-        Notification notification = notificationRepository.findById(input.getId());
-        if(ObjectUtils.isEmpty(notification)) {
-            throw new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
-                    String.format(DevMessageConstant.Notification.ERR_NOT_FOUND_BY_ID, input.getId()),
-                    new String[]{input.getId().toString()});
-        }
-        notificationRepository.readNotification(input.getId());
-        return new ReadNotificationOutput(CommonConstant.TRUE, "Is Read");
-    }
+    notificationRepository.readNotification(input.getId());
+    return new ReadNotificationOutput(CommonConstant.TRUE, "Is Read");
+  }
 }

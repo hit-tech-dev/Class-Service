@@ -24,54 +24,55 @@ import javax.validation.Valid;
 
 @RestApiV1
 public class SubjectController {
-    private final UseCaseBus useCaseBus;
-    private final ResponseHeader responseHeader;
-    private final SubjectMapper subjectMapper;
+  private final UseCaseBus useCaseBus;
+  private final ResponseHeader responseHeader;
+  private final SubjectMapper subjectMapper;
 
-    public SubjectController(@Qualifier("ApplicationUseCaseBus") UseCaseBus useCaseBus,
-                              @Qualifier("WebV1TransferResponseHeader") ResponseHeader responseHeader) {
-        this.useCaseBus = useCaseBus;
-        this.responseHeader = responseHeader;
-        this.subjectMapper = Mappers.getMapper(SubjectMapper.class);
-    }
+  public SubjectController(@Qualifier("ApplicationUseCaseBus") UseCaseBus useCaseBus,
+                           @Qualifier("WebV1TransferResponseHeader") ResponseHeader responseHeader) {
+    this.useCaseBus = useCaseBus;
+    this.responseHeader = responseHeader;
+    this.subjectMapper = Mappers.getMapper(SubjectMapper.class);
+  }
 
-    @GetMapping(UrlConstant.Subject.LIST)
-    public ResponseEntity<?> getAllSubject() throws Exception {
-        // Create input
-        GetListSubjectInput input = new GetListSubjectInput();
-        // Get output
-        GetListSubjectOutput output = useCaseBus.handle(input);
-        // Return output
-        return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-    }
+  @GetMapping(UrlConstant.Subject.LIST)
+  public ResponseEntity<?> getAllSubject() throws Exception {
+    // Create input
+    GetListSubjectInput input = new GetListSubjectInput();
+    // Get output
+    GetListSubjectOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
 
-    @GetMapping(UrlConstant.Subject.GET)
-    public ResponseEntity<?> getSubjectById(@PathVariable("id") Long id) throws Exception {
-        // Create input
-        GetSubjectInput input = new GetSubjectInput(id);
-        // Get output
-        GetSubjectOutput output = useCaseBus.handle(input);
-        // Return output
-        return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-    }
+  @GetMapping(UrlConstant.Subject.GET)
+  public ResponseEntity<?> getSubjectById(@PathVariable("id") Long id) throws Exception {
+    // Create input
+    GetSubjectInput input = new GetSubjectInput(id);
+    // Get output
+    GetSubjectOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
 
-    @PatchMapping(UrlConstant.Subject.UPDATE)
-    public ResponseEntity<?> updateSubject(@Valid @RequestBody UpdateSubjectParameter parameter) throws Exception {
-        // Create input
-        UpdateSubjectInput input = subjectMapper.toUpdateSubjectInput(parameter);
-        // Get output
-        UpdateSubjectOutput output = useCaseBus.handle(input);
-        // Return output
-        return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-    }
+  @PatchMapping(UrlConstant.Subject.UPDATE)
+  public ResponseEntity<?> updateSubject(@Valid @RequestBody UpdateSubjectParameter parameter) throws Exception {
+    // Create input
+    UpdateSubjectInput input = subjectMapper.toUpdateSubjectInput(parameter);
+    // Get output
+    UpdateSubjectOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
 
-    @DeleteMapping(UrlConstant.Subject.DELETE)
-    public ResponseEntity<?> deleteSubject(@PathVariable(name = "id") Long id) throws Exception {
-        //Create input
-        DeleteSubjectInput input = new DeleteSubjectInput(id);
-        // Get output
-        DeleteSubjectOutput output = useCaseBus.handle(input);
-        // Return output
-        return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-    }
+  @DeleteMapping(UrlConstant.Subject.DELETE)
+  public ResponseEntity<?> deleteSubject(@PathVariable(name = "id") Long id) throws Exception {
+    //Create input
+    DeleteSubjectInput input = new DeleteSubjectInput(id);
+    // Get output
+    DeleteSubjectOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
 }

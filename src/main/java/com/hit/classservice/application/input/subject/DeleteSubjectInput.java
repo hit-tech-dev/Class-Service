@@ -12,5 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DeleteSubjectInput implements Input {
 
-    private Long id;
+  private Long id;
+
 }

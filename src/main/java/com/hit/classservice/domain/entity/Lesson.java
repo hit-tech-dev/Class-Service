@@ -21,4 +21,5 @@ public class Lesson extends AbstractAuditingEntity {
   private Long expiredTimeHomework;
 
   private Long subjectId;
+
 }

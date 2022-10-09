@@ -18,27 +18,25 @@ import org.springframework.stereotype.Service;
 
 @Service("ApplicationDeleteSubjectInteractor")
 public class DeleteSubjectInteractor implements DeleteSubjectDataCase {
+  private final SubjectRepository subjectRepository;
+  private final SubjectMapper subjectMapper;
 
-    private final SubjectRepository subjectRepository;
+  public DeleteSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository) {
+    this.subjectRepository = subjectRepository;
+    this.subjectMapper = Mappers.getMapper(SubjectMapper.class);
+  }
 
-    private final SubjectMapper subjectMapper;
+  @SneakyThrows
+  @Override
+  public DeleteSubjectOutput handle(DeleteSubjectInput input) {
+    Subject subject = subjectRepository.findById(input.getId());
+    if (ObjectUtils.isEmpty(subject))
+      throw new VsException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getId()),
+          new String[]{input.getId().toString()});
 
-    public DeleteSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository) {
-        this.subjectRepository = subjectRepository;
-        this.subjectMapper = Mappers.getMapper(SubjectMapper.class);
-    }
+    subjectRepository.delete(input.getId());
+    return new DeleteSubjectOutput(CommonConstant.TRUE, "Delete sucessful");
+  }
 
-    @SneakyThrows
-    @Override
-    public DeleteSubjectOutput handle(DeleteSubjectInput input) {
-
-        Subject subject = subjectRepository.findById(input.getId());
-        if(ObjectUtils.isEmpty(subject))
-            throw  new VsException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
-                    String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getId()),
-                    new String[]{input.getId().toString()});
-
-        subjectRepository.delete(input.getId());
-        return new DeleteSubjectOutput(CommonConstant.TRUE, "Delete sucessful");
-    }
 }

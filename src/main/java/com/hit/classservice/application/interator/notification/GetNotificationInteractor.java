@@ -17,24 +17,23 @@ import org.springframework.stereotype.Service;
 
 @Service("ApplicationGetNotificationInteractor")
 public class GetNotificationInteractor implements GetNotificationDataCase {
+  private final NotificationRepository notificationRepository;
+  private final NotificationMapper notificationMapper;
 
-    private final NotificationRepository notificationRepository;
-    private final NotificationMapper notificationMapper;
+  public GetNotificationInteractor(@Qualifier("DatabaseNotificationRepository") NotificationRepository notificationRepository) {
+    this.notificationRepository = notificationRepository;
+    this.notificationMapper = Mappers.getMapper(NotificationMapper.class);
+  }
 
-    public GetNotificationInteractor(@Qualifier("DatabaseNotificationRepository") NotificationRepository notificationRepository) {
-        this.notificationRepository = notificationRepository;
-        this.notificationMapper = Mappers.getMapper(NotificationMapper.class);
+  @SneakyThrows
+  @Override
+  public GetNotificationOutput handle(GetNotificationInput input) {
+    Notification notification = notificationRepository.findById(input.getId());
+    if (ObjectUtils.isEmpty(notification)) {
+      throw new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Notification.ERR_NOT_FOUND_BY_ID, input.getId()),
+          new String[]{input.getId().toString()});
     }
-
-    @SneakyThrows
-    @Override
-    public GetNotificationOutput handle(GetNotificationInput input) {
-        Notification notification = notificationRepository.findById(input.getId());
-        if(ObjectUtils.isEmpty(notification)) {
-            throw new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
-                    String.format(DevMessageConstant.Notification.ERR_NOT_FOUND_BY_ID, input.getId()),
-                    new String[]{input.getId().toString()});
-        }
-        return notificationMapper.toGetNotificationOutput(notification);
-    }
+    return notificationMapper.toGetNotificationOutput(notification);
+  }
 }

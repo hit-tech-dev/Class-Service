@@ -16,23 +16,22 @@ import org.springframework.stereotype.Service;
 
 @Service("ApplicationDeleteNotificationInteractor")
 public class DeleteNotificationInteractor implements DeleteNotificationDataCase {
+  private final NotificationRepository notificationRepository;
 
-    private final NotificationRepository notificationRepository;
+  public DeleteNotificationInteractor(@Qualifier("DatabaseNotificationRepository") NotificationRepository notificationRepository) {
+    this.notificationRepository = notificationRepository;
+  }
 
-    public DeleteNotificationInteractor(@Qualifier("DatabaseNotificationRepository") NotificationRepository notificationRepository) {
-        this.notificationRepository = notificationRepository;
+  @SneakyThrows
+  @Override
+  public DeleteNotificationOutput handle(DeleteNotificationInput input) {
+    Notification notification = notificationRepository.findById(input.getId());
+    if (ObjectUtils.isEmpty(notification)) {
+      throw new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Notification.ERR_NOT_FOUND_BY_ID, input.getId()),
+          new String[]{input.getId().toString()});
     }
-
-    @SneakyThrows
-    @Override
-    public DeleteNotificationOutput handle(DeleteNotificationInput input) {
-        Notification notification = notificationRepository.findById(input.getId());
-        if(ObjectUtils.isEmpty(notification)) {
-            throw  new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
-                    String.format(DevMessageConstant.Notification.ERR_NOT_FOUND_BY_ID, input.getId()),
-                    new String[]{input.getId().toString()});
-        }
-        notificationRepository.deleteById(input.getId());
-        return new DeleteNotificationOutput(CommonConstant.TRUE, "Delete sucessful");
-    }
+    notificationRepository.deleteById(input.getId());
+    return new DeleteNotificationOutput(CommonConstant.TRUE, "Delete sucessful");
+  }
 }

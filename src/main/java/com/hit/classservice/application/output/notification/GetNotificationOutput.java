@@ -12,13 +12,14 @@ import lombok.Setter;
 @AllArgsConstructor
 public class GetNotificationOutput implements Output {
 
-    private Long id;
+  private Long id;
 
-    private String content;
+  private String content;
 
-    private String path;
+  private String path;
 
-    private Integer type;
+  private Integer type;
 
-    private Boolean isRead;
+  private Boolean isRead;
+
 }

@@ -16,24 +16,21 @@ import java.util.List;
 
 @Service("ApplicationGetListSubjectInteractor")
 public class GetListSubjectInteractor implements GetListSubjectDataCase {
+  private final SubjectRepository subjectRepository;
+  private final SubjectMapper subjectMapper;
 
-    private final SubjectRepository subjectRepository;
+  public GetListSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository) {
+    this.subjectRepository = subjectRepository;
+    this.subjectMapper = Mappers.getMapper(SubjectMapper.class);
+  }
 
-    private final SubjectMapper subjectMapper;
+  @SneakyThrows
+  @Override
+  public GetListSubjectOutput handle(GetListSubjectInput input) {
+    List<Subject> list = subjectRepository.findAll();
 
+    List<GetListSubjectItemOutput> output = subjectMapper.toGetListSubjectItemOutput(list);
+    return new GetListSubjectOutput(output);
+  }
 
-    public GetListSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository) {
-        this.subjectRepository = subjectRepository;
-        this.subjectMapper = Mappers.getMapper(SubjectMapper.class);
-    }
-
-    @SneakyThrows
-    @Override
-    public GetListSubjectOutput handle(GetListSubjectInput input) {
-
-        List<Subject> list = subjectRepository.findAll();
-
-        List<GetListSubjectItemOutput> output = subjectMapper.toGetListSubjectItemOutput(list);
-        return new GetListSubjectOutput(output);
-    }
 }

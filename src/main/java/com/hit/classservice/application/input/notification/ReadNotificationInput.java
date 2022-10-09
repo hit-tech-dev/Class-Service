@@ -12,6 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ReadNotificationInput implements Input {
 
-    private Long id;
+  private Long id;
 
 }

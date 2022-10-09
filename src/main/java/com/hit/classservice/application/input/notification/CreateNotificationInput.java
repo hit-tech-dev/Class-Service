@@ -12,10 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateNotificationInput implements Input {
 
-    private String content;
+  private String content;
 
-    private String path;
+  private String path;
 
-    private Integer type;
+  private Integer type;
 
 }

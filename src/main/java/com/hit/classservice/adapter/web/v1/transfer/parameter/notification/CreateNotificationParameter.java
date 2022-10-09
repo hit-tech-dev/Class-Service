@@ -1,4 +1,4 @@
-package com.hit.classservice.adapter.web.v1.transfer.parameter;
+package com.hit.classservice.adapter.web.v1.transfer.parameter.notification;
 
 import com.hit.classservice.application.constant.UserMessageConstant;
 import lombok.AllArgsConstructor;
@@ -14,11 +14,11 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class CreateNotificationParameter {
 
-    @NotBlank(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
-    private String content;
+  @NotBlank(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
+  private String content;
 
-    private String path;
+  private String path;
 
-    private Integer type;
+  private Integer type;
 
 }

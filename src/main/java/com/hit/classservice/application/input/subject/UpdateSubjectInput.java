@@ -12,11 +12,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UpdateSubjectInput implements Input {
 
-    private Long id;
+  private Long id;
 
-    private String name;
+  private String name;
 
-    private String avatar;
+  private String avatar;
 
-    private String description;
+  private String description;
+
 }
