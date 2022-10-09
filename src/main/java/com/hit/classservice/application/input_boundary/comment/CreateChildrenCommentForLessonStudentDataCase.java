@@ -1,0 +1,8 @@
+package com.hit.classservice.application.input_boundary.comment;
+
+import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonStudentInput;
+import com.hit.classservice.application.input_boundary.UseCase;
+import com.hit.classservice.application.output.comment.CreateChildrenCommentForLessonStudentOutput;
+
+public interface CreateChildrenCommentForLessonStudentDataCase extends UseCase<CreateChildrenCommentForLessonStudentInput, CreateChildrenCommentForLessonStudentOutput> {
+}
