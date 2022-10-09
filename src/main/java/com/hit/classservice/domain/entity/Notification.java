@@ -12,19 +12,20 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Notification extends AbstractAuditingEntity {
 
-    private Long id;
+  private Long id;
 
-    private String content;
+  private String content;
 
-    private String path;
+  private String path;
 
-    private Integer type;
+  private Integer type;
 
-    private Boolean isRead;
+  private Boolean isRead;
 
-    public Notification(String content, String path, Integer type) {
-        this.content = content;
-        this.path = path;
-        this.type = type;
-    }
+  public Notification(String content, String path, Integer type) {
+    this.content = content;
+    this.path = path;
+    this.type = type;
+  }
+
 }

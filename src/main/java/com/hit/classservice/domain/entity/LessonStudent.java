@@ -19,4 +19,5 @@ public class LessonStudent extends AbstractAuditingEntity {
   private Long lessonId;
 
   private String userId;
+
 }

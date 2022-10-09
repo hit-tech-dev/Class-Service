@@ -14,28 +14,30 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface SubjectMapper {
 
-    @Mappings({
-            @Mapping(target = "id", source = "subject.id"),
-            @Mapping(target = "name", source = "subject.name"),
-            @Mapping(target = "avatar", source = "subject.avatar"),
-            @Mapping(target = "description", source = "subject.description")
-    })
-    GetListSubjectItemOutput toGetListSubjectItemOutput(Subject subject);
-    List<GetListSubjectItemOutput> toGetListSubjectItemOutput(List<Subject> subjects);
+  @Mappings({
+      @Mapping(target = "id", source = "subject.id"),
+      @Mapping(target = "name", source = "subject.name"),
+      @Mapping(target = "avatar", source = "subject.avatar"),
+      @Mapping(target = "description", source = "subject.description")
+  })
+  GetListSubjectItemOutput toGetListSubjectItemOutput(Subject subject);
 
-    @Mappings({
-            @Mapping(target = "id", source = "subject.id"),
-            @Mapping(target = "name", source = "subject.name"),
-            @Mapping(target = "avatar", source = "subject.avatar"),
-            @Mapping(target = "description", source = "subject.description")
-    })
-    GetSubjectOutput toGetSubjectOutput(Subject subject);
-    @Mappings({
-            @Mapping(target = "id", source = "parameter.id"),
-            @Mapping(target = "name", source = "parameter.name"),
-            @Mapping(target = "avatar", source = "parameter.avatar"),
-            @Mapping(target = "description", source = "parameter.description")
-    })
-    UpdateSubjectInput toUpdateSubjectInput(UpdateSubjectParameter parameter);
+  List<GetListSubjectItemOutput> toGetListSubjectItemOutput(List<Subject> subjects);
+
+  @Mappings({
+      @Mapping(target = "id", source = "subject.id"),
+      @Mapping(target = "name", source = "subject.name"),
+      @Mapping(target = "avatar", source = "subject.avatar"),
+      @Mapping(target = "description", source = "subject.description")
+  })
+  GetSubjectOutput toGetSubjectOutput(Subject subject);
+
+  @Mappings({
+      @Mapping(target = "id", source = "parameter.id"),
+      @Mapping(target = "name", source = "parameter.name"),
+      @Mapping(target = "avatar", source = "parameter.avatar"),
+      @Mapping(target = "description", source = "parameter.description")
+  })
+  UpdateSubjectInput toUpdateSubjectInput(UpdateSubjectParameter parameter);
 
 }

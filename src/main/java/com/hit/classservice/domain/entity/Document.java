@@ -12,14 +12,14 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Document extends AbstractAuditingEntity {
 
-    private Long id;
+  private Long id;
 
-    private String link;
+  private String link;
 
-    private Integer type;
+  private Integer type;
 
-    private String title;
+  private String title;
 
-    private double mark;
+  private double mark;
 
 }

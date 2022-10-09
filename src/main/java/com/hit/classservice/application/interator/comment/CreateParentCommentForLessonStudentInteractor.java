@@ -16,9 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service("ApplicationCreateParentCommentForLessonStudentInteractor")
 public class CreateParentCommentForLessonStudentInteractor implements CreateParentCommentForLessonStudentDataCase {
-
   private final CommentRepository commentRepository;
-
   private final LessonStudentRepository lessonStudentRepository;
 
   public CreateParentCommentForLessonStudentInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,

@@ -12,5 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class GetNotificationInput implements Input {
 
-    private Long id;
+  private Long id;
+
 }

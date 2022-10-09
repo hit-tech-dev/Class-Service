@@ -11,5 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeleteNotificationInput implements Input {
-    private Long id;
+
+  private Long id;
+
 }

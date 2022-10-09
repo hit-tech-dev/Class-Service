@@ -15,4 +15,5 @@ public class CreateParentCommentForLessonStudentOutput implements Output {
   private boolean status;
 
   private String message;
+
 }

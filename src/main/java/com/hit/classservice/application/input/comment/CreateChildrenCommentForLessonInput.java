@@ -11,7 +11,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateChildrenCommentForLessonInput implements Input {
+
   private String content;
+
   private Long lessonId;
+
   private Long parentCommentId;
+
 }

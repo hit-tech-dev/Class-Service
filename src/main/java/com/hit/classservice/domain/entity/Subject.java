@@ -12,17 +12,18 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Subject extends AbstractAuditingEntity {
 
-    private Long id;
+  private Long id;
 
-    private String name;
+  private String name;
 
-    private String avatar;
+  private String avatar;
 
-    private String description;
+  private String description;
 
-    public Subject (String name, String avatar, String description){
-        this.name = name;
-        this.avatar = avatar;
-        this.description = description;
-    }
+  public Subject(String name, String avatar, String description) {
+    this.name = name;
+    this.avatar = avatar;
+    this.description = description;
+  }
+
 }
