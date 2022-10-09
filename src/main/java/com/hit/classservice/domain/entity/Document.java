@@ -10,17 +10,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category extends AbstractAuditingEntity {
+public class Document extends AbstractAuditingEntity {
 
-  private Long id;
+    private Long id;
 
-  private String name;
+    private String link;
 
-  private String description;
+    private Integer type;
 
-  public Category(String name, String description) {
-    this.name = name;
-    this.description = description;
-  }
+    private String title;
+
+    private double mark;
 
 }

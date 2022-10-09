@@ -1,15 +1,13 @@
 package com.hit.classservice.application;
 
 import com.hit.classservice.application.input.Input;
-import com.hit.classservice.application.input.category.GetCategoryInput;
-import com.hit.classservice.application.input.category.GetListCategoryInput;
+import com.hit.classservice.application.input.category.*;
 import com.hit.classservice.application.input.subject.DeleteSubjectInput;
 import com.hit.classservice.application.input.subject.GetListSubjectInput;
 import com.hit.classservice.application.input.subject.GetSubjectInput;
 import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.input_boundary.UseCase;
-import com.hit.classservice.application.interator.category.GetCategoryInteractor;
-import com.hit.classservice.application.interator.category.GetListCategoryInteractor;
+import com.hit.classservice.application.interator.category.*;
 import com.hit.classservice.application.interator.subject.DeleteSubjectInteractor;
 import com.hit.classservice.application.interator.subject.GetListSubjectInteractor;
 import com.hit.classservice.application.interator.subject.GetSubjectInteractor;
@@ -41,6 +39,9 @@ public class UseCaseBus {
     handlerTypes.put(GetSubjectInput.class, GetSubjectInteractor.class);
     handlerTypes.put(UpdateSubjectInput.class, UpdateSubjectInteractor.class);
     handlerTypes.put(DeleteSubjectInput.class, DeleteSubjectInteractor.class);
+    handlerTypes.put(CreateCategoryInput.class, CreateCategoryInteractor.class);
+    handlerTypes.put(UpdateCategoryInput.class, UpdateCategoryInteractor.class);
+    handlerTypes.put(DeleteCategoryInput.class, DeleteCategoryInteractor.class);
 
   }
 
