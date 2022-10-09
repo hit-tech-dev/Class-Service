@@ -10,4 +10,12 @@ public interface CategoryRepository {
 
   Category findById(Long id);
 
+  Category findByName(String name);
+
+  int save(Category category);
+
+  int update(Category category);
+
+  int delete(Long id);
+
 }
