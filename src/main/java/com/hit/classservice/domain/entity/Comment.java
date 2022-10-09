@@ -10,8 +10,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubjectScheduleRelation extends AbstractAuditingEntity {
+public class Comment extends AbstractAuditingEntity {
 
   private Long id;
+
+  private String content;
+
+  private Long parentId;
+
+  // Foreign Key
+  private String userId;
+
+  private Long lessonId;
+
+  private Long lessonStudentId;
 
 }

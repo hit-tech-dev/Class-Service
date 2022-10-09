@@ -2,6 +2,10 @@ package com.hit.classservice.application;
 
 import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.*;
+import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonInput;
+import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonStudentInput;
+import com.hit.classservice.application.input.comment.CreateParentCommentForLessonInput;
+import com.hit.classservice.application.input.comment.CreateParentCommentForLessonStudentInput;
 import com.hit.classservice.application.input.notification.CreateNotificationInput;
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input.notification.GetNotificationInput;
@@ -12,6 +16,10 @@ import com.hit.classservice.application.input.subject.GetSubjectInput;
 import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
+import com.hit.classservice.application.interator.comment.CreateChildrenCommentForLessonInteractor;
+import com.hit.classservice.application.interator.comment.CreateChildrenCommentForLessonStudentInteractor;
+import com.hit.classservice.application.interator.comment.CreateParentCommentForLessonInteractor;
+import com.hit.classservice.application.interator.comment.CreateParentCommentForLessonStudentInteractor;
 import com.hit.classservice.application.interator.notification.CreateNotificationInteractor;
 import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
 import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
@@ -45,6 +53,12 @@ public class UseCaseBus {
     handlerTypes.put(UpdateCategoryInput.class, UpdateCategoryInteractor.class);
     handlerTypes.put(DeleteCategoryInput.class, DeleteCategoryInteractor.class);
 
+    //comment
+    handlerTypes.put(CreateParentCommentForLessonInput.class, CreateParentCommentForLessonInteractor.class);
+    handlerTypes.put(CreateChildrenCommentForLessonInput.class, CreateChildrenCommentForLessonInteractor.class);
+    handlerTypes.put(CreateParentCommentForLessonStudentInput.class, CreateParentCommentForLessonStudentInteractor.class);
+    handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class, CreateChildrenCommentForLessonStudentInteractor.class);
+
     // notification
     handlerTypes.put(DeleteNotificationInput.class, DeleteNotificationInteractor.class);
     handlerTypes.put(GetNotificationInput.class, GetNotificationInteractor.class);
@@ -58,7 +72,6 @@ public class UseCaseBus {
     handlerTypes.put(DeleteSubjectInput.class, DeleteSubjectInteractor.class);
 
   }
-
 
   public <TInput extends Input, TOutput extends Output> TOutput handle(TInput input)
       throws Exception {
