@@ -55,4 +55,13 @@ public class UrlConstant {
 
     }
   }
+
+  public static final class Schedule {
+    private static final String PREFIX = "/schedule";
+    public static final String LIST = PREFIX + "s";
+    public static final String GET = PREFIX + "/{id}";
+
+    private Schedule() {
+    }
+  }
 }

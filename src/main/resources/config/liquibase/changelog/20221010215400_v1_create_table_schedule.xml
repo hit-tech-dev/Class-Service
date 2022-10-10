@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="20221010215400" author="huan.nguyendinh">
+
+        <createTable tableName="schedule">
+
+            <column name="id" type="bigint"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="internal_name" type="varchar(255)"/>
+            <column name="session" type="varchar(255)"/>
+            <column name="time_detail" type="nvarchar(255)"/>
+            <column name="delete_flag" type="bit(1)"/>
+            <column name="active_flag" type="bit(1)"/>
+            <column name="created_date" type="bigint"/>
+            <column name="created_by" type="nvarchar(255)"/>
+            <column name="last_modified_date" type="bigint"/>
+            <column name="last_modified_by" type="nvarchar(255)"/>
+
+        </createTable>
+
+        <addPrimaryKey tableName="schedule" columnNames="id"/>
+        <addAutoIncrement columnDataType="bigint" tableName="schedule" columnName="id"/>
+
+        <addNotNullConstraint tableName="schedule" columnName="delete_flag" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="schedule" columnName="active_flag" columnDataType="bit(1)"/>
+        <addNotNullConstraint tableName="schedule" columnName="created_date" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="schedule" columnName="created_by" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="schedule" columnName="last_modified_date" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="schedule" columnName="last_modified_by" columnDataType="nvarchar(255)"/>
+
+        <addDefaultValue tableName="schedule" columnName="delete_flag" defaultValueBoolean="false"/>
+        <addDefaultValue tableName="schedule" columnName="active_flag" defaultValueBoolean="true"/>
+
+    </changeSet>
+
+</databaseChangeLog>
