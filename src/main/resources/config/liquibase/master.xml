@@ -24,4 +24,7 @@
     <!--  lesson student  -->
     <include file="config/liquibase/changelog/20221008215000_v1_create_table_lesson_student.xml" relativeToChangelogFile="false"/>
 
+    <!--  lesson student  -->
+    <include file="config/liquibase/changelog/20221010215400_v1_create_table_schedule.xml" relativeToChangelogFile="false"/>
+
 </databaseChangeLog>
