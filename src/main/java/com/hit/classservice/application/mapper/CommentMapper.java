@@ -8,7 +8,14 @@ import com.hit.classservice.application.input.comment.CreateChildrenCommentForLe
 import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonStudentInput;
 import com.hit.classservice.application.input.comment.CreateParentCommentForLessonInput;
 import com.hit.classservice.application.input.comment.CreateParentCommentForLessonStudentInput;
+import com.hit.classservice.application.output.comment.GetChildrenCommentsByLessonItemOutput;
+import com.hit.classservice.application.output.comment.GetParentCommentsByLessonItemOutput;
+import com.hit.classservice.domain.entity.Comment;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
@@ -21,4 +28,7 @@ public interface CommentMapper {
 
   CreateChildrenCommentForLessonStudentInput toCreateChildrenCommentForLessonStudentInput(CreateChildrenCommentForLessonStudentParameter parameter);
 
+  List<GetParentCommentsByLessonItemOutput> toGetCommentsByLessonItemOutput(List<Comment> comments);
+
+  List<GetChildrenCommentsByLessonItemOutput> toGetChildrenCommentsByLessonOutput(List<Comment> comments);
 }

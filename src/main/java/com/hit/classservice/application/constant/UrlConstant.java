@@ -43,13 +43,25 @@ public class UrlConstant {
   }
 
   public static final class Comment {
+    private static final String LIST = "/comments";
+    private static final String LIST_PARENT = LIST + "/parent";
+    private static final String LIST_CHILDREN = LIST + "/children";
+
     private static final String PREFIX = "/comment";
-    private static final String PREFIX_LESSON = PREFIX + "/lesson";
-    public static final String CREATE_PARENT_FOR_LESSON = PREFIX_LESSON + "/create/parent";
-    public static final String CREATE_CHILDREN_FOR_LESSON = PREFIX_LESSON + "/create/children";
-    private static final String PREFIX_LESSON_STUDENT = PREFIX + "/lesson-student";
-    public static final String CREATE_PARENT_FOR_LESSON_STUDENT = PREFIX_LESSON_STUDENT + "/create/parent";
-    public static final String CREATE_CHILDREN_FOR_LESSON_STUDENT = PREFIX_LESSON_STUDENT + "/create/children";
+    private static final String PREFIX_PARENT = PREFIX + "/parent";
+    private static final String PREFIX_CHILDREN = PREFIX + "/children";
+
+    private static final String LESSON = "/lesson";
+    private static final String LESSON_STUDENT = "/lesson-student";
+
+    public static final String GET_PARENT_BY_LESSON = LIST_PARENT + LESSON + "/{lessonId}";
+    public static final String GET_CHILDREN_BY_LESSON = LIST_CHILDREN + LESSON + "/{lessonId}/{parentId}";
+
+    public static final String CREATE_PARENT_FOR_LESSON = PREFIX_PARENT + LESSON;
+    public static final String CREATE_CHILDREN_FOR_LESSON = PREFIX_CHILDREN + LESSON;
+
+    public static final String CREATE_PARENT_FOR_LESSON_STUDENT = PREFIX_PARENT + LESSON_STUDENT;
+    public static final String CREATE_CHILDREN_FOR_LESSON_STUDENT = PREFIX_CHILDREN + LESSON_STUDENT;
 
     private Comment() {
 
