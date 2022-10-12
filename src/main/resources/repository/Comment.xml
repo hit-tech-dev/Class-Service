@@ -35,20 +35,38 @@
           AND c.delete_flag = 0;
     </select>
 
+    <select id="findByParentId" resultMap="commentResultMap">
+        SELECT c.id,
+               c.content,
+               c.parent_id,
+               c.created_by,
+               c.created_date
+        FROM comment c
+        WHERE c.parent_id = #{id}
+          AND c.active_flag = 1
+          AND c.delete_flag = 0;
+    </select>
+
     <insert id="createCommentForLesson" parameterType="com.hit.classservice.domain.entity.Comment">
         INSERT INTO comment (content, parent_id, user_id, lesson_id, created_by, created_date,
                              active_flag, delete_flag, last_modified_date, last_modified_by)
-        values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonId}, #{item.createdBy}, UNIX_TIMESTAMP(NOW()),
-                b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy}
-         )
+        values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonId}, #{item.createdBy},
+                UNIX_TIMESTAMP(NOW()),
+                b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
     </insert>
 
     <insert id="createCommentForLessonStudent" parameterType="com.hit.classservice.domain.entity.Comment">
         INSERT INTO comment (content, parent_id, user_id, lesson_student_id, created_by, created_date,
                              active_flag, delete_flag, last_modified_date, last_modified_by)
-        values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonStudentId}, #{item.createdBy}, UNIX_TIMESTAMP(NOW()),
-                b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy}
-               )
+        values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonStudentId}, #{item.createdBy},
+                UNIX_TIMESTAMP(NOW()),
+                b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
     </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        UPDATE comment
+        SET delete_flag = 1
+        WHERE id = #{id}
+    </delete>
 </mapper>
 

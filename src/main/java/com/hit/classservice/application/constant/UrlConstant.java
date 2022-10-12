@@ -44,6 +44,7 @@ public class UrlConstant {
 
   public static final class Comment {
     private static final String PREFIX = "/comment";
+    public static final String DELETE = PREFIX + "/{id}";
     private static final String PREFIX_LESSON = PREFIX + "/lesson";
     public static final String CREATE_PARENT_FOR_LESSON = PREFIX_LESSON + "/create/parent";
     public static final String CREATE_CHILDREN_FOR_LESSON = PREFIX_LESSON + "/create/children";
