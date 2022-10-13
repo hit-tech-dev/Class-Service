@@ -9,6 +9,8 @@ import java.util.List;
 public interface CommentRepository {
   Comment findById(Long id);
 
+  List<Comment> findByParentId(Long id);
+
   List<ParentCommentDTO> findParentCommentByLesson(Long lessonId);
 
   List<ChildrenCommentDTO> findChildrenCommentByLessonAndParentComment(Long lessonId, Long parentId);
@@ -16,4 +18,6 @@ public interface CommentRepository {
   int createCommentForLesson(Comment comment);
 
   int createCommentForLessonStudent(Comment comment);
+
+  int delete(Long id);
 }

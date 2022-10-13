@@ -25,9 +25,15 @@ public class DevMessageConstant {
 
   public static final class Comment {
     public static final String ERR_NOT_FOUND_BY_ID = "Not found comment by id = %s";
+    public static final String ERR_NOT_YOURS = "Comment id = '%s' is not yours.";
   }
 
   public static final class Notification {
     public static final String ERR_NOT_FOUND_BY_ID = "Not found notification by id = %s";
   }
+
+  public static final class Schedule {
+    public static final String ERR_NOT_FOUND_BY_ID = "Not found schedule by id = %s";
+  }
+
 }

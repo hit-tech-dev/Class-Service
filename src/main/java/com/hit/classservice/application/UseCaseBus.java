@@ -7,6 +7,7 @@ import com.hit.classservice.application.input.notification.CreateNotificationInp
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input.notification.GetNotificationInput;
 import com.hit.classservice.application.input.notification.ReadNotificationInput;
+import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
 import com.hit.classservice.application.input.subject.DeleteSubjectInput;
 import com.hit.classservice.application.input.subject.GetListSubjectInput;
 import com.hit.classservice.application.input.subject.GetSubjectInput;
@@ -18,6 +19,7 @@ import com.hit.classservice.application.interator.notification.CreateNotificatio
 import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
 import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
 import com.hit.classservice.application.interator.notification.ReadNotificationInteractor;
+import com.hit.classservice.application.interator.schedule.GetScheduleByIdInterator;
 import com.hit.classservice.application.interator.subject.DeleteSubjectInteractor;
 import com.hit.classservice.application.interator.subject.GetListSubjectInteractor;
 import com.hit.classservice.application.interator.subject.GetSubjectInteractor;
@@ -52,8 +54,11 @@ public class UseCaseBus {
     handlerTypes.put(GetChildrenCommentsByLessonInput.class, GetChildrenCommentsByLessonInteractor.class);
     handlerTypes.put(CreateParentCommentForLessonInput.class, CreateParentCommentForLessonInteractor.class);
     handlerTypes.put(CreateChildrenCommentForLessonInput.class, CreateChildrenCommentForLessonInteractor.class);
-    handlerTypes.put(CreateParentCommentForLessonStudentInput.class, CreateParentCommentForLessonStudentInteractor.class);
-    handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class, CreateChildrenCommentForLessonStudentInteractor.class);
+    handlerTypes.put(CreateParentCommentForLessonStudentInput.class,
+        CreateParentCommentForLessonStudentInteractor.class);
+    handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class,
+        CreateChildrenCommentForLessonStudentInteractor.class);
+    handlerTypes.put(DeleteCommentInput.class, DeleteCommentInteractor.class);
 
     // notification
     handlerTypes.put(DeleteNotificationInput.class, DeleteNotificationInteractor.class);
@@ -66,6 +71,9 @@ public class UseCaseBus {
     handlerTypes.put(GetSubjectInput.class, GetSubjectInteractor.class);
     handlerTypes.put(UpdateSubjectInput.class, UpdateSubjectInteractor.class);
     handlerTypes.put(DeleteSubjectInput.class, DeleteSubjectInteractor.class);
+
+    // schedule
+    handlerTypes.put(GetScheduleByIdInput.class, GetScheduleByIdInterator.class);
 
   }
 

@@ -18,6 +18,9 @@ public interface DatabaseCommentRepository extends CommentRepository {
   Comment findById(@Param("id") Long id);
 
   @Override
+  List<Comment> findByParentId(@Param("id") Long id);
+
+  @Override
   List<ParentCommentDTO> findParentCommentByLesson(@Param("lessonId") Long lessonId);
 
   @Override
@@ -29,5 +32,8 @@ public interface DatabaseCommentRepository extends CommentRepository {
 
   @Override
   int createCommentForLessonStudent(@Param("item") Comment comment);
+
+  @Override
+  int delete(@Param("id") Long id);
 
 }

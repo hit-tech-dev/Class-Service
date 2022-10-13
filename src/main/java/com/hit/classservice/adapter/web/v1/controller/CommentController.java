@@ -15,10 +15,7 @@ import com.hit.classservice.application.output.comment.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -95,6 +92,16 @@ public class CommentController {
         commentMapper.toCreateChildrenCommentForLessonStudentInput(parameter);
     // Get output
     CreateChildrenCommentForLessonStudentOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @DeleteMapping(UrlConstant.Comment.DELETE)
+  public ResponseEntity<?> deleteComment(@PathVariable("id") Long id) throws Exception {
+    // Create input
+    DeleteCommentInput input = new DeleteCommentInput(id);
+    // Get output
+    DeleteCommentOutput output = useCaseBus.handle(input);
     // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }

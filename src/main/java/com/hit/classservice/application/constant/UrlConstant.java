@@ -50,7 +50,6 @@ public class UrlConstant {
     private static final String PREFIX = "/comment";
     private static final String PREFIX_PARENT = PREFIX + "/parent";
     private static final String PREFIX_CHILDREN = PREFIX + "/children";
-
     private static final String LESSON = "/lesson";
     private static final String LESSON_STUDENT = "/lesson-student";
 
@@ -59,12 +58,22 @@ public class UrlConstant {
 
     public static final String CREATE_PARENT_FOR_LESSON = PREFIX_PARENT + LESSON;
     public static final String CREATE_CHILDREN_FOR_LESSON = PREFIX_CHILDREN + LESSON;
-
     public static final String CREATE_PARENT_FOR_LESSON_STUDENT = PREFIX_PARENT + LESSON_STUDENT;
     public static final String CREATE_CHILDREN_FOR_LESSON_STUDENT = PREFIX_CHILDREN + LESSON_STUDENT;
+    
+    public static final String DELETE = PREFIX + "/{id}";
 
     private Comment() {
 
+    }
+  }
+
+  public static final class Schedule {
+    private static final String PREFIX = "/schedule";
+    public static final String LIST = PREFIX + "s";
+    public static final String GET = PREFIX + "/{id}";
+
+    private Schedule() {
     }
   }
 }
