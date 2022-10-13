@@ -109,7 +109,7 @@
                u.fullname,
                u.avatar,
                (SELECT COUNT(child.id)
-                FROM `hit-tech`.comment child
+                FROM comment child
                 WHERE child.parent_id = c.id
                   AND child.active_flag = 1
                   AND child.delete_flag = 0
@@ -138,6 +138,8 @@
                  INNER JOIN users u ON c.user_id = u.id
         WHERE c.lesson_id = #{lessonId}
           AND c.parent_id = #{parentId}
+          AND c.active_flag = 1
+          AND c.delete_flag = 0;
     </select>
 
     <insert id="createCommentForLesson" parameterType="com.hit.classservice.domain.entity.Comment">

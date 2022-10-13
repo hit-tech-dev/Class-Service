@@ -60,7 +60,7 @@ public class UrlConstant {
     public static final String CREATE_CHILDREN_FOR_LESSON = PREFIX_CHILDREN + LESSON;
     public static final String CREATE_PARENT_FOR_LESSON_STUDENT = PREFIX_PARENT + LESSON_STUDENT;
     public static final String CREATE_CHILDREN_FOR_LESSON_STUDENT = PREFIX_CHILDREN + LESSON_STUDENT;
-    
+
     public static final String DELETE = PREFIX + "/{id}";
 
     private Comment() {
