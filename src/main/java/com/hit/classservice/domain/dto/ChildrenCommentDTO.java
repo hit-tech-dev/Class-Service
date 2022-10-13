@@ -1,4 +1,4 @@
-package com.hit.classservice.application.output.comment;
+package com.hit.classservice.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetChildrenCommentsByLessonItemOutput {
+public class ChildrenCommentDTO {
 
   private Long id;
 
@@ -22,6 +22,8 @@ public class GetChildrenCommentsByLessonItemOutput {
   private Long createdDate;
 
   private String createdBy;
+
+  private Integer totalNumberChild;
 
   private Long parentId;
 

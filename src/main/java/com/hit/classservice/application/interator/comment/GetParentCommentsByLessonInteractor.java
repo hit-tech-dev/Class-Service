@@ -10,7 +10,7 @@ import com.hit.classservice.application.mapper.CommentMapper;
 import com.hit.classservice.application.output.comment.GetParentCommentsByLessonItemOutput;
 import com.hit.classservice.application.output.comment.GetParentCommentsByLessonOutput;
 import com.hit.classservice.config.exception.VsException;
-import com.hit.classservice.domain.entity.Comment;
+import com.hit.classservice.domain.dto.ParentCommentDTO;
 import com.hit.classservice.domain.entity.Lesson;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
@@ -40,13 +40,15 @@ public class GetParentCommentsByLessonInteractor implements GetParentCommentByLe
   @Override
   public GetParentCommentsByLessonOutput handle(GetParentCommentsByLessonInput input) {
     Lesson oldLesson = lessonRepository.findById(input.getLessonId());
+    //Check if lesson exists
     if (ObjectUtils.isEmpty(oldLesson)) {
       throw new VsException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()),
           new String[]{input.getLessonId().toString()});
     }
-    List<Comment> comments = commentRepository.findParentCommentByLesson(input.getLessonId());
+    List<ParentCommentDTO> comments = commentRepository.findParentCommentByLesson(input.getLessonId());
 
+    //Mapper to output
     List<GetParentCommentsByLessonItemOutput> output = commentMapper.toGetCommentsByLessonItemOutput(comments);
     return new GetParentCommentsByLessonOutput(output);
   }

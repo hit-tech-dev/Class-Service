@@ -15,9 +15,15 @@ public class GetParentCommentsByLessonItemOutput {
 
   private String content;
 
-  private Long parentId;
+  private String authorName;
+
+  private String authorAvatar;
+
+  private Long createdDate;
 
   private String createdBy;
 
-  private Long createdDate;
+  private Integer totalNumberChild;
+
+  private String userId;
 }
