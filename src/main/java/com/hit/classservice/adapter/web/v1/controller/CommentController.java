@@ -15,10 +15,7 @@ import com.hit.classservice.application.output.comment.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -36,6 +33,26 @@ public class CommentController {
   }
 
   //Comment of table Lesson
+  @GetMapping(UrlConstant.Comment.GET_PARENT_BY_LESSON)
+  public ResponseEntity<?> getParentCommentsByLesson(@PathVariable Long lessonId) throws Exception {
+    // Create input
+    GetParentCommentsByLessonInput input = new GetParentCommentsByLessonInput(lessonId);
+    // Get output
+    GetParentCommentsByLessonOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @GetMapping(UrlConstant.Comment.GET_CHILDREN_BY_LESSON)
+  public ResponseEntity<?> getChildrenCommentsByLesson(@PathVariable Long lessonId, @PathVariable Long parentId) throws Exception {
+    // Create input
+    GetChildrenCommentsByLessonInput input = new GetChildrenCommentsByLessonInput(lessonId, parentId);
+    // Get output
+    GetChildrenCommentsByLessonOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
   @PostMapping(UrlConstant.Comment.CREATE_PARENT_FOR_LESSON)
   public ResponseEntity<?> createParentCommentForLesson(@Valid @RequestBody CreateParentCommentForLessonParameter parameter) throws Exception {
     // Create input
