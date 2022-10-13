@@ -11,6 +11,11 @@ public class UserMessageConstant {
     public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.category_id";
   }
 
+  public static final class Comment {
+    public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.comment_id";
+    public static final String ERR_USER_COMMENTED = "invalid.not.correct.user.commented";
+  }
+
   public static final class Subject {
     public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.subject_id";
     public static final String INVALID_FIELD_IS_REQUIRED = "invalid.field.is.require";

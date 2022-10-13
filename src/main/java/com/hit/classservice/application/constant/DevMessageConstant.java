@@ -25,6 +25,7 @@ public class DevMessageConstant {
 
   public static final class Comment {
     public static final String ERR_NOT_FOUND_BY_ID = "Not found comment by id = %s";
+    public static final String ERR_USER_COMMENTED = "Invalid user commented by id = %s";
   }
 
   public static final class Notification {

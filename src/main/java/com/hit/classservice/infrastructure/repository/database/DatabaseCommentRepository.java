@@ -16,6 +16,8 @@ public interface DatabaseCommentRepository extends CommentRepository {
   @Override
   int createCommentForLesson(@Param("item") Comment comment);
 
+  @Override
+  int editComment(@Param("item") Comment comment);
 
   @Override
   int createCommentForLessonStudent(@Param("item") Comment comment);

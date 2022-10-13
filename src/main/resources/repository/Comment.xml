@@ -15,6 +15,9 @@
             <result column="parent_id"/>
         </association>
 
+        <association property="userId" javaType="java.lang.String">
+            <result column="user_id"/>
+        </association>
         <association property="createdBy" javaType="java.lang.String">
             <result column="created_by"/>
         </association>
@@ -50,5 +53,14 @@
                 b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy}
                )
     </insert>
+
+    <update id="editComment" parameterType="com.hit.classservice.domain.entity.Comment">
+        UPDATE comment
+        SET content = #{item.content},
+            last_modified_date = UNIX_TIMESTAMP(NOW()),
+            last_modified_by = #{item.lastModifiedBy}
+        WHERE id = #{item.id}
+            AND user_id = #{item.userId};
+    </update>
 </mapper>
 
