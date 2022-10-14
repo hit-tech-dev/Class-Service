@@ -27,4 +27,8 @@ public class UserMessageConstant {
     public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.notification_id";
   }
 
+  public static final class Lesson {
+    public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.lesson_id";
+  }
+
 }

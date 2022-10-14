@@ -30,7 +30,7 @@ public class CreateChildrenCommentForLessonInteractor implements CreateChildrenC
 
   @SneakyThrows
   @Override
-  public CreateChildrenCommentForLessonOutput handle(CreateChildrenCommentForLessonInput input) throws Exception {
+  public CreateChildrenCommentForLessonOutput handle(CreateChildrenCommentForLessonInput input) {
     Lesson oldLesson = lessonRepository.findById(input.getLessonId());
     Comment parentComment = commentRepository.findById(input.getParentCommentId());
     if (ObjectUtils.isEmpty(oldLesson)) {
