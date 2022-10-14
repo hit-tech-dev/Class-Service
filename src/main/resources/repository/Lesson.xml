@@ -28,6 +28,20 @@
         </association>
     </resultMap>
 
+    <select id="getListLessonBySubjectId" resultMap="lessonResultMap">
+        SELECT l.id,
+               l.name,
+               l.content,
+               l.expired_time_homework,
+               l.subject_id,
+               l.created_by,
+               l.created_date
+            FROM lesson l
+            WHERE l.subject_id = #{subjectId}
+            AND l.active_flag = 1
+            AND l.delete_flag = 0;
+    </select>
+
     <select id="findById" resultMap="lessonResultMap">
         SELECT l.id,
                l.name,

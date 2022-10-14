@@ -17,6 +17,7 @@ public class DevMessageConstant {
 
   public static final class Lesson {
     public static final String ERR_NOT_FOUND_BY_ID = "Not found lesson by id = %s";
+    public static final String ERR_NOT_FOUND_LESSON_BY_SUBJECT_ID = "Not found lesson by subject id = %s";
   }
 
   public static final class LessonStudent {

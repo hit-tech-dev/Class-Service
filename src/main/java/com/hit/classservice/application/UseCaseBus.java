@@ -3,6 +3,7 @@ package com.hit.classservice.application;
 import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.*;
 import com.hit.classservice.application.input.comment.*;
+import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInput;
 import com.hit.classservice.application.input.notification.CreateNotificationInput;
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input.notification.GetNotificationInput;
@@ -16,6 +17,7 @@ import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
 import com.hit.classservice.application.interator.comment.*;
+import com.hit.classservice.application.interator.lesson.GetListLessonBySubjectIdInteractor;
 import com.hit.classservice.application.interator.notification.CreateNotificationInteractor;
 import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
 import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
@@ -27,6 +29,7 @@ import com.hit.classservice.application.interator.subject.GetListSubjectInteract
 import com.hit.classservice.application.interator.subject.GetSubjectInteractor;
 import com.hit.classservice.application.interator.subject.UpdateSubjectInteractor;
 import com.hit.classservice.application.output.Output;
+import com.hit.classservice.application.output.lesson.GetListLessonBySubjectIdOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -78,6 +81,8 @@ public class UseCaseBus {
     handlerTypes.put(GetScheduleByIdInput.class, GetScheduleByIdInterator.class);
     handlerTypes.put(GetListScheduleInput.class, GetListScheduleInterator.class);
 
+    //lesson
+    handlerTypes.put(GetListLessonBySubjectIdInput.class, GetListLessonBySubjectIdInteractor.class);
   }
 
   public <TInput extends Input, TOutput extends Output> TOutput handle(TInput input)

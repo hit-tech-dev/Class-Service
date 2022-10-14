@@ -76,4 +76,14 @@ public class UrlConstant {
     private Schedule() {
     }
   }
+
+  public static final class Lesson {
+
+    public static final String LIST = "lessons";
+    private static final String PREFIX = "/lesson";
+    public static final String GET_LESSON_BY_SUBJECT = PREFIX + "/{subjectId}";
+
+    private Lesson() {
+    }
+  }
 }
