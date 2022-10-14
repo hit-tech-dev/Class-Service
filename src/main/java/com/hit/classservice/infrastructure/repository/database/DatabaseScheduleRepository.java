@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository("DatabaseScheduleRepository")
 public interface DatabaseScheduleRepository extends ScheduleRepository {
@@ -13,4 +15,6 @@ public interface DatabaseScheduleRepository extends ScheduleRepository {
   @Override
   Schedule findById(@Param("id") Long id);
 
+  @Override
+  List<Schedule> findAll();
 }

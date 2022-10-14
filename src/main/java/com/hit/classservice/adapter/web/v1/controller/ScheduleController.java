@@ -5,7 +5,9 @@ import com.hit.classservice.adapter.web.base.VsResponseUtil;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
+import com.hit.classservice.application.input.schedule.GetListScheduleInput;
 import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
+import com.hit.classservice.application.output.schedule.GetListScheduleOutput;
 import com.hit.classservice.application.output.schedule.GetScheduleByIdOutput;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,16 @@ public class ScheduleController {
     GetScheduleByIdInput input = new GetScheduleByIdInput(id);
     // Get output
     GetScheduleByIdOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @GetMapping(UrlConstant.Schedule.LIST)
+  public ResponseEntity<?> getAllSchedule() throws Exception {
+    // Create input
+    GetListScheduleInput input = new GetListScheduleInput();
+    // Get output
+    GetListScheduleOutput output = useCaseBus.handle(input);
     // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
