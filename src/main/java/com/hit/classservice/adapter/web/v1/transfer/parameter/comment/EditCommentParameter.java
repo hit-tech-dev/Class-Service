@@ -20,9 +20,6 @@ public class EditCommentParameter {
   @Min(value = 1, message = UserMessageConstant.INVALID_SOME_THING_FIELD)
   private Long id;
 
-  @NotNull(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
-  private String userId;
-
   @NotBlank(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
   private String content;
 

@@ -14,8 +14,6 @@ public class EditCommentInput implements Input {
 
   private Long id;
 
-  private String userId;
-
   private String content;
 
 }

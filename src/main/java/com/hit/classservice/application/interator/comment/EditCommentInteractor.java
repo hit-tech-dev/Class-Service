@@ -39,17 +39,20 @@ public class EditCommentInteractor implements EditCommentDataCase {
   public EditCommentOutput handle(EditCommentInput input) throws Exception {
     Comment comment = commentRepository.findById(input.getId());
 
-    if(comment.getUserId().equals(input.getUserId())) {
-      throw new VsException(UserMessageConstant.Comment.ERR_USER_COMMENTED,
-          String.format(DevMessageConstant.Comment.ERR_USER_COMMENTED, input.getId()),
-          new String[]{input.getId().toString()});
-    }
-
+    // Find obj by id
     if(ObjectUtils.isEmpty(comment)) {
       throw new VsException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }
+
+    // Check comment is from CurrentUserLogin
+    if (comment.getUserId().compareTo(SecurityUtil.getCurrentUserLogin()) != 0) {
+      throw new VsException(UserMessageConstant.Comment.ERR_NOT_YOURS,
+          String.format(DevMessageConstant.Comment.ERR_NOT_YOURS, input.getId()),
+          new String[]{input.getId().toString()});
+    }
+
     comment.setContent(input.getContent());
     commentRepository.editComment(comment);
     return new EditCommentOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
