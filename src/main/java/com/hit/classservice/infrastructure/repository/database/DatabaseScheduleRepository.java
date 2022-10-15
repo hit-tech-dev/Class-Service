@@ -13,4 +13,7 @@ public interface DatabaseScheduleRepository extends ScheduleRepository {
   @Override
   Schedule findById(@Param("id") Long id);
 
+  @Override
+  int update(@Param("item") Schedule schedule);
+
 }

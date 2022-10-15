@@ -35,5 +35,22 @@
             AND s.active_flag = 1
     </select>
 
+    <update id="update" parameterType="com.hit.classservice.domain.entity.Schedule">
+        UPDATE schedule
+        SET `name` = #{item.name},
+            `internal_name` = #{item.internalName},
+            `session` = #{item.session},
+            `time_detail` = #{item.timeDetail}
+        WHERE id = #{item.id};
+    </update>
+
+<!--    <update id="update" parameterType="com.hit.classservice.domain.entity.Category">
+        UPDATE category
+        SET `name` = #{item.name},
+            description = #{item.description},
+            last_modified_date = UNIX_TIMESTAMP(NOW()),
+            last_modified_by = #{item.lastModifiedBy}
+        WHERE id = #{item.id};
+    </update>-->
 </mapper>
 
