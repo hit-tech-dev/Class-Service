@@ -59,6 +59,9 @@ public class UseCaseBus {
     handlerTypes.put(GetChildrenCommentsByLessonInput.class, GetChildrenCommentsByLessonInteractor.class);
     handlerTypes.put(CreateParentCommentForLessonInput.class, CreateParentCommentForLessonInteractor.class);
     handlerTypes.put(CreateChildrenCommentForLessonInput.class, CreateChildrenCommentForLessonInteractor.class);
+    handlerTypes.put(CreateParentCommentForLessonStudentInput.class, CreateParentCommentForLessonStudentInteractor.class);
+    handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class, CreateChildrenCommentForLessonStudentInteractor.class);
+    handlerTypes.put(EditCommentInput.class, EditCommentInteractor.class);
     handlerTypes.put(CreateParentCommentForLessonStudentInput.class,
         CreateParentCommentForLessonStudentInteractor.class);
     handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class,

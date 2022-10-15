@@ -2,10 +2,7 @@ package com.hit.classservice.adapter.web.v1.controller;
 
 import com.hit.classservice.adapter.web.base.RestApiV1;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
-import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.CreateChildrenCommentForLessonParameter;
-import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.CreateChildrenCommentForLessonStudentParameter;
-import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.CreateParentCommentForLessonParameter;
-import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.CreateParentCommentForLessonStudentParameter;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.*;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
@@ -96,6 +93,18 @@ public class CommentController {
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
+  // Edit comment
+  @PutMapping(UrlConstant.Comment.EDIT)
+  public ResponseEntity<?> editComment(@Valid @RequestBody EditCommentParameter parameter) throws Exception {
+    // Create input
+    EditCommentInput input = commentMapper.toEditCommentInput(parameter);
+    // Get output
+    EditCommentOutput output = useCaseBus.handle(input);
+
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
   @DeleteMapping(UrlConstant.Comment.DELETE)
   public ResponseEntity<?> deleteComment(@PathVariable("id") Long id) throws Exception {
     // Create input
@@ -105,5 +114,4 @@ public class CommentController {
     // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
-
 }

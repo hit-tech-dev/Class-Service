@@ -31,7 +31,7 @@ public class GetScheduleByIdInterator implements GetScheduleByIdDataCase {
     Schedule schedule = scheduleRepository.findById(input.getId());
 
     if (ObjectUtils.isEmpty(schedule)) {
-      throw new VsException(UserMessageConstant.Category.ERR_NOT_FOUND_BY_ID,
+      throw new VsException(UserMessageConstant.Schedule.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Schedule.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }
