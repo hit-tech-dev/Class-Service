@@ -94,7 +94,7 @@ public class CommentController {
   }
 
   // Edit comment
-  @PutMapping(UrlConstant.Comment.EDIT_COMMENT)
+  @PutMapping(UrlConstant.Comment.EDIT)
   public ResponseEntity<?> editComment(@Valid @RequestBody EditCommentParameter parameter) throws Exception {
     // Create input
     EditCommentInput input = commentMapper.toEditCommentInput(parameter);

@@ -166,8 +166,7 @@
         SET content = #{item.content},
             last_modified_date = UNIX_TIMESTAMP(NOW()),
             last_modified_by = #{item.lastModifiedBy}
-        WHERE id = #{item.id}
-            AND user_id = #{item.userId};
+        WHERE id = #{item.id};
     </update>
 
     <delete id="delete" parameterType="java.lang.Long">
