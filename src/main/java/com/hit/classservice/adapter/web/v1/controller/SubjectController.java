@@ -2,19 +2,14 @@ package com.hit.classservice.adapter.web.v1.controller;
 
 import com.hit.classservice.adapter.web.base.RestApiV1;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.CreateSubjectParam;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.UpdateSubjectParameter;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
-import com.hit.classservice.application.input.subject.DeleteSubjectInput;
-import com.hit.classservice.application.input.subject.GetListSubjectInput;
-import com.hit.classservice.application.input.subject.GetSubjectInput;
-import com.hit.classservice.application.input.subject.UpdateSubjectInput;
+import com.hit.classservice.application.input.subject.*;
 import com.hit.classservice.application.mapper.SubjectMapper;
-import com.hit.classservice.application.output.subject.DeleteSubjectOutput;
-import com.hit.classservice.application.output.subject.GetListSubjectOutput;
-import com.hit.classservice.application.output.subject.GetSubjectOutput;
-import com.hit.classservice.application.output.subject.UpdateSubjectOutput;
+import com.hit.classservice.application.output.subject.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -73,6 +68,17 @@ public class SubjectController {
     DeleteSubjectOutput output = useCaseBus.handle(input);
     // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @PostMapping(UrlConstant.Subject.CREATE)
+  public ResponseEntity<?> createSubject(@Valid @RequestBody CreateSubjectParam createSubjectParam) throws Exception {
+    //Create input
+    CreateSubjectInput input = subjectMapper.toCreateSubjectInput(createSubjectParam);
+    //Get output
+    CreateSubjectOutput output = useCaseBus.handle(input);
+    //Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader() , output);
+
   }
 
 }
