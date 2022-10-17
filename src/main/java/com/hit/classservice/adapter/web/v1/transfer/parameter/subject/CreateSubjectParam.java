@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 
@@ -14,10 +15,12 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class CreateSubjectParam {
 
-    @NotBlank(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
-    private String name;
+  @NotBlank(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
+  private String name;
 
-    private String avatar;
+  private MultipartFile file;
 
-    private String description;
+  private String description;
+
+  private Long categoryId;
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -12,9 +13,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateSubjectInput implements Input {
 
-    private String name;
+  private String name;
 
-    private  String avatar;
+  private MultipartFile file;
 
-    private String description;
+  private String description;
+
+  private Long categoryId;
+
 }

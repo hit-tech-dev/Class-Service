@@ -20,10 +20,13 @@ public class Subject extends AbstractAuditingEntity {
 
   private String description;
 
-  public Subject(String name, String avatar, String description) {
+  private Long categoryId;
+
+  public Subject(String name, String avatar, String description , Long categoryId) {
     this.name = name;
     this.avatar = avatar;
     this.description = description;
+    this.categoryId = categoryId;
   }
 
 }

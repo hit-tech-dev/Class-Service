@@ -71,13 +71,13 @@ public class SubjectController {
   }
 
   @PostMapping(UrlConstant.Subject.CREATE)
-  public ResponseEntity<?> createSubject(@Valid @RequestBody CreateSubjectParam createSubjectParam) throws Exception {
+  public ResponseEntity<?> createSubject(@ModelAttribute CreateSubjectParam createSubjectParam) throws Exception {
     //Create input
     CreateSubjectInput input = subjectMapper.toCreateSubjectInput(createSubjectParam);
     //Get output
     CreateSubjectOutput output = useCaseBus.handle(input);
     //Return output
-    return VsResponseUtil.ok(this.responseHeader.getHeader() , output);
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
 
   }
 

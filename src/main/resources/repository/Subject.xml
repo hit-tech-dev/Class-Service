@@ -68,8 +68,8 @@
     </delete>
 
     <insert id="save" parameterType="com.hit.classservice.domain.entity.Subject">
-        INSERT INTO subject(`name`, `avatar`, `description`, delete_flag, active_flag,
-                            created_date, created_by, last_modified_date, last_modified_by)
+        INSERT INTO subject(
+        `name`, `avatar`, `description`, delete_flag, active_flag,created_date, created_by, last_modified_date, last_modified_by)
         VALUES (#{item.name}, #{item.avatar},
                 #{item.description}, b'0', b'1', UNIX_TIMESTAMP(NOW()), #{item.createdBy}, UNIX_TIMESTAMP(NOW()),
                 #{item.lastModifiedBy})
