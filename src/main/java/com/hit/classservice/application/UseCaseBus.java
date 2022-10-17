@@ -10,10 +10,7 @@ import com.hit.classservice.application.input.notification.GetNotificationInput;
 import com.hit.classservice.application.input.notification.ReadNotificationInput;
 import com.hit.classservice.application.input.schedule.GetListScheduleInput;
 import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
-import com.hit.classservice.application.input.subject.DeleteSubjectInput;
-import com.hit.classservice.application.input.subject.GetListSubjectInput;
-import com.hit.classservice.application.input.subject.GetSubjectInput;
-import com.hit.classservice.application.input.subject.UpdateSubjectInput;
+import com.hit.classservice.application.input.subject.*;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
 import com.hit.classservice.application.interator.comment.*;
@@ -24,12 +21,8 @@ import com.hit.classservice.application.interator.notification.GetNotificationIn
 import com.hit.classservice.application.interator.notification.ReadNotificationInteractor;
 import com.hit.classservice.application.interator.schedule.GetListScheduleInterator;
 import com.hit.classservice.application.interator.schedule.GetScheduleByIdInterator;
-import com.hit.classservice.application.interator.subject.DeleteSubjectInteractor;
-import com.hit.classservice.application.interator.subject.GetListSubjectInteractor;
-import com.hit.classservice.application.interator.subject.GetSubjectInteractor;
-import com.hit.classservice.application.interator.subject.UpdateSubjectInteractor;
+import com.hit.classservice.application.interator.subject.*;
 import com.hit.classservice.application.output.Output;
-import com.hit.classservice.application.output.lesson.GetListLessonBySubjectIdOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -59,14 +52,11 @@ public class UseCaseBus {
     handlerTypes.put(GetChildrenCommentsByLessonInput.class, GetChildrenCommentsByLessonInteractor.class);
     handlerTypes.put(CreateParentCommentForLessonInput.class, CreateParentCommentForLessonInteractor.class);
     handlerTypes.put(CreateChildrenCommentForLessonInput.class, CreateChildrenCommentForLessonInteractor.class);
-    handlerTypes.put(CreateParentCommentForLessonStudentInput.class, CreateParentCommentForLessonStudentInteractor.class);
-    handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class, CreateChildrenCommentForLessonStudentInteractor.class);
-    handlerTypes.put(EditCommentInput.class, EditCommentInteractor.class);
     handlerTypes.put(CreateParentCommentForLessonStudentInput.class,
         CreateParentCommentForLessonStudentInteractor.class);
     handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class,
         CreateChildrenCommentForLessonStudentInteractor.class);
-    handlerTypes.put(DeleteCommentInput.class, DeleteCommentInteractor.class);
+
 
     // notification
     handlerTypes.put(DeleteNotificationInput.class, DeleteNotificationInteractor.class);
@@ -79,6 +69,7 @@ public class UseCaseBus {
     handlerTypes.put(GetSubjectInput.class, GetSubjectInteractor.class);
     handlerTypes.put(UpdateSubjectInput.class, UpdateSubjectInteractor.class);
     handlerTypes.put(DeleteSubjectInput.class, DeleteSubjectInteractor.class);
+    handlerTypes.put(CreateSubjectInput.class, CreateSubjectInteractor.class);
 
     // schedule
     handlerTypes.put(GetScheduleByIdInput.class, GetScheduleByIdInterator.class);

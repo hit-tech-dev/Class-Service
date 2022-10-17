@@ -15,4 +15,6 @@ public interface SubjectRepository {
     Subject findByName(String name);
 
     int delete(Long id);
+
+    int save(Subject subject);
 }
