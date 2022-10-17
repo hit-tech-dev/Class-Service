@@ -17,23 +17,23 @@ import org.springframework.stereotype.Service;
 @Service("ApplicationDeleteSubjectInteractor")
 public class DeleteSubjectInteractor implements DeleteSubjectDataCase {
 
-    private final SubjectRepository subjectRepository;
+  private final SubjectRepository subjectRepository;
 
-    public DeleteSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository) {
-        this.subjectRepository = subjectRepository;
-    }
+  public DeleteSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository) {
+    this.subjectRepository = subjectRepository;
+  }
 
-    @SneakyThrows
-    @Override
-    public DeleteSubjectOutput handle(DeleteSubjectInput input) {
-        Subject subject = subjectRepository.findById(input.getId());
-        if (ObjectUtils.isEmpty(subject))
-            throw new VsException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
-                    String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getId()),
-                    new String[]{input.getId().toString()});
+  @SneakyThrows
+  @Override
+  public DeleteSubjectOutput handle(DeleteSubjectInput input) {
+    Subject subject = subjectRepository.findById(input.getId());
+    if (ObjectUtils.isEmpty(subject))
+      throw new VsException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getId()),
+          new String[]{input.getId().toString()});
 
-        subjectRepository.delete(input.getId());
-        return new DeleteSubjectOutput(CommonConstant.TRUE, "Delete sucessful");
-    }
+    subjectRepository.delete(input.getId());
+    return new DeleteSubjectOutput(CommonConstant.TRUE, "Delete sucessful");
+  }
 
 }

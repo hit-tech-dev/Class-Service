@@ -10,13 +10,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-@Service
 public class FileUtil {
 
   private static final Path CURRENT_FOLDER = Paths.get(System.getProperty("user.dir"));
 
   @SneakyThrows
-  public String uploadFile(MultipartFile multipartFile) {
+  public static String uploadFile(MultipartFile multipartFile) {
     Path staticPath = Paths.get("static");
     Path imagePath = Paths.get("images");
     if (!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
