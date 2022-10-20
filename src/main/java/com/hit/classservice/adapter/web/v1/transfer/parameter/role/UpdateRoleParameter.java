@@ -1,4 +1,4 @@
-package com.hit.classservice.adapter.web.v1.transfer.role;
+package com.hit.classservice.adapter.web.v1.transfer.parameter.role;
 
 import com.hit.classservice.application.constant.UserMessageConstant;
 import lombok.AllArgsConstructor;

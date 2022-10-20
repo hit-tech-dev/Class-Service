@@ -1,6 +1,6 @@
 package com.hit.classservice.application.mapper;
 
-import com.hit.classservice.adapter.web.v1.transfer.role.UpdateRoleParameter;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.role.UpdateRoleParameter;
 import com.hit.classservice.application.input.role.UpdateRoleInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

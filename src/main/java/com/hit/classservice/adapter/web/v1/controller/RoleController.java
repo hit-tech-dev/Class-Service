@@ -3,7 +3,7 @@ package com.hit.classservice.adapter.web.v1.controller;
 import com.hit.classservice.adapter.web.base.RestApiV1;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
-import com.hit.classservice.adapter.web.v1.transfer.role.UpdateRoleParameter;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.role.UpdateRoleParameter;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
 import com.hit.classservice.application.input.role.UpdateRoleInput;
