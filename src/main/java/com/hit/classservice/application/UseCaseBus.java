@@ -8,6 +8,7 @@ import com.hit.classservice.application.input.notification.CreateNotificationInp
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input.notification.GetNotificationInput;
 import com.hit.classservice.application.input.notification.ReadNotificationInput;
+import com.hit.classservice.application.input.role.UpdateRoleInput;
 import com.hit.classservice.application.input.schedule.GetListScheduleInput;
 import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
 import com.hit.classservice.application.input.subject.*;
@@ -19,6 +20,7 @@ import com.hit.classservice.application.interator.notification.CreateNotificatio
 import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
 import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
 import com.hit.classservice.application.interator.notification.ReadNotificationInteractor;
+import com.hit.classservice.application.interator.role.UpdateRoleInterator;
 import com.hit.classservice.application.interator.schedule.GetListScheduleInterator;
 import com.hit.classservice.application.interator.schedule.GetScheduleByIdInterator;
 import com.hit.classservice.application.interator.subject.*;
@@ -77,6 +79,10 @@ public class UseCaseBus {
 
     //lesson
     handlerTypes.put(GetListLessonBySubjectIdInput.class, GetListLessonBySubjectIdInteractor.class);
+
+    //role
+    handlerTypes.put(UpdateRoleInput.class, UpdateRoleInterator.class);
+
   }
 
   public <TInput extends Input, TOutput extends Output> TOutput handle(TInput input)

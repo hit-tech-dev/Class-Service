@@ -89,4 +89,14 @@ public class UrlConstant {
     private Lesson() {
     }
   }
+
+  public static final class Role {
+
+    public static final String LIST = "roles";
+    private static final String PREFIX = "/role";
+    public static final String UPDATE = PREFIX;
+
+    private Role() {
+    }
+  }
 }

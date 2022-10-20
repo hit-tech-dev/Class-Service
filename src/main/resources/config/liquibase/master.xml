@@ -28,4 +28,6 @@
     <include file="config/liquibase/changelog/20221010215400_v1_create_table_schedule.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221010215500_v1_init_master_data_schedule.xml" relativeToChangelogFile="false"/>
 
+    <!--  role  -->
+    <include file="config/liquibase/changelog/20221018110500_v1_create_table_role.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
