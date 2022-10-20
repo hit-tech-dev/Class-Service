@@ -3,7 +3,7 @@ package com.hit.classservice.infrastructure.repository.database;
 import com.hit.classservice.application.dai.RoleRepository;
 import com.hit.classservice.domain.entity.Role;
 import org.apache.ibatis.annotations.Param;
-import org.mapstruct.Mapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 @Mapper

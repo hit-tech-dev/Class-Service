@@ -15,7 +15,6 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class UpdateRoleParameter {
 
-  @NotBlank(message = UserMessageConstant.INVALID_SOME_THING_FIELD_IS_REQUIRED)
   @Min(value = 1, message = UserMessageConstant.INVALID_SOME_THING_FIELD)
   private Long id;
 

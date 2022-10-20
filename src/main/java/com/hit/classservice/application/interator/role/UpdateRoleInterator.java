@@ -8,6 +8,7 @@ import com.hit.classservice.application.input_boundary.role.UpdateRoleDataCase;
 import com.hit.classservice.application.output.role.UpdateRoleOutput;
 import com.hit.classservice.domain.entity.Role;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 
@@ -16,7 +17,7 @@ public class UpdateRoleInterator implements UpdateRoleDataCase {
 
   private final RoleRepository roleRepository;
 
-  public UpdateRoleInterator(RoleRepository roleRepository) {
+  public UpdateRoleInterator(@Qualifier("DatabaseRoleRepository") RoleRepository roleRepository) {
     this.roleRepository = roleRepository;
   }
 
@@ -27,7 +28,7 @@ public class UpdateRoleInterator implements UpdateRoleDataCase {
     if (ObjectUtils.isEmpty(oldRoleById)) {
       return new UpdateRoleOutput(CommonConstant.FALSE, String.format(DevMessageConstant.Role.ERR_NOT_FOUND_BY_ID,
           input.getId()));
-    } else if (ObjectUtils.isEmpty(oldRoleByName)) {
+    } else if (ObjectUtils.isNotEmpty(oldRoleByName)) {
       return new UpdateRoleOutput(CommonConstant.FALSE, String.format(DevMessageConstant.Role.NAME_IS_EXIST,
           input.getName()));
     } else {
@@ -35,6 +36,7 @@ public class UpdateRoleInterator implements UpdateRoleDataCase {
       oldRoleById.setDescription(input.getDescription());
       roleRepository.update(oldRoleById);
       return new UpdateRoleOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
+
     }
   }
 }

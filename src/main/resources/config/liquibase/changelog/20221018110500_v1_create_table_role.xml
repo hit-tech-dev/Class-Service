@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <changeSet id="2022101800" author="minh.huudoan">
+    <changeSet id="20221018110500" author="minh.huudoan">
         <createTable tableName="role">
             <column name="id" type="bigint"/>
             <column name="name" type="nvarchar(255)"/>
@@ -17,7 +17,8 @@
             <column name="last_modified_by" type="nvarchar(255)"/>
         </createTable>
         <addPrimaryKey tableName="role" columnNames="id"/>
-        <addNotNullConstraint tableName="role" columnName="name"/>
+        <addAutoIncrement tableName="role" columnName="id" columnDataType="bigint"/>
+        <addNotNullConstraint tableName="role" columnName="name" columnDataType="nvarchar(255)"/>
         <addNotNullConstraint tableName="role" columnName="delete_flag" columnDataType="bit(1)"/>
         <addNotNullConstraint tableName="role" columnName="active_flag" columnDataType="bit(1)"/>
         <addNotNullConstraint tableName="role" columnName="created_date" columnDataType="bigint"/>
