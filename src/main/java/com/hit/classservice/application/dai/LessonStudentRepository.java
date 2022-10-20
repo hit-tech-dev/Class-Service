@@ -5,4 +5,7 @@ import com.hit.classservice.domain.entity.LessonStudent;
 public interface LessonStudentRepository {
 
   LessonStudent findById(Long id);
+
+  int save(LessonStudent lessonStudent);
+
 }

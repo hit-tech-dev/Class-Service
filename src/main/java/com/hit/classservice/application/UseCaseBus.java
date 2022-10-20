@@ -3,7 +3,9 @@ package com.hit.classservice.application;
 import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.*;
 import com.hit.classservice.application.input.comment.*;
+import com.hit.classservice.application.input.lesson.CreateLessonInput;
 import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInput;
+import com.hit.classservice.application.input.lesson_student.CreateLessonStudentInput;
 import com.hit.classservice.application.input.notification.CreateNotificationInput;
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input.notification.GetNotificationInput;
@@ -14,7 +16,9 @@ import com.hit.classservice.application.input.subject.*;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
 import com.hit.classservice.application.interator.comment.*;
+import com.hit.classservice.application.interator.lesson.CreateLessonInteractor;
 import com.hit.classservice.application.interator.lesson.GetListLessonBySubjectIdInteractor;
+import com.hit.classservice.application.interator.lesson_student.CreateLessonStudentInteractor;
 import com.hit.classservice.application.interator.notification.CreateNotificationInteractor;
 import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
 import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
@@ -77,6 +81,11 @@ public class UseCaseBus {
 
     //lesson
     handlerTypes.put(GetListLessonBySubjectIdInput.class, GetListLessonBySubjectIdInteractor.class);
+    handlerTypes.put(CreateLessonInput.class, CreateLessonInteractor.class);
+
+    //lesson student
+    handlerTypes.put(CreateLessonStudentInput.class, CreateLessonStudentInteractor.class);
+
   }
 
   public <TInput extends Input, TOutput extends Output> TOutput handle(TInput input)

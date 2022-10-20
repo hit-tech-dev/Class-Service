@@ -85,8 +85,20 @@ public class UrlConstant {
     public static final String LIST = "lessons";
     private static final String PREFIX = "/lesson";
     public static final String GET_LESSON_BY_SUBJECT = PREFIX + "/{subjectId}";
+    public static final String CREATE = PREFIX;
+
 
     private Lesson() {
+    }
+  }
+
+  public static final class LessonStudent {
+
+    private static final String PREFIX = "/lesson-student";
+    public static final String CREATE = PREFIX;
+
+
+    private LessonStudent() {
     }
   }
 }
