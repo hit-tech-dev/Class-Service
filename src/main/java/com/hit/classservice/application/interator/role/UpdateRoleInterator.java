@@ -33,7 +33,7 @@ public class UpdateRoleInterator implements UpdateRoleDataCase {
     } else {
       oldRoleById.setName(input.getName());
       oldRoleById.setDescription(input.getDescription());
-      roleRepository.save(oldRoleById);
+      roleRepository.update(oldRoleById);
       return new UpdateRoleOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
     }
   }
