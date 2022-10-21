@@ -23,6 +23,62 @@
         </association>
     </resultMap>
 
+    <resultMap id="parentCommentDTOResultMap" type="com.hit.classservice.domain.dto.ParentCommentDTO">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="content" javaType="java.lang.String">
+            <result column="content"/>
+        </association>
+        <association property="authorName" javaType="java.lang.String">
+            <result column="fullname"/>
+        </association>
+        <association property="authorAvatar" javaType="java.lang.String">
+            <result column="avatar"/>
+        </association>
+        <association property="totalNumberChild" javaType="java.lang.Integer">
+            <result column="total_number_child"/>
+        </association>
+        <association property="userId" javaType="java.lang.String">
+            <result column="user_id"/>
+        </association>
+
+        <association property="createdBy" javaType="java.lang.String">
+            <result column="created_by"/>
+        </association>
+        <association property="createdDate" javaType="java.lang.Long">
+            <result column="created_date"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="childrenCommentDTOResultMap" type="com.hit.classservice.domain.dto.ChildrenCommentDTO">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="content" javaType="java.lang.String">
+            <result column="content"/>
+        </association>
+        <association property="authorName" javaType="java.lang.String">
+            <result column="fullname"/>
+        </association>
+        <association property="authorAvatar" javaType="java.lang.String">
+            <result column="avatar"/>
+        </association>
+        <association property="parentId" javaType="java.lang.Long">
+            <result column="parent_id"/>
+        </association>
+        <association property="userId" javaType="java.lang.String">
+            <result column="user_id"/>
+        </association>
+
+        <association property="createdBy" javaType="java.lang.String">
+            <result column="created_by"/>
+        </association>
+        <association property="createdDate" javaType="java.lang.Long">
+            <result column="created_date"/>
+        </association>
+    </resultMap>
+
     <select id="findById" resultMap="commentResultMap">
         SELECT c.id,
                c.content,
@@ -35,20 +91,77 @@
           AND c.delete_flag = 0;
     </select>
 
+    <select id="findByParentId" resultMap="commentResultMap">
+        SELECT c.id,
+               c.content,
+               c.parent_id,
+               c.created_by,
+               c.created_date
+        FROM comment c
+        WHERE c.parent_id = #{id}
+          AND c.active_flag = 1
+          AND c.delete_flag = 0;
+    </select>
+
+    <select id="findParentCommentByLesson" resultMap="parentCommentDTOResultMap">
+        SELECT c.id,
+               c.content,
+               u.fullname,
+               u.avatar,
+               (SELECT COUNT(child.id)
+                FROM comment child
+                WHERE child.parent_id = c.id
+                  AND child.active_flag = 1
+                  AND child.delete_flag = 0
+               ) AS "total_number_child",
+               c.user_id,
+               c.created_by,
+               c.created_date
+        FROM comment c
+                 INNER JOIN users u ON c.user_id = u.id
+        WHERE c.lesson_id = #{lessonId}
+          AND c.parent_id IS NULL
+          AND c.active_flag = 1
+          AND c.delete_flag = 0;
+    </select>
+
+    <select id="findChildrenCommentByLessonAndParentComment" resultMap="childrenCommentDTOResultMap">
+        SELECT c.id,
+               c.content,
+               u.fullname,
+               u.avatar,
+               c.parent_id,
+               c.user_id,
+               c.created_by,
+               c.created_date
+        FROM comment c
+                 INNER JOIN users u ON c.user_id = u.id
+        WHERE c.lesson_id = #{lessonId}
+          AND c.parent_id = #{parentId}
+          AND c.active_flag = 1
+          AND c.delete_flag = 0;
+    </select>
+
     <insert id="createCommentForLesson" parameterType="com.hit.classservice.domain.entity.Comment">
         INSERT INTO comment (content, parent_id, user_id, lesson_id, created_by, created_date,
                              active_flag, delete_flag, last_modified_date, last_modified_by)
-        values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonId}, #{item.createdBy}, UNIX_TIMESTAMP(NOW()),
-                b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy}
-         )
+        values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonId}, #{item.createdBy},
+                UNIX_TIMESTAMP(NOW()),
+                b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
     </insert>
 
     <insert id="createCommentForLessonStudent" parameterType="com.hit.classservice.domain.entity.Comment">
         INSERT INTO comment (content, parent_id, user_id, lesson_student_id, created_by, created_date,
                              active_flag, delete_flag, last_modified_date, last_modified_by)
-        values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonStudentId}, #{item.createdBy}, UNIX_TIMESTAMP(NOW()),
-                b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy}
-               )
+        values (#{item.content}, #{item.parentId}, #{item.userId}, #{item.lessonStudentId}, #{item.createdBy},
+                UNIX_TIMESTAMP(NOW()),
+                b'1', b'0', UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
     </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        UPDATE comment
+        SET delete_flag = 1
+        WHERE id = #{id}
+    </delete>
 </mapper>
 
