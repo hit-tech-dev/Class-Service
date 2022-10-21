@@ -10,19 +10,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LessonStudent extends AbstractAuditingEntity {
+public class UserSubjectRelation extends AbstractAuditingEntity {
 
   private Long id;
 
-  private boolean attendance;
-
-  private Long lessonId;
+  private Long subjectId;
 
   private String userId;
 
-  public LessonStudent(Long lessonId, String userId, boolean attendance) {
-    this.lessonId = lessonId;
-    this.userId = userId;
-    this.attendance = attendance;
-  }
 }
