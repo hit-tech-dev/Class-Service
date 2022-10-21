@@ -1,13 +1,7 @@
 package com.hit.classservice.application.mapper;
 
-import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.CreateChildrenCommentForLessonParameter;
-import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.CreateChildrenCommentForLessonStudentParameter;
-import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.CreateParentCommentForLessonParameter;
-import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.CreateParentCommentForLessonStudentParameter;
-import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonInput;
-import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonStudentInput;
-import com.hit.classservice.application.input.comment.CreateParentCommentForLessonInput;
-import com.hit.classservice.application.input.comment.CreateParentCommentForLessonStudentInput;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.comment.*;
+import com.hit.classservice.application.input.comment.*;
 import com.hit.classservice.application.output.comment.GetChildrenCommentsByLessonItemOutput;
 import com.hit.classservice.application.output.comment.GetParentCommentsByLessonItemOutput;
 import com.hit.classservice.domain.dto.ChildrenCommentDTO;
@@ -28,6 +22,8 @@ public interface CommentMapper {
   CreateParentCommentForLessonStudentInput toCreateParentCommentForLessonStudentInput(CreateParentCommentForLessonStudentParameter parameter);
 
   CreateChildrenCommentForLessonStudentInput toCreateChildrenCommentForLessonStudentInput(CreateChildrenCommentForLessonStudentParameter parameter);
+
+  EditCommentInput toEditCommentInput(EditCommentParameter parameter);
 
   @Mappings({
       @Mapping(target = "id", source = "comments.id"),

@@ -12,4 +12,8 @@ public interface DatabaseLessonStudentRepository extends LessonStudentRepository
 
   @Override
   LessonStudent findById(@Param("id") Long id);
+
+  @Override
+  int save(@Param("item") LessonStudent lessonStudent);
+
 }

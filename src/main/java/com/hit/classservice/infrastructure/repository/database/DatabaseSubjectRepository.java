@@ -26,4 +26,7 @@ public interface DatabaseSubjectRepository extends SubjectRepository {
 
     @Override
     int delete(@Param("id") Long id);
+
+    @Override
+    int save(@Param("item") Subject subject);
 }

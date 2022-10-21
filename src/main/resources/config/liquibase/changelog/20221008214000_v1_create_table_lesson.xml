@@ -13,7 +13,6 @@
             <column name="content" type="nvarchar(255)"/>
             <column name="expired_time_homework" type="bigint"/>
             <column name="subject_id" type="bigint"/>
-
             <column name="delete_flag" type="bit(1)"/>
             <column name="active_flag" type="bit(1)"/>
             <column name="created_date" type="bigint"/>

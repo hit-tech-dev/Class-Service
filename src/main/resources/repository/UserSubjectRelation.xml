@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hit.classservice.infrastructure.repository.database.DatabaseUserSubjectRelationRepository">
+
+    <resultMap id="userSubjectRelationResultMap" type="com.hit.classservice.domain.entity.UserSubjectRelation">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="subjectId" javaType="java.lang.Long">
+            <result column="subject_id"/>
+        </association>
+        <association property="userId" javaType="java.lang.String">
+            <result column="user_id"/>
+        </association>
+    </resultMap>
+
+    <select id="getListUserSubjectRelationBySubjectId" resultMap="userSubjectRelationResultMap">
+        SELECT u.id,
+               u.subject_id,
+               u.user_id
+        FROM user_subject_relation u
+        WHERE u.subject_id = #{subjectId}
+          AND u.active_flag = 1
+          AND u.delete_flag = 0;
+    </select>
+
+
+</mapper>
+

@@ -28,6 +28,20 @@
         </association>
     </resultMap>
 
+    <select id="getListLessonBySubjectId" resultMap="lessonResultMap">
+        SELECT l.id,
+               l.name,
+               l.content,
+               l.expired_time_homework,
+               l.subject_id,
+               l.created_by,
+               l.created_date
+        FROM lesson l
+        WHERE l.subject_id = #{subjectId}
+          AND l.active_flag = 1
+          AND l.delete_flag = 0;
+    </select>
+
     <select id="findById" resultMap="lessonResultMap">
         SELECT l.id,
                l.name,
@@ -41,5 +55,14 @@
           AND l.active_flag = 1
           AND l.delete_flag = 0;
     </select>
+
+    <insert id="save" parameterType="com.hit.classservice.domain.entity.Lesson" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO lesson(`name`, content, expired_time_homework, subject_id, delete_flag, active_flag,
+                           created_date, created_by, last_modified_date, last_modified_by)
+        VALUES (#{item.name}, #{item.content}, #{item.expiredTimeHomework}, #{item.subjectId}, b'0', b'1',
+                UNIX_TIMESTAMP(NOW()), #{item.createdBy}, UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
+    </insert>
+
 </mapper>
 

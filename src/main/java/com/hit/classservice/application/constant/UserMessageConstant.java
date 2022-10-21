@@ -23,12 +23,18 @@ public class UserMessageConstant {
     public static final String INVALID_FIELD_ENTERED = "invalid.field.not.valid";
   }
 
+  public static final class Schedule {
+    public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.schedule_id";
+  }
+
   public static final class Notification {
     public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.notification_id";
   }
 
   public static final class Lesson {
     public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.lesson_id";
+
+    public static final String ERR_NOT_FOUND_LESSON_BY_SUBJECT_ID = "invalid.not.found.lesson.by.subject.id";
   }
 
 }

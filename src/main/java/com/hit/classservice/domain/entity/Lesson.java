@@ -22,4 +22,10 @@ public class Lesson extends AbstractAuditingEntity {
 
   private Long subjectId;
 
+  public Lesson(String name, String content, Long expiredTimeHomework, Long subjectId) {
+    this.name = name;
+    this.content = content;
+    this.expiredTimeHomework = expiredTimeHomework;
+    this.subjectId = subjectId;
+  }
 }

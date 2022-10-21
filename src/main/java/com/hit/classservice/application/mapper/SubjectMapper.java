@@ -1,6 +1,8 @@
 package com.hit.classservice.application.mapper;
 
+import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.CreateSubjectParam;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.UpdateSubjectParameter;
+import com.hit.classservice.application.input.subject.CreateSubjectInput;
 import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.output.subject.GetListSubjectItemOutput;
 import com.hit.classservice.application.output.subject.GetSubjectOutput;
@@ -40,4 +42,10 @@ public interface SubjectMapper {
   })
   UpdateSubjectInput toUpdateSubjectInput(UpdateSubjectParameter parameter);
 
+  @Mappings({
+      @Mapping(target = "name", source = "createSubjectParam.name"),
+      @Mapping(target = "file", source = "createSubjectParam.file"),
+      @Mapping(target = "description", source = "createSubjectParam.description"),
+      @Mapping(target = "categoryId", source = "createSubjectParam.categoryId")})
+  CreateSubjectInput toCreateSubjectInput(CreateSubjectParam createSubjectParam);
 }

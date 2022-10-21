@@ -7,6 +7,7 @@ import com.hit.classservice.domain.entity.Comment;
 import java.util.List;
 
 public interface CommentRepository {
+
   Comment findById(Long id);
 
   List<Comment> findByParentId(Long id);
@@ -16,6 +17,8 @@ public interface CommentRepository {
   List<ChildrenCommentDTO> findChildrenCommentByLessonAndParentComment(Long lessonId, Long parentId);
 
   int createCommentForLesson(Comment comment);
+
+  int editComment(Comment comment);
 
   int createCommentForLessonStudent(Comment comment);
 

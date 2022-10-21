@@ -20,4 +20,9 @@ public class LessonStudent extends AbstractAuditingEntity {
 
   private String userId;
 
+  public LessonStudent(Long lessonId, String userId, boolean attendance) {
+    this.lessonId = lessonId;
+    this.userId = userId;
+    this.attendance = attendance;
+  }
 }

@@ -31,7 +31,7 @@ public class CategoryController {
   }
 
   @GetMapping(UrlConstant.Category.LIST)
-  public ResponseEntity<?> getAllCategory() throws Exception {
+  public ResponseEntity<?>getAllCategory() throws Exception {
     // Create input
     GetListCategoryInput input = new GetListCategoryInput();
     // Get output
