@@ -26,4 +26,5 @@ public class GetChildrenCommentsByLessonItemOutput {
   private Long parentId;
 
   private String userId;
+
 }

@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface SubjectRepository {
 
-    List<Subject> findAll();
+  List<Subject> findAll();
 
-    Subject findById(Long id);
+  Subject findById(Long id);
 
-    int update(Subject subject);
+  int update(Subject subject);
 
-    Subject findByName(String name);
+  Subject findByName(String name);
 
-    int delete(Long id);
+  int delete(Long id);
 
-    int save(Subject subject);
+  int save(Subject subject);
 }

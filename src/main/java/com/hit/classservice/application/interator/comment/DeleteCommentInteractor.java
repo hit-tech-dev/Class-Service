@@ -24,7 +24,6 @@ public class DeleteCommentInteractor implements DeleteCommentDataCase {
     this.commentRepository = commentRepository;
   }
 
-
   @Override
   public DeleteCommentOutput handle(DeleteCommentInput input) throws Exception {
     // Find obj by id
@@ -53,4 +52,5 @@ public class DeleteCommentInteractor implements DeleteCommentDataCase {
 
     return new DeleteCommentOutput(CommonConstant.TRUE, "Delete successful");
   }
+
 }

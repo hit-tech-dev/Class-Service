@@ -22,4 +22,5 @@ public interface NotificationMapper {
   GetNotificationOutput toGetNotificationOutput(Notification notification);
 
   CreateNotificationInput toCreateNotificationInput(CreateNotificationParameter parameter);
+
 }

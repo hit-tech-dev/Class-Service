@@ -22,4 +22,5 @@ public class UpdateRoleParameter {
   private String name;
 
   private String description;
+
 }

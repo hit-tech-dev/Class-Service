@@ -22,11 +22,8 @@ import java.util.List;
 
 @Service("ApplicationGetChildrenCommentsByLessonInteractor")
 public class GetChildrenCommentsByLessonInteractor implements GetChildrenCommentsByLessonDataCase {
-
   private final CommentRepository commentRepository;
-
   private final LessonRepository lessonRepository;
-
   private final CommentMapper commentMapper;
 
   public GetChildrenCommentsByLessonInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,
@@ -47,7 +44,7 @@ public class GetChildrenCommentsByLessonInteractor implements GetChildrenComment
           new String[]{input.getLessonId().toString()});
     }
     //Check if parent comment exists
-    if(ObjectUtils.isEmpty(parentComment)) {
+    if (ObjectUtils.isEmpty(parentComment)) {
       throw new VsException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getParentId()),
           new String[]{input.getParentId().toString()});
@@ -59,4 +56,5 @@ public class GetChildrenCommentsByLessonInteractor implements GetChildrenComment
     List<GetChildrenCommentsByLessonItemOutput> output = commentMapper.toGetChildrenCommentsByLessonOutput(comments);
     return new GetChildrenCommentsByLessonOutput(output);
   }
+
 }

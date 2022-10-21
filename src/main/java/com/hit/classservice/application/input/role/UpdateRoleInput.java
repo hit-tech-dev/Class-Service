@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateRoleInput implements Input {
+
   private Long id;
 
   private String name;

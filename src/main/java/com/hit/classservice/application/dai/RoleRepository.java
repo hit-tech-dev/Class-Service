@@ -9,6 +9,7 @@ public interface RoleRepository {
   Role findByName(String name);
 
   int update(Role role);
+
 }
 
 

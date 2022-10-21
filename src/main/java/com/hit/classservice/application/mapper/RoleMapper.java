@@ -8,10 +8,12 @@ import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
 public interface RoleMapper {
+
   @Mappings({
       @Mapping(target = "id", source = "updateRoleParameter.id"),
       @Mapping(target = "name", source = "updateRoleParameter.name"),
       @Mapping(target = "description", source = "updateRoleParameter.description")
   })
   UpdateRoleInput toUpdateRoleInput(UpdateRoleParameter updateRoleParameter);
+
 }

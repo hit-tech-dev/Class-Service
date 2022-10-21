@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hit.classservice.infrastructure.repository.database.DatabaseUserRepository">
+
+    <resultMap id="userResultMap" type="com.hit.classservice.domain.entity.User">
+        <association property="id" javaType="java.lang.String">
+            <result column="id"/>
+        </association>
+        <association property="studentCode" javaType="java.lang.String">
+            <result column="student_code"/>
+        </association>
+        <association property="birthday" javaType="java.lang.String">
+            <result column="birthday"/>
+        </association>
+        <association property="fullName" javaType="java.lang.String">
+            <result column="fullname"/>
+        </association>
+        <association property="email" javaType="java.lang.String">
+            <result column="email"/>
+        </association>
+        <association property="phone" javaType="java.lang.String">
+            <result column="phone"/>
+        </association>
+        <association property="gender" javaType="java.lang.String">
+            <result column="gender"/>
+        </association>
+        <association property="avatar" javaType="java.lang.String">
+            <result column="avatar"/>
+        </association>
+    </resultMap>
+
+    <select id="findById" resultMap="userResultMap">
+        SELECT u.id,
+               u.student_code,
+               u.fullname,
+               u.birthday,
+               u.email,
+               u.phone,
+               u.grade,
+               u.gender,
+               u.avatar
+        FROM users u
+        WHERE u.id = #{id}
+--           AND u.active_flag = 1
+--           AND u.delete_flag = 0;
+    </select>
+
+</mapper>
+

@@ -39,4 +39,5 @@ public class UpdateRoleInterator implements UpdateRoleDataCase {
 
     }
   }
+
 }

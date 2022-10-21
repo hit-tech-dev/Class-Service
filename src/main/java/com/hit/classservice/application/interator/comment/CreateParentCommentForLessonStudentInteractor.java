@@ -43,4 +43,5 @@ public class CreateParentCommentForLessonStudentInteractor implements CreatePare
     commentRepository.createCommentForLessonStudent(comment);
     return new CreateParentCommentForLessonStudentOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
   }
+
 }

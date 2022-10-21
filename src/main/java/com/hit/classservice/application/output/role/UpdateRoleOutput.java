@@ -15,4 +15,5 @@ public class UpdateRoleOutput implements Output {
   private boolean status;
 
   private String message;
+
 }
