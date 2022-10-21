@@ -1,5 +1,7 @@
 package com.hit.classservice.application.constant;
 
+import liquibase.pro.packaged.S;
+
 public class UrlConstant {
 
   private UrlConstant() {
@@ -75,6 +77,7 @@ public class UrlConstant {
     private static final String PREFIX = "/schedule";
     public static final String LIST = PREFIX + "s";
     public static final String GET = PREFIX + "/{id}";
+    public static final String UPDATE = PREFIX;
 
     private Schedule() {
     }
