@@ -11,9 +11,10 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateScheludeOutput implements Output {
-    private boolean status;
+public class UpdateScheduleOutput implements Output {
 
-    private String message;
+  private boolean status;
+
+  private String message;
 
 }

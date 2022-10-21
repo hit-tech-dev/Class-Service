@@ -11,13 +11,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateScheduleInput implements Input {
-    private Long id;
 
-    private String name;
+  private Long id;
 
-    private String internalName;
+  private String name;
 
-    private String session;
+  private String internalName;
 
-    private String timeDetail;
+  private String session;
+
+  private String timeDetail;
+
 }

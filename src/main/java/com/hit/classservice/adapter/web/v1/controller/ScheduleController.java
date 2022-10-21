@@ -12,7 +12,7 @@ import com.hit.classservice.application.input.schedule.UpdateScheduleInput;
 import com.hit.classservice.application.mapper.ScheduleMapper;
 import com.hit.classservice.application.output.schedule.GetListScheduleOutput;
 import com.hit.classservice.application.output.schedule.GetScheduleByIdOutput;
-import com.hit.classservice.application.output.schedule.UpdateScheludeOutput;
+import com.hit.classservice.application.output.schedule.UpdateScheduleOutput;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +49,7 @@ public class ScheduleController {
   public ResponseEntity<?> updateScheduleById(@Valid @RequestBody UpdateScheduleParameter parameter) throws Exception {
     UpdateScheduleInput input = scheduleMapper.toUpdateScheduleInput(parameter);
 
-    UpdateScheludeOutput output = useCaseBus.handle(input);
+    UpdateScheduleOutput output = useCaseBus.handle(input);
 
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }

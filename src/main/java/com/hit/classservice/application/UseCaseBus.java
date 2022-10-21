@@ -34,7 +34,7 @@ import com.hit.classservice.application.interator.notification.ReadNotificationI
 import com.hit.classservice.application.interator.schedule.GetListScheduleInterator;
 import com.hit.classservice.application.interator.schedule.GetScheduleByIdInterator;
 <<<<<<< HEAD
-import com.hit.classservice.application.interator.schedule.UpdateScheludeInteractor;
+import com.hit.classservice.application.interator.schedule.UpdateScheduleInteractor;
 import com.hit.classservice.application.interator.subject.DeleteSubjectInteractor;
 import com.hit.classservice.application.interator.subject.GetListSubjectInteractor;
 import com.hit.classservice.application.interator.subject.GetSubjectInteractor;
@@ -98,7 +98,7 @@ public class UseCaseBus {
 
     // schedule
     handlerTypes.put(GetScheduleByIdInput.class, GetScheduleByIdInterator.class);
-    handlerTypes.put(UpdateScheduleInput.class, UpdateScheludeInteractor.class);
+    handlerTypes.put(UpdateScheduleInput.class, UpdateScheduleInteractor.class);
     handlerTypes.put(GetListScheduleInput.class, GetListScheduleInterator.class);
 <<<<<<< HEAD
 =======
