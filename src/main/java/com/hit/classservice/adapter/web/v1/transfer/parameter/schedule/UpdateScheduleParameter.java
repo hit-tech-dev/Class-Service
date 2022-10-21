@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class UpdateScheduleParameter {
 
-
     @NotNull(message = UserMessageConstant.Subject.INVALID_FIELD_IS_REQUIRED)
     @Min(value = 1, message = UserMessageConstant.Subject.INVALID_FIELD_ENTERED)
     private Long id;
@@ -29,4 +28,5 @@ public class UpdateScheduleParameter {
     private String session;
 
     private String timeDetail;
+
 }

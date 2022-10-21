@@ -23,6 +23,13 @@ public interface ScheduleMapper {
   })
   GetScheduleByIdOutput toGetScheduleByIdOutput(Schedule schedule);
 
+  @Mappings({
+      @Mapping(target = "id", source = "parameter.id"),
+      @Mapping(target = "name", source = "parameter.name"),
+      @Mapping(target = "internalName", source = "parameter.internalName"),
+      @Mapping(target = "session", source = "parameter.session"),
+      @Mapping(target = "timeDetail", source = "parameter.timeDetail")
+  })
   UpdateScheduleInput toUpdateScheduleInput(UpdateScheduleParameter parameter);
 
   @Mappings({

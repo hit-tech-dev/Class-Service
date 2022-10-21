@@ -13,6 +13,7 @@ import com.hit.classservice.application.mapper.ScheduleMapper;
 import com.hit.classservice.application.output.schedule.GetListScheduleOutput;
 import com.hit.classservice.application.output.schedule.GetScheduleByIdOutput;
 import com.hit.classservice.application.output.schedule.UpdateScheduleOutput;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,10 +30,10 @@ public class ScheduleController {
   private final ScheduleMapper scheduleMapper;
 
   public ScheduleController(@Qualifier("ApplicationUseCaseBus") UseCaseBus useCaseBus,
-                            @Qualifier("WebV1TransferResponseHeader") ResponseHeader responseHeader, ScheduleMapper scheduleMapper) {
+                            @Qualifier("WebV1TransferResponseHeader") ResponseHeader responseHeader) {
     this.useCaseBus = useCaseBus;
     this.responseHeader = responseHeader;
-    this.scheduleMapper = scheduleMapper;
+    this.scheduleMapper = Mappers.getMapper(ScheduleMapper.class);
   }
 
   @GetMapping(UrlConstant.Schedule.GET)

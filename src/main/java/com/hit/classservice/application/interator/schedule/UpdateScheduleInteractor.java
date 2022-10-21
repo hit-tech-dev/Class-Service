@@ -8,6 +8,7 @@ import com.hit.classservice.application.dai.ScheduleRepository;
 import com.hit.classservice.application.input.schedule.UpdateScheduleInput;
 import com.hit.classservice.application.input_boundary.schedule.UpdateScheduleDataCase;
 import com.hit.classservice.application.output.schedule.UpdateScheduleOutput;
+import com.hit.classservice.application.utils.SecurityUtil;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Schedule;
 import lombok.SneakyThrows;
@@ -36,6 +37,7 @@ public class UpdateScheduleInteractor implements UpdateScheduleDataCase {
     oldSchedule.setSession(input.getSession());
     oldSchedule.setTimeDetail(input.getTimeDetail());
     oldSchedule.setInternalName(input.getInternalName());
+    oldSchedule.setLastModifiedBy(SecurityUtil.getCurrentUserLogin());
     scheduleRepository.update(oldSchedule);
 
     return new UpdateScheduleOutput(CommonConstant.TRUE, "Update successful");
