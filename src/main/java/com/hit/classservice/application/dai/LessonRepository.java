@@ -11,4 +11,6 @@ public interface LessonRepository {
 
   int save(Lesson lesson);
 
+  boolean deleteById(Long id);
+
 }

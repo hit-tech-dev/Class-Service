@@ -7,9 +7,11 @@ import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
 import com.hit.classservice.application.input.lesson.CreateLessonInput;
+import com.hit.classservice.application.input.lesson.DeleteLessonInput;
 import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInput;
 import com.hit.classservice.application.mapper.LessonMapper;
 import com.hit.classservice.application.output.lesson.CreateLessonOutput;
+import com.hit.classservice.application.output.lesson.DeleteLessonOutput;
 import com.hit.classservice.application.output.lesson.GetListLessonBySubjectIdOutput;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -48,6 +50,16 @@ public class LessonController {
     //Get output
     CreateLessonOutput output = useCaseBus.handle(input);
     //Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @DeleteMapping(UrlConstant.Lesson.DELETE)
+  public ResponseEntity<?> deleteLessonById(@PathVariable("id") Long id) throws Exception {
+    // Create input
+    DeleteLessonInput input = new DeleteLessonInput(id);
+    // Get output
+    DeleteLessonOutput output = useCaseBus.handle(input);
+    // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 

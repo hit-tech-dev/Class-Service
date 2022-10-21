@@ -11,13 +11,15 @@ import java.util.List;
 @Mapper
 @Repository("DatabaseLessonRepository")
 public interface DatabaseLessonRepository extends LessonRepository {
-  @Override
-  Lesson findById(@Param("id") Long id);
+    @Override
+    Lesson findById(@Param("id") Long id);
 
-  @Override
-  List<Lesson> getListLessonBySubjectId(@Param("subjectId") Long subjectId);
+    @Override
+    List<Lesson> getListLessonBySubjectId(@Param("subjectId") Long subjectId);
 
-  @Override
-  int save(@Param("item") Lesson lesson);
+    @Override
+    int save(@Param("item") Lesson lesson);
 
+    @Override
+    boolean deleteById(@Param("id") Long id);
 }

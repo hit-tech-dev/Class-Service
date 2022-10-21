@@ -64,5 +64,11 @@
                 UNIX_TIMESTAMP(NOW()), #{item.createdBy}, UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
     </insert>
 
+    <delete id="deleteById" parameterType="java.lang.Long">
+        UPDATE lesson
+        SET delete_flag = 1
+        WHERE id = #{id};
+    </delete>
+
 </mapper>
 
