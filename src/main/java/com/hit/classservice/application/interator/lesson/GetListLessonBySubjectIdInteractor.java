@@ -19,15 +19,13 @@ import java.util.List;
 
 @Service("ApplicationGetListLessonBySubjectIdInteractor")
 public class GetListLessonBySubjectIdInteractor implements GetListLessonBySubjectIdDataCase {
-
   private final LessonRepository lessonRepository;
-
   private final LessonMapper lessonMapper;
+
   public GetListLessonBySubjectIdInteractor(@Qualifier("DatabaseLessonRepository") LessonRepository lessonRepository) {
     this.lessonRepository = lessonRepository;
     this.lessonMapper = Mappers.getMapper(LessonMapper.class);
   }
-
 
   @Override
   public GetListLessonBySubjectIdOutput handle(GetListLessonBySubjectIdInput input) throws Exception {
@@ -40,4 +38,5 @@ public class GetListLessonBySubjectIdInteractor implements GetListLessonBySubjec
     List<GetListLessonItemOutput> output = lessonMapper.toGetListLessonBySubjectIdOutput(list);
     return new GetListLessonBySubjectIdOutput(output);
   }
+
 }

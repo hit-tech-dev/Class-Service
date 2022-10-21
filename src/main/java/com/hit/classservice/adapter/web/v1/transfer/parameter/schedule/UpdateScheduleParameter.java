@@ -16,17 +16,17 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class UpdateScheduleParameter {
 
-    @NotNull(message = UserMessageConstant.Subject.INVALID_FIELD_IS_REQUIRED)
-    @Min(value = 1, message = UserMessageConstant.Subject.INVALID_FIELD_ENTERED)
-    private Long id;
+  @NotNull(message = UserMessageConstant.Subject.INVALID_FIELD_IS_REQUIRED)
+  @Min(value = 1, message = UserMessageConstant.Subject.INVALID_FIELD_ENTERED)
+  private Long id;
 
-    @NotBlank(message = UserMessageConstant.Subject.INVALID_FIELD_IS_REQUIRED)
-    private String name;
+  @NotBlank(message = UserMessageConstant.Subject.INVALID_FIELD_IS_REQUIRED)
+  private String name;
 
-    private String internalName;
+  private String internalName;
 
-    private String session;
+  private String session;
 
-    private String timeDetail;
+  private String timeDetail;
 
 }

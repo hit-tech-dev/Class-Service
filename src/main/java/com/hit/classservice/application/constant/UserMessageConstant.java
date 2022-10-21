@@ -37,4 +37,10 @@ public class UserMessageConstant {
     public static final String ERR_NOT_FOUND_LESSON_BY_SUBJECT_ID = "invalid.not.found.lesson.by.subject.id";
   }
 
+  public static final class Role {
+    public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.role_id";
+
+    public static final String ERR_NOT_FOUND_LESSON_BY_ROLE_ID = "invalid.not.found.role.by.role.id";
+  }
+
 }

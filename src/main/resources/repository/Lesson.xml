@@ -38,8 +38,8 @@
                l.created_date
         FROM lesson l
         WHERE l.subject_id = #{subjectId}
-          AND l.active_flag = 1
-          AND l.delete_flag = 0;
+            AND l.active_flag = 1
+            AND l.delete_flag = 0;
     </select>
 
     <select id="findById" resultMap="lessonResultMap">
@@ -52,8 +52,8 @@
                l.created_date
         FROM lesson l
         WHERE l.id = #{id}
-          AND l.active_flag = 1
-          AND l.delete_flag = 0;
+            AND l.active_flag = 1
+            AND l.delete_flag = 0;
     </select>
 
     <insert id="save" parameterType="com.hit.classservice.domain.entity.Lesson" useGeneratedKeys="true"

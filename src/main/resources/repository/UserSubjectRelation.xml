@@ -22,10 +22,9 @@
                u.user_id
         FROM user_subject_relation u
         WHERE u.subject_id = #{subjectId}
-          AND u.active_flag = 1
-          AND u.delete_flag = 0;
+            AND u.active_flag = 1
+            AND u.delete_flag = 0;
     </select>
-
 
 </mapper>
 

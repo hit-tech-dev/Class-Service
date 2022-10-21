@@ -16,4 +16,5 @@ import java.util.List;
 public class GetListLessonBySubjectIdOutput implements Output {
 
   private List<GetListLessonItemOutput> items;
+
 }

@@ -1,7 +1,5 @@
 package com.hit.classservice.application.constant;
 
-import liquibase.pro.packaged.S;
-
 public class UrlConstant {
 
   private UrlConstant() {
@@ -84,7 +82,6 @@ public class UrlConstant {
   }
 
   public static final class Lesson {
-
     public static final String LIST = "lessons";
     private static final String PREFIX = "/lesson";
     public static final String GET_LESSON_BY_SUBJECT = PREFIX + "/{subjectId}";
@@ -95,13 +92,21 @@ public class UrlConstant {
     }
   }
 
-  public static final class LessonStudent {
+  public static final class Role {
+    public static final String LIST = "roles";
+    private static final String PREFIX = "/role";
+    public static final String UPDATE = PREFIX;
 
+    private Role() {
+    }
+  }
+
+  public static final class LessonStudent {
     private static final String PREFIX = "/lesson-student";
     public static final String CREATE = PREFIX;
-
 
     private LessonStudent() {
     }
   }
+
 }

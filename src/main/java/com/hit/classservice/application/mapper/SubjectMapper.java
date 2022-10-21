@@ -48,4 +48,5 @@ public interface SubjectMapper {
       @Mapping(target = "description", source = "createSubjectParam.description"),
       @Mapping(target = "categoryId", source = "createSubjectParam.categoryId")})
   CreateSubjectInput toCreateSubjectInput(CreateSubjectParam createSubjectParam);
+
 }

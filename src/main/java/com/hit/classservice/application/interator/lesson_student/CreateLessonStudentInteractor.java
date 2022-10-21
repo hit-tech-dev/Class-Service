@@ -17,8 +17,6 @@ import org.springframework.stereotype.Service;
 
 @Service("ApplicationCreateLessonStudentInteractor")
 public class CreateLessonStudentInteractor implements CreateLessonStudentDataCase {
-
-
   private final LessonRepository lessonRepository;
   private final LessonStudentRepository lessonStudentRepository;
   private final UserRepository userRepository;
@@ -50,4 +48,5 @@ public class CreateLessonStudentInteractor implements CreateLessonStudentDataCas
 
     return new CreateLessonStudentOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
   }
+
 }

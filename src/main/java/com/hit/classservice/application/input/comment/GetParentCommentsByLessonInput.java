@@ -13,4 +13,5 @@ import lombok.Setter;
 public class GetParentCommentsByLessonInput implements Input {
 
   private Long lessonId;
+
 }
