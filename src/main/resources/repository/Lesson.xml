@@ -56,6 +56,16 @@
             AND l.delete_flag = 0;
     </select>
 
+    <update id="update" parameterType="com.hit.classservice.domain.entity.Lesson">
+        UPDATE lesson
+        SET `name` = #{item.name},
+            content = #{item.content},
+            expired_time_homework = #{item.expiredTimeHomework},
+            last_modified_date = UNIX_TIMESTAMP(NOW()),
+            last_modified_by = #{item.lastModifiedBy}
+        WHERE id = #{item.id};
+    </update>
+
     <insert id="save" parameterType="com.hit.classservice.domain.entity.Lesson" useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO lesson(`name`, content, expired_time_homework, subject_id, delete_flag, active_flag,
@@ -63,6 +73,5 @@
         VALUES (#{item.name}, #{item.content}, #{item.expiredTimeHomework}, #{item.subjectId}, b'0', b'1',
                 UNIX_TIMESTAMP(NOW()), #{item.createdBy}, UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
     </insert>
-
 </mapper>
 

@@ -9,6 +9,7 @@ public interface LessonRepository {
 
   List<Lesson> getListLessonBySubjectId(Long subjectId);
 
-  int save(Lesson lesson);
+  int update(Lesson lesson);
 
+  int save(Lesson lesson);
 }
