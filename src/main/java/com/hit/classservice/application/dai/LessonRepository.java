@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface LessonRepository {
   Lesson findById(Long id);
+
   List<Lesson> getListLessonBySubjectId(Long subjectId);
+
+  int update(Lesson lesson);
 }

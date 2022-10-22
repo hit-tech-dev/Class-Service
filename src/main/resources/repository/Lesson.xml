@@ -55,5 +55,15 @@
           AND l.active_flag = 1
           AND l.delete_flag = 0;
     </select>
+
+    <update id="update" parameterType="com.hit.classservice.domain.entity.Lesson">
+        UPDATE lesson
+        SET `name` = #{item.name},
+            content = #{item.content},
+            expired_time_homework = #{item.expiredTimeHomework},
+            last_modified_date = UNIX_TIMESTAMP(NOW()),
+            last_modified_by = #{item.lastModifiedBy}
+        WHERE id = #{item.id};
+    </update>
 </mapper>
 
