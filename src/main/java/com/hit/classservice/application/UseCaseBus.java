@@ -11,6 +11,7 @@ import com.hit.classservice.application.input.notification.CreateNotificationInp
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input.notification.GetNotificationInput;
 import com.hit.classservice.application.input.notification.ReadNotificationInput;
+import com.hit.classservice.application.input.role.GetListRoleInput;
 import com.hit.classservice.application.input.role.GetRoleInput;
 import com.hit.classservice.application.input.role.UpdateRoleInput;
 import com.hit.classservice.application.input.schedule.GetListScheduleInput;
@@ -28,6 +29,7 @@ import com.hit.classservice.application.interator.notification.CreateNotificatio
 import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
 import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
 import com.hit.classservice.application.interator.notification.ReadNotificationInteractor;
+import com.hit.classservice.application.interator.role.GetListRoleInterator;
 import com.hit.classservice.application.interator.role.GetRoleInteractor;
 import com.hit.classservice.application.interator.role.UpdateRoleInterator;
 import com.hit.classservice.application.interator.schedule.GetListScheduleInterator;
@@ -95,6 +97,7 @@ public class UseCaseBus {
     //role
     handlerTypes.put(UpdateRoleInput.class, UpdateRoleInterator.class);
     handlerTypes.put(GetRoleInput.class, GetRoleInteractor.class);
+    handlerTypes.put(GetListRoleInput.class, GetListRoleInterator.class);
 
     //lesson student
     handlerTypes.put(CreateLessonStudentInput.class, CreateLessonStudentInteractor.class);
