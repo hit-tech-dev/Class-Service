@@ -6,13 +6,18 @@ import com.hit.classservice.application.input.comment.*;
 import com.hit.classservice.application.input.lesson.CreateLessonInput;
 import com.hit.classservice.application.input.lesson.DeleteLessonInput;
 import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInput;
+import com.hit.classservice.application.input.lesson.UpdateLessonInput;
 import com.hit.classservice.application.input.lesson_student.CreateLessonStudentInput;
 import com.hit.classservice.application.input.notification.CreateNotificationInput;
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input.notification.GetNotificationInput;
 import com.hit.classservice.application.input.notification.ReadNotificationInput;
+import com.hit.classservice.application.input.role.GetListRoleInput;
+import com.hit.classservice.application.input.role.GetRoleInput;
+import com.hit.classservice.application.input.role.UpdateRoleInput;
 import com.hit.classservice.application.input.schedule.GetListScheduleInput;
 import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
+import com.hit.classservice.application.input.schedule.UpdateScheduleInput;
 import com.hit.classservice.application.input.subject.*;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
@@ -20,13 +25,18 @@ import com.hit.classservice.application.interator.comment.*;
 import com.hit.classservice.application.interator.lesson.CreateLessonInteractor;
 import com.hit.classservice.application.interator.lesson.DeleteLessonInteractor;
 import com.hit.classservice.application.interator.lesson.GetListLessonBySubjectIdInteractor;
+import com.hit.classservice.application.interator.lesson.UpdateLessonInteractor;
 import com.hit.classservice.application.interator.lesson_student.CreateLessonStudentInteractor;
 import com.hit.classservice.application.interator.notification.CreateNotificationInteractor;
 import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
 import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
 import com.hit.classservice.application.interator.notification.ReadNotificationInteractor;
+import com.hit.classservice.application.interator.role.GetListRoleInterator;
+import com.hit.classservice.application.interator.role.GetRoleInteractor;
+import com.hit.classservice.application.interator.role.UpdateRoleInterator;
 import com.hit.classservice.application.interator.schedule.GetListScheduleInterator;
 import com.hit.classservice.application.interator.schedule.GetScheduleByIdInterator;
+import com.hit.classservice.application.interator.schedule.UpdateScheduleInteractor;
 import com.hit.classservice.application.interator.subject.*;
 import com.hit.classservice.application.output.Output;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +73,6 @@ public class UseCaseBus {
     handlerTypes.put(CreateChildrenCommentForLessonStudentInput.class,
         CreateChildrenCommentForLessonStudentInteractor.class);
 
-
     // notification
     handlerTypes.put(DeleteNotificationInput.class, DeleteNotificationInteractor.class);
     handlerTypes.put(GetNotificationInput.class, GetNotificationInteractor.class);
@@ -79,12 +88,19 @@ public class UseCaseBus {
 
     // schedule
     handlerTypes.put(GetScheduleByIdInput.class, GetScheduleByIdInterator.class);
+    handlerTypes.put(UpdateScheduleInput.class, UpdateScheduleInteractor.class);
     handlerTypes.put(GetListScheduleInput.class, GetListScheduleInterator.class);
 
     //lesson
     handlerTypes.put(GetListLessonBySubjectIdInput.class, GetListLessonBySubjectIdInteractor.class);
+    handlerTypes.put(UpdateLessonInput.class, UpdateLessonInteractor.class);
     handlerTypes.put(CreateLessonInput.class, CreateLessonInteractor.class);
     handlerTypes.put(DeleteLessonInput.class, DeleteLessonInteractor.class);
+
+    //role
+    handlerTypes.put(UpdateRoleInput.class, UpdateRoleInterator.class);
+    handlerTypes.put(GetRoleInput.class, GetRoleInteractor.class);
+    handlerTypes.put(GetListRoleInput.class, GetListRoleInterator.class);
 
     //lesson student
     handlerTypes.put(CreateLessonStudentInput.class, CreateLessonStudentInteractor.class);

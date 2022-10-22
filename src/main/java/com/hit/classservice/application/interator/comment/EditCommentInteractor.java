@@ -18,9 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service("ApplicationEditCommentInteractor")
 public class EditCommentInteractor implements EditCommentDataCase {
-
   private final CommentRepository commentRepository;
-
   private final LessonRepository lessonRepository;
 
   public EditCommentInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,

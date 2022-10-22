@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @Service("ApplicationGetSubjectInteractor")
 public class GetSubjectInteractor implements GetSubjectDatacase {
   private final SubjectRepository subjectRepository;
-
   private final SubjectMapper subjectMapper;
 
   public GetSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository) {

@@ -71,16 +71,17 @@ public class UrlConstant {
     private static final String PREFIX = "/schedule";
     public static final String LIST = PREFIX + "s";
     public static final String GET = PREFIX + "/{id}";
+    public static final String UPDATE = PREFIX;
 
     private Schedule() {
     }
   }
 
   public static final class Lesson {
-
     public static final String LIST = "lessons";
     private static final String PREFIX = "/lesson";
     public static final String GET_LESSON_BY_SUBJECT = PREFIX + "/{subjectId}";
+    public static final String UPDATE = PREFIX;
     public static final String CREATE = PREFIX;
     public static final String DELETE = PREFIX + "/{id}";
 
@@ -88,13 +89,22 @@ public class UrlConstant {
     }
   }
 
-  public static final class LessonStudent {
+  public static final class Role {
+    public static final String LIST = "roles";
+    private static final String PREFIX = "/role";
+    public static final String UPDATE = PREFIX;
+    public static final String GET = PREFIX + "/{id}";
 
+    private Role() {
+    }
+  }
+
+  public static final class LessonStudent {
     private static final String PREFIX = "/lesson-student";
     public static final String CREATE = PREFIX;
-
 
     private LessonStudent() {
     }
   }
+
 }

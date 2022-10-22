@@ -21,7 +21,6 @@ import java.util.List;
 
 @Service("ApplicationCreateLessonInteractor")
 public class CreateLessonInteractor implements CreateLessonDataCase {
-
   private final LessonRepository lessonRepository;
   private final SubjectRepository subjectRepository;
   private final LessonStudentRepository lessonStudentRepository;
@@ -65,4 +64,5 @@ public class CreateLessonInteractor implements CreateLessonDataCase {
 
     return new CreateLessonOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
   }
+
 }

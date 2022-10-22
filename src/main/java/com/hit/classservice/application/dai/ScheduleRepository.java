@@ -8,6 +8,8 @@ public interface ScheduleRepository {
 
   Schedule findById(Long id);
 
+  int update(Schedule schedule);
+
   List<Schedule> findAll();
 
 }

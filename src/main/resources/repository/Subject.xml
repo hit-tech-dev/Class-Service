@@ -26,7 +26,7 @@
                s.description
         FROM subject s
         WHERE s.active_flag = 1
-          AND s.delete_flag = 0;
+            AND s.delete_flag = 0;
     </select>
 
     <select id="findById" resultMap="subjectResultMap">
@@ -36,8 +36,8 @@
                s.description
         FROM subject s
         WHERE s.active_flag = 1
-          AND s.delete_flag = 0
-          AND s.id = #{id};
+            AND s.delete_flag = 0
+            AND s.id = #{id};
     </select>
 
     <update id="update" parameterType="com.hit.classservice.domain.entity.Subject">
@@ -57,8 +57,8 @@
                s.description
         FROM subject s
         WHERE s.active_flag = 1
-          AND s.delete_flag = 0
-          AND s.name = #{name};
+            AND s.delete_flag = 0
+            AND s.name = #{name};
     </select>
 
     <delete id="delete" parameterType="java.lang.Long">

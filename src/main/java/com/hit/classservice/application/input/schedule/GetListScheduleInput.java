@@ -9,6 +9,4 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class GetListScheduleInput implements Input {
-
-
 }

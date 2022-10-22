@@ -40,6 +40,14 @@ public class ExceptionHandlerConfig {
     return VsResponseUtil.error(HttpStatus.BAD_REQUEST, message, ex.getDevMessage());
   }
 
+  @ExceptionHandler(value = {NotFoundException.class})
+  protected ResponseEntity<RestData<?>> handleNotFoundException(NotFoundException ex) {
+    LOG.error(ex.getMessage(), ex);
+
+    String message = messageSource.getMessage(ex.getMessage(), ex.getParams(), LocaleContextHolder.getLocale());
+    return VsResponseUtil.error(HttpStatus.NOT_FOUND, message, ex.getDevMessage());
+  }
+
   @ExceptionHandler(value = {VsException.class})
   protected ResponseEntity<RestData<?>> handleVsException(VsException ex) {
     LOG.error(ex.getMessage(), ex);
@@ -114,6 +122,13 @@ public class ExceptionHandlerConfig {
           LocaleContextHolder.getLocale()
       );
       return VsResponseUtil.error(HttpStatus.BAD_REQUEST, message, invalidException.getDevMessage());
+    }
+    if (ex.getCause() instanceof NotFoundException) {
+      NotFoundException invalidException = (NotFoundException) ex.getCause();
+      String message = messageSource.getMessage(invalidException.getUserMessage(), invalidException.getParams(),
+          LocaleContextHolder.getLocale()
+      );
+      return VsResponseUtil.error(HttpStatus.NOT_FOUND, message, invalidException.getDevMessage());
     }
     String message = messageSource.getMessage(UserMessageConstant.ERR_EXCEPTION_GENERAL, null,
         LocaleContextHolder.getLocale());

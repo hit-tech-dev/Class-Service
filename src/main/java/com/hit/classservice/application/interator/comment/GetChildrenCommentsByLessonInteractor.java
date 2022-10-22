@@ -22,11 +22,8 @@ import java.util.List;
 
 @Service("ApplicationGetChildrenCommentsByLessonInteractor")
 public class GetChildrenCommentsByLessonInteractor implements GetChildrenCommentsByLessonDataCase {
-
   private final CommentRepository commentRepository;
-
   private final LessonRepository lessonRepository;
-
   private final CommentMapper commentMapper;
 
   public GetChildrenCommentsByLessonInteractor(@Qualifier("DatabaseCommentRepository") CommentRepository commentRepository,
@@ -59,4 +56,5 @@ public class GetChildrenCommentsByLessonInteractor implements GetChildrenComment
     List<GetChildrenCommentsByLessonItemOutput> output = commentMapper.toGetChildrenCommentsByLessonOutput(comments);
     return new GetChildrenCommentsByLessonOutput(output);
   }
+
 }

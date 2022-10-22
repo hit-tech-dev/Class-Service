@@ -39,8 +39,8 @@
                n.is_read
         FROM notification n
         WHERE n.id = #{id}
-          AND n.active_flag = 1
-          AND n.delete_flag = 0;
+            AND n.active_flag = 1
+            AND n.delete_flag = 0;
     </select>
 
     <update id="readNotification" parameterType="java.lang.Long">

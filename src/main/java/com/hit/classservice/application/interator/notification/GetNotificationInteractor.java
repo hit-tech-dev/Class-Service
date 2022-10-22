@@ -36,4 +36,5 @@ public class GetNotificationInteractor implements GetNotificationDataCase {
     }
     return notificationMapper.toGetNotificationOutput(notification);
   }
+
 }

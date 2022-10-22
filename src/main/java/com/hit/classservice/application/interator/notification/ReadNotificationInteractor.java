@@ -34,4 +34,5 @@ public class ReadNotificationInteractor implements ReadNotificationDataCase {
     notificationRepository.readNotification(input.getId());
     return new ReadNotificationOutput(CommonConstant.TRUE, "Is Read");
   }
+
 }

@@ -56,6 +56,8 @@
         UPDATE category
         SET `name`             = #{item.name},
             description        = #{item.description},
+        SET `name`= #{item.name},
+            description = #{item.description},
             last_modified_date = UNIX_TIMESTAMP(NOW()),
             last_modified_by   = #{item.lastModifiedBy}
         WHERE id = #{item.id};

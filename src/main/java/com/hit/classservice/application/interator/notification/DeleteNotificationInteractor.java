@@ -34,4 +34,5 @@ public class DeleteNotificationInteractor implements DeleteNotificationDataCase 
     notificationRepository.deleteById(input.getId());
     return new DeleteNotificationOutput(CommonConstant.TRUE, "Delete sucessful");
   }
+
 }

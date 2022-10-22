@@ -29,4 +29,5 @@ public interface DatabaseSubjectRepository extends SubjectRepository {
 
   @Override
   int save(@Param("item") Subject subject);
+
 }

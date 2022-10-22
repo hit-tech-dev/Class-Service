@@ -15,4 +15,5 @@ public class GetChildrenCommentsByLessonInput implements Input {
   private Long lessonId;
 
   private Long parentId;
+
 }
