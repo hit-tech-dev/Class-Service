@@ -15,4 +15,5 @@ import java.util.List;
 public class GetChildrenCommentsByLessonOutput implements Output {
 
   List<GetChildrenCommentsByLessonItemOutput> items;
+
 }

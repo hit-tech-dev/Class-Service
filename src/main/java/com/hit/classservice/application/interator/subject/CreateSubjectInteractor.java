@@ -43,4 +43,5 @@ public class CreateSubjectInteractor implements CreateSubjectDataCase {
     subjectRepository.save(subject);
     return new CreateSubjectOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
   }
+
 }

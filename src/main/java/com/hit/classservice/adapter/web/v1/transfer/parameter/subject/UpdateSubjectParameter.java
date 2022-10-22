@@ -26,4 +26,5 @@ public class UpdateSubjectParameter {
   private String avatar;
 
   private String description;
+
 }

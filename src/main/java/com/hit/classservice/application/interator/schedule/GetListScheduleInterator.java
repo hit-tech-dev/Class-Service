@@ -24,7 +24,6 @@ public class GetListScheduleInterator implements GetListScheduleDataCase {
     this.scheduleMapper = Mappers.getMapper(ScheduleMapper.class);
   }
 
-
   @SneakyThrows
   @Override
   public GetListScheduleOutput handle(GetListScheduleInput input) throws Exception {
@@ -34,4 +33,5 @@ public class GetListScheduleInterator implements GetListScheduleDataCase {
 
     return new GetListScheduleOutput(output);
   }
+
 }

@@ -24,5 +24,8 @@ public interface CommentRepository {
 
   int delete(Long id);
 
+<<<<<<< HEAD
   List<Comment> getListCommentByLessonId(Long lessonId);
+=======
+>>>>>>> d71bad44fb39d3e202b27d2579686a00f6029885
 }

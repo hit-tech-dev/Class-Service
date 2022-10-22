@@ -1,5 +1,7 @@
 package com.hit.classservice.application.mapper;
 
+import com.hit.classservice.adapter.web.v1.transfer.parameter.lesson.UpdateLessonParameter;
+import com.hit.classservice.application.input.lesson.UpdateLessonInput;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.lesson.CreateLessonParameter;
 import com.hit.classservice.application.input.lesson.CreateLessonInput;
 import com.hit.classservice.application.output.lesson.GetLessonDetailByIdOutput;
@@ -24,6 +26,7 @@ public interface LessonMapper {
 
   List<GetListLessonItemOutput> toGetListLessonBySubjectIdOutput(List<Lesson> lessons);
 
+  UpdateLessonInput toUpdateLessonInput(UpdateLessonParameter parameter);
   CreateLessonInput toCreateLessonInput(CreateLessonParameter parameter);
 
   @Mappings({
@@ -37,5 +40,4 @@ public interface LessonMapper {
       @Mapping(target = "comments", source = "lesson.comments")
   })
   GetLessonDetailByIdOutput toGetLessonDetailByIdOutput(Lesson lesson);
-
 }

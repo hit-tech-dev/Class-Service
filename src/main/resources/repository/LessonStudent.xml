@@ -34,8 +34,8 @@
                ls.created_date
         FROM lesson_student ls
         WHERE ls.id = #{id}
-          AND ls.active_flag = 1
-          AND ls.delete_flag = 0;
+            AND ls.active_flag = 1
+            AND ls.delete_flag = 0;
     </select>
 
     <insert id="save" parameterType="com.hit.classservice.domain.entity.LessonStudent">

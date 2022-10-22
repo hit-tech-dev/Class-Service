@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 @Service("ApplicationCreateChildrenCommentForLessonStudentInteractor")
 public class CreateChildrenCommentForLessonStudentInteractor implements CreateChildrenCommentForLessonStudentDataCase {
-
   private final CommentRepository commentRepository;
 
   private final LessonStudentRepository lessonStudentRepository;
@@ -65,4 +64,5 @@ public class CreateChildrenCommentForLessonStudentInteractor implements CreateCh
     commentRepository.createCommentForLessonStudent(comment);
     return new CreateChildrenCommentForLessonStudentOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
   }
+
 }
