@@ -16,7 +16,7 @@
     </resultMap>
 
     <update id="update" parameterType="com.hit.classservice.domain.entity.Role">
-        UPDATE role
+        UPDATE roles
         SET `name`= #{item.name},
             `description` = #{item.description},
             last_modified_date = UNIX_TIMESTAMP(NOW()),
@@ -30,7 +30,7 @@
         SELECT c.id,
                c.name,
                c.description
-        FROM role c
+        FROM roles c
         WHERE name = #{name}
             AND delete_flag = 0
             AND active_flag = 1;
@@ -40,7 +40,7 @@
         SELECT c.id,
                c.name,
                c.description
-        FROM role c
+        FROM roles c
         WHERE id = #{id}
             AND delete_flag = 0
             AND active_flag = 1;
