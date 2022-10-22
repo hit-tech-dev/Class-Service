@@ -11,4 +11,6 @@ public interface LessonRepository {
 
   int save(Lesson lesson);
 
+  Lesson findLessonDetailById(Long id);
+
 }

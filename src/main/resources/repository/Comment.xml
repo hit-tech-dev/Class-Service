@@ -175,5 +175,18 @@
         WHERE id = #{id}
     </delete>
 
+    <select id="getListCommentByLessonId" resultMap="commentResultMap">
+        SELECT c.id,
+               c.content,
+               c.parent_id,
+               c.user_id,
+               c.created_by,
+               c.created_date
+        FROM comment c
+        WHERE c.lesson_id = #{lessonId}
+          AND c.active_flag = 1
+          AND c.delete_flag = 0;
+    </select>
+
 </mapper>
 

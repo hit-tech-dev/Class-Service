@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,6 +23,12 @@ public class Lesson extends AbstractAuditingEntity {
   private Long expiredTimeHomework;
 
   private Long subjectId;
+
+  List<Document> documents;
+
+  List<LessonStudent> lessonStudents;
+
+  List<Comment> comments;
 
   public Lesson(String name, String content, Long expiredTimeHomework, Long subjectId) {
     this.name = name;

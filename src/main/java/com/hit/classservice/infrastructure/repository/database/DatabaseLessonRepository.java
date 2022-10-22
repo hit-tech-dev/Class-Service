@@ -20,4 +20,7 @@ public interface DatabaseLessonRepository extends LessonRepository {
   @Override
   int save(@Param("item") Lesson lesson);
 
+  @Override
+  Lesson findLessonDetailById(@Param("id") Long id);
+
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hit.classservice.infrastructure.repository.database.DatabaseDocumentRepository">
+
+    <resultMap id="documentResultMap" type="com.hit.classservice.domain.entity.Document">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="link" javaType="java.lang.String">
+            <result column="link"/>
+        </association>
+        <association property="type" javaType="java.lang.Integer">
+            <result column="type"/>
+        </association>
+        <association property="title" javaType="java.lang.String">
+            <result column="title"/>
+        </association>
+        <association property="mark" javaType="java.lang.Double">
+            <result column="mark"/>
+        </association>
+    </resultMap>
+
+    <select id="getListDocumentByLessonId" resultMap="documentResultMap">
+        SELECT d.id,
+               d.link,
+               d.type,
+               d.title,
+               d.mark
+        FROM document d
+        WHERE d.lesson_id = #{lessonId}
+            AND d.active_flag = 1
+            AND d.delete_flag = 0;
+    </select>
+
+</mapper>
+

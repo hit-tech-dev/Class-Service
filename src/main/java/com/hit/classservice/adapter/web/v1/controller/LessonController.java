@@ -7,9 +7,11 @@ import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
 import com.hit.classservice.application.input.lesson.CreateLessonInput;
+import com.hit.classservice.application.input.lesson.GetLessonDetailByIdInput;
 import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInput;
 import com.hit.classservice.application.mapper.LessonMapper;
 import com.hit.classservice.application.output.lesson.CreateLessonOutput;
+import com.hit.classservice.application.output.lesson.GetLessonDetailByIdOutput;
 import com.hit.classservice.application.output.lesson.GetListLessonBySubjectIdOutput;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -49,6 +51,17 @@ public class LessonController {
     CreateLessonOutput output = useCaseBus.handle(input);
     //Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @GetMapping(UrlConstant.Lesson.GET_DETAIL_LESSON)
+  public ResponseEntity<?> getDetailLessonById(@PathVariable(name = "id") Long id) throws Exception{
+    //Create input
+    GetLessonDetailByIdInput input = new GetLessonDetailByIdInput(id);
+    //Get output
+    GetLessonDetailByIdOutput output = useCaseBus.handle(input);
+    //return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+
   }
 
 }

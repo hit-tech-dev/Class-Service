@@ -39,4 +39,7 @@ public interface DatabaseCommentRepository extends CommentRepository {
   @Override
   int delete(@Param("id") Long id);
 
+  @Override
+  List<Comment> getListCommentByLessonId(@Param("lessonId") Long lessonId);
+
 }

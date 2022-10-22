@@ -44,4 +44,17 @@
         VALUES (#{item.lessonId}, #{item.userId}, #{item.attendance}, b'0', b'1',
                 UNIX_TIMESTAMP(NOW()), #{item.createdBy}, UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
     </insert>
+
+    <select id="getListLessonStudentByLessonId" resultMap="lessonStudentResultMap">
+        SELECT ls.id,
+               ls.attendance,
+               ls.lesson_id,
+               ls.user_id,
+               ls.created_by,
+               ls.created_date
+        FROM lesson_student ls
+        WHERE ls.lesson_id = #{lessonId}
+          AND ls.active_flag = 1
+          AND ls.delete_flag = 0;
+    </select>
 </mapper>
