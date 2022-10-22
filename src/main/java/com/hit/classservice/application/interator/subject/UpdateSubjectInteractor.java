@@ -44,4 +44,5 @@ public class UpdateSubjectInteractor implements UpdateSubjectDataCase {
     subjectRepository.update(oldSubject);
     return new UpdateSubjectOutput(CommonConstant.TRUE, "Update successful");
   }
+
 }

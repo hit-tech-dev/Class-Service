@@ -37,4 +37,14 @@ public class DevMessageConstant {
     public static final String ERR_NOT_FOUND_BY_ID = "Not found schedule by id = %s";
   }
 
+  public static final class Role {
+    public static final String ERR_NOT_FOUND_BY_ID = "Not found role by id = %s";
+    public static final String NAME_IS_EXIST = "Role with name '%s' is exist";
+    public static final String DUPLICATE_NAME = "Duplicate role name '%s'";
+  }
+
+  public static final class User {
+    public static final String ERR_NOT_FOUND_BY_ID = "Not found user student by id = %s";
+  }
+
 }

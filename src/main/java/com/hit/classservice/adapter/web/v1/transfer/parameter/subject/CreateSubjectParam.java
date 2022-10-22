@@ -23,4 +23,5 @@ public class CreateSubjectParam {
   private String description;
 
   private Long categoryId;
+
 }

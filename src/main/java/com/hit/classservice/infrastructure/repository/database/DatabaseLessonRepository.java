@@ -19,4 +19,7 @@ public interface DatabaseLessonRepository extends LessonRepository {
 
   @Override
   int update(@Param("item") Lesson lesson);
+
+  @Override
+  int save(@Param("item") Lesson lesson);
 }

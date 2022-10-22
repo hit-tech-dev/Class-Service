@@ -26,4 +26,5 @@ public class GetParentCommentsByLessonItemOutput {
   private Integer totalNumberChild;
 
   private String userId;
+
 }

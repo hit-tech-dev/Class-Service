@@ -24,4 +24,5 @@ public class CreateNotificationInteractor implements CreateNotificationDataCase 
     notificationRepository.save(notification);
     return new CreateNotificationOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
   }
+
 }

@@ -2,6 +2,8 @@ package com.hit.classservice.application.mapper;
 
 import com.hit.classservice.adapter.web.v1.transfer.parameter.lesson.UpdateLessonParameter;
 import com.hit.classservice.application.input.lesson.UpdateLessonInput;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.lesson.CreateLessonParameter;
+import com.hit.classservice.application.input.lesson.CreateLessonInput;
 import com.hit.classservice.application.output.lesson.GetListLessonItemOutput;
 import com.hit.classservice.domain.entity.Lesson;
 import org.mapstruct.Mapper;
@@ -24,4 +26,6 @@ public interface LessonMapper {
   List<GetListLessonItemOutput> toGetListLessonBySubjectIdOutput(List<Lesson> lessons);
 
   UpdateLessonInput toUpdateLessonInput(UpdateLessonParameter parameter);
+
+  CreateLessonInput toCreateLessonInput(CreateLessonParameter parameter);
 }
