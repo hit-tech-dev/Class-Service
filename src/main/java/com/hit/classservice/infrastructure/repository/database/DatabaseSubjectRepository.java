@@ -12,21 +12,21 @@ import java.util.List;
 @Repository("DatabaseSubjectRepository")
 public interface DatabaseSubjectRepository extends SubjectRepository {
 
-    @Override
-    List<Subject> findAll();
+  @Override
+  List<Subject> findAll();
 
-    @Override
-    Subject findById(@Param("id") Long id);
+  @Override
+  Subject findById(@Param("id") Long id);
 
-    @Override
-    int update(@Param("item") Subject subject);
+  @Override
+  int update(@Param("item") Subject subject);
 
-    @Override
-    Subject findByName(@Param("name") String name);
+  @Override
+  Subject findByName(@Param("name") String name);
 
-    @Override
-    int delete(@Param("id") Long id);
+  @Override
+  int delete(@Param("id") Long id);
 
-    @Override
-    int save(@Param("item") Subject subject);
+  @Override
+  int save(@Param("item") Subject subject);
 }

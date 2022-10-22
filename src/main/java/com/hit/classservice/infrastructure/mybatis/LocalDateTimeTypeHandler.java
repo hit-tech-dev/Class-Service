@@ -10,6 +10,13 @@ import java.time.LocalDateTime;
 @MappedTypes(LocalDateTime.class)
 public class LocalDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
 
+  private static LocalDateTime getLocalDateTime(Timestamp timestamp) {
+    if (timestamp != null) {
+      return timestamp.toLocalDateTime();
+    }
+    return null;
+  }
+
   @Override
   public void setNonNullParameter(PreparedStatement ps, int i,
                                   LocalDateTime parameter, JdbcType jdbcType) throws SQLException {
@@ -35,13 +42,6 @@ public class LocalDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
                                          int columnIndex) throws SQLException {
     Timestamp timestamp = cs.getTimestamp(columnIndex);
     return getLocalDateTime(timestamp);
-  }
-
-  private static LocalDateTime getLocalDateTime(Timestamp timestamp) {
-    if (timestamp != null) {
-      return timestamp.toLocalDateTime();
-    }
-    return null;
   }
 
 }

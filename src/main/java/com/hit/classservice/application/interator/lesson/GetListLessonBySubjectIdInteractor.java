@@ -23,6 +23,7 @@ public class GetListLessonBySubjectIdInteractor implements GetListLessonBySubjec
   private final LessonRepository lessonRepository;
 
   private final LessonMapper lessonMapper;
+
   public GetListLessonBySubjectIdInteractor(@Qualifier("DatabaseLessonRepository") LessonRepository lessonRepository) {
     this.lessonRepository = lessonRepository;
     this.lessonMapper = Mappers.getMapper(LessonMapper.class);

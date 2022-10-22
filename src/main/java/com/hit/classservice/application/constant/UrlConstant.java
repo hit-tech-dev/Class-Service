@@ -49,22 +49,18 @@ public class UrlConstant {
     private static final String LIST_CHILDREN = LIST + "/children";
 
     private static final String PREFIX = "/comment";
-
+    public static final String DELETE = PREFIX + "/{id}";
+    public static final String EDIT = PREFIX;
     private static final String PREFIX_PARENT = PREFIX + "/parent";
     private static final String PREFIX_CHILDREN = PREFIX + "/children";
     private static final String LESSON = "/lesson";
-    private static final String LESSON_STUDENT = "/lesson-student";
-
     public static final String GET_PARENT_BY_LESSON = LIST_PARENT + LESSON + "/{lessonId}";
     public static final String GET_CHILDREN_BY_LESSON = LIST_CHILDREN + LESSON + "/{lessonId}/{parentId}";
-
     public static final String CREATE_PARENT_FOR_LESSON = PREFIX_PARENT + LESSON;
     public static final String CREATE_CHILDREN_FOR_LESSON = PREFIX_CHILDREN + LESSON;
+    private static final String LESSON_STUDENT = "/lesson-student";
     public static final String CREATE_PARENT_FOR_LESSON_STUDENT = PREFIX_PARENT + LESSON_STUDENT;
     public static final String CREATE_CHILDREN_FOR_LESSON_STUDENT = PREFIX_CHILDREN + LESSON_STUDENT;
-
-    public static final String DELETE = PREFIX + "/{id}";
-    public static final String EDIT = PREFIX;
 
     private Comment() {
 
@@ -86,7 +82,7 @@ public class UrlConstant {
     private static final String PREFIX = "/lesson";
     public static final String GET_LESSON_BY_SUBJECT = PREFIX + "/{subjectId}";
     public static final String CREATE = PREFIX;
-    public static final String DELETE = PREFIX + "/id={id}";
+    public static final String DELETE = PREFIX + "/{id}";
 
     private Lesson() {
     }

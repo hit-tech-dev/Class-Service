@@ -4,5 +4,6 @@ import com.hit.classservice.application.input.comment.CreateChildrenCommentForLe
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.output.comment.CreateChildrenCommentForLessonOutput;
 
-public interface CreateChildrenCommentForLessonDataCase extends UseCase<CreateChildrenCommentForLessonInput, CreateChildrenCommentForLessonOutput> {
+public interface CreateChildrenCommentForLessonDataCase extends UseCase<CreateChildrenCommentForLessonInput,
+    CreateChildrenCommentForLessonOutput> {
 }

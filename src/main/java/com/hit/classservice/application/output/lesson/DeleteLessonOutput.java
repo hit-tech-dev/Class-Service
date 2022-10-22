@@ -12,6 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DeleteLessonOutput implements Output {
 
-    private boolean status;
-    private String message;
+  private boolean status;
+  private String message;
 }

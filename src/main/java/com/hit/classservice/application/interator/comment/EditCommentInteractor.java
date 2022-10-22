@@ -5,17 +5,12 @@ import com.hit.classservice.application.constant.DevMessageConstant;
 import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.CommentRepository;
 import com.hit.classservice.application.dai.LessonRepository;
-import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonInput;
 import com.hit.classservice.application.input.comment.EditCommentInput;
-import com.hit.classservice.application.input_boundary.comment.CreateChildrenCommentForLessonDataCase;
 import com.hit.classservice.application.input_boundary.comment.EditCommentDataCase;
-import com.hit.classservice.application.output.category.UpdateCategoryOutput;
-import com.hit.classservice.application.output.comment.CreateChildrenCommentForLessonOutput;
 import com.hit.classservice.application.output.comment.EditCommentOutput;
 import com.hit.classservice.application.utils.SecurityUtil;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Comment;
-import com.hit.classservice.domain.entity.Lesson;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,7 +35,7 @@ public class EditCommentInteractor implements EditCommentDataCase {
     Comment comment = commentRepository.findById(input.getId());
 
     // Find obj by id
-    if(ObjectUtils.isEmpty(comment)) {
+    if (ObjectUtils.isEmpty(comment)) {
       throw new VsException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});

@@ -22,7 +22,7 @@ public class GetScheduleByIdInterator implements GetScheduleByIdDataCase {
 
   public GetScheduleByIdInterator(@Qualifier("DatabaseScheduleRepository") ScheduleRepository scheduleRepository) {
     this.scheduleRepository = scheduleRepository;
-      this.scheduleMapper = Mappers.getMapper(ScheduleMapper.class);
+    this.scheduleMapper = Mappers.getMapper(ScheduleMapper.class);
   }
 
   @SneakyThrows

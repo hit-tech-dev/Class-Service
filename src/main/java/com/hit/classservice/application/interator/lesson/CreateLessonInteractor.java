@@ -46,7 +46,8 @@ public class CreateLessonInteractor implements CreateLessonDataCase {
     }
 
     // Save lesson
-    Lesson lesson = new Lesson(input.getName(), input.getContent(), input.getExpiredTimeHomework(), input.getSubjectId());
+    Lesson lesson = new Lesson(input.getName(), input.getContent(), input.getExpiredTimeHomework(),
+        input.getSubjectId());
     lessonRepository.save(lesson);
 
     /**

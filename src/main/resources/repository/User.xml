@@ -43,7 +43,7 @@
                u.avatar
         FROM users u
         WHERE u.id = #{id}
---           AND u.active_flag = 1
+        --           AND u.active_flag = 1
 --           AND u.delete_flag = 0;
     </select>
 

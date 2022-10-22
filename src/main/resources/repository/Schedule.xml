@@ -23,25 +23,23 @@
     </resultMap>
 
     <select id="findById" resultMap="scheduleResultMap">
-        SELECT
-            s.id,
-            s.name,
-            s.internal_name,
-            s.`session`,
-            s.time_detail
+        SELECT s.id,
+               s.name,
+               s.internal_name,
+               s.`session`,
+               s.time_detail
         FROM schedule s
         WHERE s.id = #{id}
-            AND s.delete_flag = 0
-            AND s.active_flag = 1
+          AND s.delete_flag = 0
+          AND s.active_flag = 1
     </select>
 
     <select id="findAll" resultMap="scheduleResultMap">
-        SELECT
-            s.id,
-            s.name,
-            s.internal_name,
-            s.`session`,
-            s.time_detail
+        SELECT s.id,
+               s.name,
+               s.internal_name,
+               s.`session`,
+               s.time_detail
         FROM schedule s
         WHERE s.delete_flag = 0
           AND s.active_flag = 1
