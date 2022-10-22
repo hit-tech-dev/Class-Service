@@ -96,6 +96,7 @@ public class UrlConstant {
     public static final String LIST = "roles";
     private static final String PREFIX = "/role";
     public static final String UPDATE = PREFIX;
+    public static final String GET_ROLE_BY_ID = PREFIX + "/{id}";
 
     private Role() {
     }
