@@ -114,6 +114,8 @@
                (SELECT COUNT(child.id)
                 FROM comment child
                 WHERE child.parent_id = c.id
+                  AND child.active_flag = 1
+                  AND child.delete_flag = 0) AS "total_number_child",
                     AND child.active_flag = 1
                     AND child.delete_flag = 0
                ) AS "total_number_child",
@@ -163,9 +165,9 @@
 
     <update id="editComment" parameterType="com.hit.classservice.domain.entity.Comment">
         UPDATE comment
-        SET content = #{item.content},
+        SET content            = #{item.content},
             last_modified_date = UNIX_TIMESTAMP(NOW()),
-            last_modified_by = #{item.lastModifiedBy}
+            last_modified_by   = #{item.lastModifiedBy}
         WHERE id = #{item.id};
     </update>
 

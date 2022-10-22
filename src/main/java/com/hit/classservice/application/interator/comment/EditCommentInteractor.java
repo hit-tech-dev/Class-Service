@@ -33,7 +33,7 @@ public class EditCommentInteractor implements EditCommentDataCase {
     Comment comment = commentRepository.findById(input.getId());
 
     // Find obj by id
-    if(ObjectUtils.isEmpty(comment)) {
+    if (ObjectUtils.isEmpty(comment)) {
       throw new VsException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});

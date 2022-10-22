@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetListLessonBySubjectIdOutput implements Output {
+public class DeleteLessonOutput implements Output {
 
-  private List<GetListLessonItemOutput> items;
-
+  private boolean status;
+  private String message;
 }

@@ -4,5 +4,6 @@ import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInp
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.output.lesson.GetListLessonBySubjectIdOutput;
 
-public interface GetListLessonBySubjectIdDataCase extends UseCase<GetListLessonBySubjectIdInput, GetListLessonBySubjectIdOutput> {
+public interface GetListLessonBySubjectIdDataCase extends UseCase<GetListLessonBySubjectIdInput,
+    GetListLessonBySubjectIdOutput> {
 }
