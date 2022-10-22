@@ -11,10 +11,7 @@ public interface LessonRepository {
 
   int update(Lesson lesson);
 
-<<<<<<< HEAD
   Lesson findLessonDetailById(Long id);
 
-=======
   int save(Lesson lesson);
->>>>>>> d71bad44fb39d3e202b27d2579686a00f6029885
 }
