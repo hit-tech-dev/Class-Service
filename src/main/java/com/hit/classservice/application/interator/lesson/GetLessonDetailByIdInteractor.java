@@ -9,6 +9,7 @@ import com.hit.classservice.application.dai.LessonStudentRepository;
 import com.hit.classservice.application.input.lesson.GetLessonDetailByIdInput;
 import com.hit.classservice.application.input_boundary.lesson.GetLessonDetailByIdDatacase;
 import com.hit.classservice.application.mapper.LessonMapper;
+import com.hit.classservice.application.output.lesson.GetLessonDetailByIdItemOutput;
 import com.hit.classservice.application.output.lesson.GetLessonDetailByIdOutput;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Comment;
@@ -39,18 +40,13 @@ public class GetLessonDetailByIdInteractor implements GetLessonDetailByIdDatacas
   }
 
   @Override
-  public GetLessonDetailByIdOutput handle(GetLessonDetailByIdInput input) throws Exception {
-    List<Document> documents = documentRepository.getListDocumentByLessonId(input.getId());
-    List<LessonStudent> lessonStudents = lessonStudentRepository.getListLessonStudentByLessonId(input.getId());
-    List<Comment> comments = commentRepository.getListCommentByLessonId(input.getId());
+  public GetLessonDetailByIdItemOutput handle(GetLessonDetailByIdInput input) throws Exception {
     Lesson lesson = lessonRepository.findLessonDetailById(input.getId());
     if (ObjectUtils.isEmpty(lesson))
       throw new VsException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
-    lesson.setDocuments(documents);
-    lesson.setLessonStudents(lessonStudents);
-    lesson.setComments(comments);
-    return lessonMapper.toGetLessonDetailByIdOutput(lesson);
+    GetLessonDetailByIdItemOutput output = lessonMapper.toGetLessonDetailByIdItemOutput(lesson);
+    return output;
   }
 }

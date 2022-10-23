@@ -28,6 +28,42 @@
         </association>
     </resultMap>
 
+    <resultMap id="lessonResultMapV2" type="com.hit.classservice.domain.entity.Lesson">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="name" javaType="java.lang.String">
+            <result column="name"/>
+        </association>
+        <association property="content" javaType="java.lang.String">
+            <result column="content"/>
+        </association>
+        <association property="expiredTimeHomework" javaType="java.lang.Long">
+            <result column="expired_time_homework"/>
+        </association>
+        <association property="subjectId" javaType="java.lang.Long">
+            <result column="subject_id"/>
+        </association>
+        <association property="createdBy" javaType="java.lang.String">
+            <result column="created_by"/>
+        </association>
+        <association property="createdDate" javaType="java.lang.Long">
+            <result column="created_date"/>
+        </association>
+        <collection property="documents" resultMap="documentResultMap" javaType="list">
+            <result column="documents"/>
+        </collection>
+
+    </resultMap>
+
+    <resultMap id="documentResultMap" type="com.hit.classservice.application.output.document.GetDocumentOutputItem">
+        <id property="id" column="document_id"/>
+        <result property="link" column="document_link"/>
+        <result property="type" column="document_type"/>
+        <result property="title" column="document_title"/>
+        <result property="mark" column="document_mark"/>
+    </resultMap>
+
     <select id="getListLessonBySubjectId" resultMap="lessonResultMap">
         SELECT l.id,
                l.name,
@@ -40,17 +76,24 @@
         WHERE l.subject_id = #{subjectId}
             AND l.active_flag = 1
             AND l.delete_flag = 0;
+
     </select>
 
-    <select id="findById" resultMap="lessonResultMap">
+    <select id="findLessonDetailById" resultMap="lessonResultMapV2">
         SELECT l.id,
                l.name,
                l.content,
                l.expired_time_homework,
                l.subject_id,
                l.created_by,
-               l.created_date
+               l.created_date,
+               d.id AS document_id,
+               d.link AS document_link,
+               d.type AS document_type,
+               d.title AS document_title,
+               d.mark AS document_mark
         FROM lesson l
+        INNER JOIN document d ON l.id = d.lesson_id
         WHERE l.id = #{id}
             AND l.active_flag = 1
             AND l.delete_flag = 0;
@@ -74,7 +117,7 @@
                 UNIX_TIMESTAMP(NOW()), #{item.createdBy}, UNIX_TIMESTAMP(NOW()), #{item.lastModifiedBy})
     </insert>
 
-    <select id="findLessonDetailById" resultMap="lessonResultMap">
+    <select id="findById" resultMap="lessonResultMap" resultType="map">
         SELECT l.id,
                l.name,
                l.content,

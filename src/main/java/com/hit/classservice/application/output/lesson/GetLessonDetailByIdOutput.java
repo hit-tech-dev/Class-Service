@@ -17,12 +17,5 @@ import java.util.List;
 @AllArgsConstructor
 public class GetLessonDetailByIdOutput implements Output {
 
-  private Long id;
-  private Long subjectId;
-  private String name;
-  private String content;
-  private Long expiredTimeHomework;
-  private List<Document> documents;
-  private List<LessonStudent> lessonStudents;
-  private List<Comment> comments;
+  private List<GetLessonDetailByIdItemOutput> items;
 }
