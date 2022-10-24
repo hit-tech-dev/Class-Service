@@ -4,11 +4,9 @@ import com.hit.classservice.adapter.web.v1.transfer.parameter.lesson.CreateLesso
 import com.hit.classservice.adapter.web.v1.transfer.parameter.lesson.UpdateLessonParameter;
 import com.hit.classservice.application.input.lesson.CreateLessonInput;
 import com.hit.classservice.application.input.lesson.UpdateLessonInput;
-import com.hit.classservice.application.output.document.GetDocumentOutputItem;
 import com.hit.classservice.application.output.lesson.GetListLessonDetailItemOutput;
 import com.hit.classservice.application.output.lesson.GetListLessonItemOutput;
 import com.hit.classservice.domain.dto.LessonDetailDto;
-import com.hit.classservice.domain.entity.Document;
 import com.hit.classservice.domain.entity.Lesson;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

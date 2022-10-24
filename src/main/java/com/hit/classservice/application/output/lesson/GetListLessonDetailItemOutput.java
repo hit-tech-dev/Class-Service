@@ -17,8 +17,6 @@ public class GetListLessonDetailItemOutput implements Output {
 
   private Long id;
 
-  private Long subjectId;
-
   private String name;
 
   private String content;

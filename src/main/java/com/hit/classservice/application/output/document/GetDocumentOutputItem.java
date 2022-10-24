@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class GetDocumentOutputItem implements Output {
 
-  private Long id;
+  private Long documentId;
 
   private String link;
 

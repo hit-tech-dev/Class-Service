@@ -15,6 +15,8 @@ public class DocumentDetailDto {
 
   private String title;
 
+  private Integer type;
+
   private String link;
 
   private Long mark;
