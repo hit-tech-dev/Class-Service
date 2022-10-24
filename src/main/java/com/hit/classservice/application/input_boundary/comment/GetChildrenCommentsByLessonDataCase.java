@@ -4,5 +4,6 @@ import com.hit.classservice.application.input.comment.GetChildrenCommentsByLesso
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.output.comment.GetChildrenCommentsByLessonOutput;
 
-public interface GetChildrenCommentsByLessonDataCase extends UseCase<GetChildrenCommentsByLessonInput, GetChildrenCommentsByLessonOutput> {
+public interface GetChildrenCommentsByLessonDataCase extends UseCase<GetChildrenCommentsByLessonInput,
+    GetChildrenCommentsByLessonOutput> {
 }

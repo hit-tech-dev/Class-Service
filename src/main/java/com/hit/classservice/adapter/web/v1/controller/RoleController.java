@@ -6,11 +6,11 @@ import com.hit.classservice.adapter.web.v1.transfer.parameter.role.UpdateRolePar
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
-import com.hit.classservice.application.input.category.GetCategoryInput;
+import com.hit.classservice.application.input.role.GetListRoleInput;
 import com.hit.classservice.application.input.role.GetRoleInput;
 import com.hit.classservice.application.input.role.UpdateRoleInput;
 import com.hit.classservice.application.mapper.RoleMapper;
-import com.hit.classservice.application.output.category.GetCategoryOutput;
+import com.hit.classservice.application.output.role.GetListRoleOutput;
 import com.hit.classservice.application.output.role.GetRoleOutput;
 import com.hit.classservice.application.output.role.UpdateRoleOutput;
 import org.mapstruct.factory.Mappers;
@@ -44,12 +44,20 @@ public class RoleController {
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
-  @GetMapping(UrlConstant.Role.GET_ROLE_BY_ID)
+  @GetMapping(UrlConstant.Role.GET)
   public ResponseEntity<?> getRoleById(@PathVariable Long id) throws Exception {
-
     GetRoleInput input = new GetRoleInput(id);
 
     GetRoleOutput output = useCaseBus.handle(input);
+
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @GetMapping(UrlConstant.Role.LIST)
+  public ResponseEntity<?> getAllRole() throws Exception {
+    GetListRoleInput input = new GetListRoleInput();
+
+    GetListRoleOutput output = useCaseBus.handle(input);
 
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }

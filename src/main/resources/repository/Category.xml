@@ -22,7 +22,7 @@
                c.description
         FROM category c
         WHERE c.active_flag = 1
-            AND c.delete_flag = 0;
+          AND c.delete_flag = 0;
     </select>
 
     <select id="findById" resultMap="categoryResultMap">
@@ -31,8 +31,8 @@
                c.description
         FROM category c
         WHERE c.id = #{id}
-            AND c.active_flag = 1
-            AND c.delete_flag = 0;
+          AND c.active_flag = 1
+          AND c.delete_flag = 0;
     </select>
 
     <select id="findByName" resultMap="categoryResultMap">
@@ -41,8 +41,8 @@
                c.description
         FROM category c
         WHERE name = #{name}
-            AND delete_flag = 0
-            AND active_flag = 1
+          AND delete_flag = 0
+          AND active_flag = 1
     </select>
 
     <insert id="save" parameterType="com.hit.classservice.domain.entity.Category">
@@ -54,10 +54,12 @@
 
     <update id="update" parameterType="com.hit.classservice.domain.entity.Category">
         UPDATE category
+        SET `name`             = #{item.name},
+            description        = #{item.description},
         SET `name`= #{item.name},
             description = #{item.description},
             last_modified_date = UNIX_TIMESTAMP(NOW()),
-            last_modified_by = #{item.lastModifiedBy}
+            last_modified_by   = #{item.lastModifiedBy}
         WHERE id = #{item.id};
     </update>
 

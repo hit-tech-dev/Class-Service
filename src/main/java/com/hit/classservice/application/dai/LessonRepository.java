@@ -12,7 +12,8 @@ public interface LessonRepository {
 
   int update(Lesson lesson);
 
-  Lesson findLessonDetailById(Long id);
+  boolean deleteById(Long id);
+
 
   int save(Lesson lesson);
 

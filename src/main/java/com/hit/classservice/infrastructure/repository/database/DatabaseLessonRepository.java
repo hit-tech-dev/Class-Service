@@ -22,9 +22,8 @@ public interface DatabaseLessonRepository extends LessonRepository {
   int update(@Param("item") Lesson lesson);
 
   @Override
-  Lesson findLessonDetailById(@Param("id") Long id);
+  boolean deleteById(@Param("id") Long id);
 
-  @Override
   int save(@Param("item") Lesson lesson);
 
   @Override

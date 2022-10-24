@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
     <changeSet id="20221008193000" author="chien.doxuan">
@@ -29,8 +29,10 @@
         <addNotNullConstraint tableName="user_subject_relation" columnName="active_flag" columnDataType="bit(1)"/>
         <addNotNullConstraint tableName="user_subject_relation" columnName="created_date" columnDataType="bigint"/>
         <addNotNullConstraint tableName="user_subject_relation" columnName="created_by" columnDataType="nvarchar(255)"/>
-        <addNotNullConstraint tableName="user_subject_relation" columnName="last_modified_date" columnDataType="bigint"/>
-        <addNotNullConstraint tableName="user_subject_relation" columnName="last_modified_by" columnDataType="nvarchar(255)"/>
+        <addNotNullConstraint tableName="user_subject_relation" columnName="last_modified_date"
+                              columnDataType="bigint"/>
+        <addNotNullConstraint tableName="user_subject_relation" columnName="last_modified_by"
+                              columnDataType="nvarchar(255)"/>
 
         <addDefaultValue tableName="user_subject_relation" columnName="delete_flag" defaultValueBoolean="false"/>
         <addDefaultValue tableName="user_subject_relation" columnName="active_flag" defaultValueBoolean="true"/>

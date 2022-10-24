@@ -1,4 +1,4 @@
-package com.hit.classservice.application.output.lesson;
+package com.hit.classservice.application.output.role;
 
 import com.hit.classservice.application.output.Output;
 import lombok.AllArgsConstructor;
@@ -8,12 +8,12 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetListLessonBySubjectIdOutput implements Output {
+public class GetListRoleOutput implements Output {
 
-  private List<GetListLessonItemOutput> items;
+  private List<GetListRoleItemOutput> items;
 
 }

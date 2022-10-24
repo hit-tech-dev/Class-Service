@@ -123,5 +123,11 @@
           AND d.active_flag = 1
     </select>
 
+    <delete id="deleteById" parameterType="java.lang.Long">
+        UPDATE lesson
+        SET delete_flag = 1
+        WHERE id = #{id};
+    </delete>
+
 </mapper>
 

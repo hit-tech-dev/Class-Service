@@ -1,12 +1,12 @@
-package com.hit.classservice.application.input.category;
+package com.hit.classservice.application.input.role;
 
 import com.hit.classservice.application.input.Input;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
-public class GetListCategoryInput implements Input {
+public class GetListRoleInput implements Input {
 }

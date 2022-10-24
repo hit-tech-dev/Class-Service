@@ -4,6 +4,7 @@ import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.*;
 import com.hit.classservice.application.input.comment.*;
 import com.hit.classservice.application.input.lesson.CreateLessonInput;
+import com.hit.classservice.application.input.lesson.DeleteLessonInput;
 import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInput;
 import com.hit.classservice.application.input.lesson.GetListLessonDetailBySubjectIdInput;
 import com.hit.classservice.application.input.lesson.UpdateLessonInput;
@@ -12,6 +13,7 @@ import com.hit.classservice.application.input.notification.CreateNotificationInp
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input.notification.GetNotificationInput;
 import com.hit.classservice.application.input.notification.ReadNotificationInput;
+import com.hit.classservice.application.input.role.GetListRoleInput;
 import com.hit.classservice.application.input.role.GetRoleInput;
 import com.hit.classservice.application.input.role.UpdateRoleInput;
 import com.hit.classservice.application.input.schedule.GetListScheduleInput;
@@ -23,6 +25,7 @@ import com.hit.classservice.application.interator.category.*;
 import com.hit.classservice.application.interator.comment.*;
 import com.hit.classservice.application.interator.lesson.CreateLessonInteractor;
 import com.hit.classservice.application.interator.lesson.GetLessonDetailByIdInteractor;
+import com.hit.classservice.application.interator.lesson.DeleteLessonInteractor;
 import com.hit.classservice.application.interator.lesson.GetListLessonBySubjectIdInteractor;
 import com.hit.classservice.application.interator.lesson.UpdateLessonInteractor;
 import com.hit.classservice.application.interator.lesson_student.CreateLessonStudentInteractor;
@@ -30,6 +33,7 @@ import com.hit.classservice.application.interator.notification.CreateNotificatio
 import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
 import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
 import com.hit.classservice.application.interator.notification.ReadNotificationInteractor;
+import com.hit.classservice.application.interator.role.GetListRoleInterator;
 import com.hit.classservice.application.interator.role.GetRoleInteractor;
 import com.hit.classservice.application.interator.role.UpdateRoleInterator;
 import com.hit.classservice.application.interator.schedule.GetListScheduleInterator;
@@ -94,10 +98,12 @@ public class UseCaseBus {
     handlerTypes.put(UpdateLessonInput.class, UpdateLessonInteractor.class);
     handlerTypes.put(CreateLessonInput.class, CreateLessonInteractor.class);
     handlerTypes.put(GetListLessonDetailBySubjectIdInput.class, GetLessonDetailByIdInteractor.class);
+    handlerTypes.put(DeleteLessonInput.class, DeleteLessonInteractor.class);
 
     //role
     handlerTypes.put(UpdateRoleInput.class, UpdateRoleInterator.class);
     handlerTypes.put(GetRoleInput.class, GetRoleInteractor.class);
+    handlerTypes.put(GetListRoleInput.class, GetListRoleInterator.class);
 
     //lesson student
     handlerTypes.put(CreateLessonStudentInput.class, CreateLessonStudentInteractor.class);
