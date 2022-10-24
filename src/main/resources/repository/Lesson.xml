@@ -131,5 +131,53 @@
           AND l.delete_flag = 0;
     </select>
 
+    <resultMap id="lessonDetailResultMap" type="com.hit.classservice.domain.dto.LessonDetailDto">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="content" column="content"/>
+        <result property="expiredTimeHomework" column="expired_time_homework"/>
+        <collection property="documents" javaType="ArrayList"
+                    ofType="com.hit.classservice.domain.dto.DocumentDetailDto">
+            <association property="documentId" javaType="java.lang.Long">
+                <result column="document_id"/>
+            </association>
+            <association property="title" javaType="java.lang.String">
+                <result column="title"/>
+            </association>
+            <association property="link" javaType="java.lang.String">
+                <result column="link"/>
+            </association>
+            <association property="mark" javaType="java.lang.Long">
+                <result column="mark"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <select id="findAllLessonDetailBySubjectId" resultMap="lessonDetailResultMap">
+        SELECT
+            l.id,
+            l.name,
+            l.content,
+            l.expired_time_homework,
+            d.id AS 'document_id',
+            d.title,
+            d.link,
+            d.mark
+        FROM lesson l
+            INNER JOIN subject s ON l.subject_id = s.id
+            INNER JOIN category c ON c.id = s.category_id
+            INNER JOIN document d ON d.lesson_id = l.id
+        WHERE
+            s.id = #{subjectId}
+            AND l.delete_flag = 0
+            AND l.active_flag = 1
+            AND s.delete_flag = 0
+            AND s.active_flag = 1
+            AND c.delete_flag = 0
+            AND c.active_flag = 1
+            AND d.delete_flag = 0
+            AND d.active_flag = 1
+    </select>
+
 </mapper>
 

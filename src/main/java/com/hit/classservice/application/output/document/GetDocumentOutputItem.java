@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetDocumentOutputItem implements Output {
+
   private Long id;
 
   private String link;
@@ -19,5 +20,6 @@ public class GetDocumentOutputItem implements Output {
 
   private String title;
 
-  private double mark;
+  private Double mark;
+
 }

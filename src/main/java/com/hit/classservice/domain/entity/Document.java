@@ -20,6 +20,6 @@ public class Document extends AbstractAuditingEntity {
 
   private String title;
 
-  private double mark;
+  private Double mark;
 
 }

@@ -25,7 +25,7 @@ public class Lesson extends AbstractAuditingEntity {
 
   private Long subjectId;
 
-  List<GetDocumentOutputItem> documents;
+  private List<Document> documents;
 
   public Lesson(String name, String content, Long expiredTimeHomework, Long subjectId) {
     this.name = name;
@@ -33,4 +33,5 @@ public class Lesson extends AbstractAuditingEntity {
     this.expiredTimeHomework = expiredTimeHomework;
     this.subjectId = subjectId;
   }
+
 }

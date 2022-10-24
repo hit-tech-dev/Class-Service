@@ -1,6 +1,7 @@
 package com.hit.classservice.infrastructure.repository.database;
 
 import com.hit.classservice.application.dai.LessonRepository;
+import com.hit.classservice.domain.dto.LessonDetailDto;
 import com.hit.classservice.domain.entity.Lesson;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,5 +23,11 @@ public interface DatabaseLessonRepository extends LessonRepository {
 
   @Override
   Lesson findLessonDetailById(@Param("id") Long id);
+
+  @Override
   int save(@Param("item") Lesson lesson);
+
+  @Override
+  List<LessonDetailDto> findAllLessonDetailBySubjectId(@Param("subjectId") Long subjectId);
+
 }

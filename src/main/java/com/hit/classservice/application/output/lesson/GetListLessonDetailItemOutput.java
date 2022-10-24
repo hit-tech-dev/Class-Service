@@ -13,13 +13,22 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetLessonDetailByIdItemOutput implements Output {
+public class GetListLessonDetailItemOutput implements Output {
 
   private Long id;
+
   private Long subjectId;
+
   private String name;
+
   private String content;
+
   private Long expiredTimeHomework;
+
   private String createdBy;
+
   private Long createdDate;
+
+  private List<GetDocumentOutputItem> documents;
+
 }

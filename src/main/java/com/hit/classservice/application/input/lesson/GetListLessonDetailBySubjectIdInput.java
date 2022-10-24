@@ -10,6 +10,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetLessonDetailByIdInput implements Input {
-  private Long id;
+public class GetListLessonDetailBySubjectIdInput implements Input {
+
+  private Long subjectId;
+
 }

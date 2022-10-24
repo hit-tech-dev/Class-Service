@@ -4,8 +4,8 @@ import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.*;
 import com.hit.classservice.application.input.comment.*;
 import com.hit.classservice.application.input.lesson.CreateLessonInput;
-import com.hit.classservice.application.input.lesson.GetLessonDetailByIdInput;
 import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInput;
+import com.hit.classservice.application.input.lesson.GetListLessonDetailBySubjectIdInput;
 import com.hit.classservice.application.input.lesson.UpdateLessonInput;
 import com.hit.classservice.application.input.lesson_student.CreateLessonStudentInput;
 import com.hit.classservice.application.input.notification.CreateNotificationInput;
@@ -93,7 +93,7 @@ public class UseCaseBus {
     handlerTypes.put(GetListLessonBySubjectIdInput.class, GetListLessonBySubjectIdInteractor.class);
     handlerTypes.put(UpdateLessonInput.class, UpdateLessonInteractor.class);
     handlerTypes.put(CreateLessonInput.class, CreateLessonInteractor.class);
-    handlerTypes.put(GetLessonDetailByIdInput.class, GetLessonDetailByIdInteractor.class);
+    handlerTypes.put(GetListLessonDetailBySubjectIdInput.class, GetLessonDetailByIdInteractor.class);
 
     //role
     handlerTypes.put(UpdateRoleInput.class, UpdateRoleInterator.class);
