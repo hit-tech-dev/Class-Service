@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository("DatabaseLessonStudentRepository")
 public interface DatabaseLessonStudentRepository extends LessonStudentRepository {
@@ -15,5 +17,8 @@ public interface DatabaseLessonStudentRepository extends LessonStudentRepository
 
   @Override
   int save(@Param("item") LessonStudent lessonStudent);
+
+  @Override
+  List<LessonStudent> getListLessonStudentByLessonId(@Param("lessonId") Long lessonId);
 
 }

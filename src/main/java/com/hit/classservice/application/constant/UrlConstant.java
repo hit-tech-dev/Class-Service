@@ -83,6 +83,7 @@ public class UrlConstant {
     public static final String GET_LESSON_BY_SUBJECT = PREFIX + "/{subjectId}";
     public static final String UPDATE = PREFIX;
     public static final String CREATE = PREFIX;
+    public static final String LIST_LESSON_DETAIL = PREFIX + "/{subjectId}" + "/lesson-detail";
     public static final String DELETE = PREFIX + "/{id}";
 
     private Lesson() {

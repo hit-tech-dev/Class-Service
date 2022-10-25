@@ -1,10 +1,13 @@
 package com.hit.classservice.domain.entity;
 
+import com.hit.classservice.application.output.document.GetDocumentOutputItem;
 import com.hit.classservice.domain.entity.base.AbstractAuditingEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,10 +25,13 @@ public class Lesson extends AbstractAuditingEntity {
 
   private Long subjectId;
 
+  private List<Document> documents;
+
   public Lesson(String name, String content, Long expiredTimeHomework, Long subjectId) {
     this.name = name;
     this.content = content;
     this.expiredTimeHomework = expiredTimeHomework;
     this.subjectId = subjectId;
   }
+
 }

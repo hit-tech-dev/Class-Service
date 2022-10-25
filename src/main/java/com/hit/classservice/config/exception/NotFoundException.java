@@ -17,7 +17,7 @@ public class NotFoundException extends RuntimeException {
 
   public NotFoundException(String userMessage, String devMessage) {
     super(userMessage);
-    this.status = HttpStatus.BAD_REQUEST;
+    this.status = HttpStatus.NOT_FOUND;
     this.userMessage = userMessage;
     this.devMessage = devMessage;
   }

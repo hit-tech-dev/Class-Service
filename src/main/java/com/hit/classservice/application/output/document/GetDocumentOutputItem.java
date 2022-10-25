@@ -1,6 +1,6 @@
-package com.hit.classservice.domain.entity;
+package com.hit.classservice.application.output.document;
 
-import com.hit.classservice.domain.entity.base.AbstractAuditingEntity;
+import com.hit.classservice.application.output.Output;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Document extends AbstractAuditingEntity {
+public class GetDocumentOutputItem implements Output {
 
-  private Long id;
+  private Long documentId;
 
   private String link;
 
