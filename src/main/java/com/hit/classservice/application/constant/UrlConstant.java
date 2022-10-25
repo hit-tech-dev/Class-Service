@@ -7,7 +7,7 @@ public class UrlConstant {
 
   public static final class Category {
     public static final String LIST = "categories";
-    private static final String PREFIX = "/category";
+    private static final String PREFIX = "/categories";
     public static final String GET = PREFIX + "/{id}";
     public static final String CREATE = PREFIX;
     public static final String UPDATE = PREFIX;
@@ -20,7 +20,7 @@ public class UrlConstant {
   public static final class Subject {
 
     public static final String LIST = "subjects";
-    private static final String PREFIX = "/subject";
+    private static final String PREFIX = "/subjects";
     public static final String GET = PREFIX + "/{id}";
     public static final String UPDATE = PREFIX;
     public static final String DELETE = PREFIX + "/{id}";
@@ -32,7 +32,7 @@ public class UrlConstant {
 
   public static final class Notification {
     public static final String LIST = "notifications";
-    private static final String PREFIX = "/notification";
+    private static final String PREFIX = "/notifications";
     public static final String CREATE = PREFIX;
     public static final String READ = PREFIX + "/{id}";
     public static final String GET = PREFIX + "/{id}";
@@ -48,7 +48,7 @@ public class UrlConstant {
     private static final String LIST_PARENT = LIST + "/parent";
     private static final String LIST_CHILDREN = LIST + "/children";
 
-    private static final String PREFIX = "/comment";
+    private static final String PREFIX = "/comments";
     public static final String DELETE = PREFIX + "/{id}";
     public static final String EDIT = PREFIX;
     private static final String PREFIX_PARENT = PREFIX + "/parent";
@@ -68,8 +68,8 @@ public class UrlConstant {
   }
 
   public static final class Schedule {
-    private static final String PREFIX = "/schedule";
-    public static final String LIST = PREFIX + "s";
+    private static final String PREFIX = "/schedules";
+    public static final String LIST = PREFIX;
     public static final String GET = PREFIX + "/{id}";
     public static final String UPDATE = PREFIX;
 
@@ -78,8 +78,8 @@ public class UrlConstant {
   }
 
   public static final class Lesson {
-    public static final String LIST = "lessons";
-    private static final String PREFIX = "/lesson";
+    private static final String PREFIX = "/lessons";
+    public static final String LIST = PREFIX;
     public static final String GET_LESSON_BY_SUBJECT = PREFIX + "/{subjectId}";
     public static final String UPDATE = PREFIX;
     public static final String CREATE = PREFIX;
@@ -91,8 +91,8 @@ public class UrlConstant {
   }
 
   public static final class Role {
+    private static final String PREFIX = "/roles";
     public static final String LIST = "roles";
-    private static final String PREFIX = "/role";
     public static final String UPDATE = PREFIX;
     public static final String GET = PREFIX + "/{id}";
 
