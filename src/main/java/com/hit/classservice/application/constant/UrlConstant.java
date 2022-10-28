@@ -37,6 +37,7 @@ public class UrlConstant {
     public static final String READ = PREFIX + "/{id}";
     public static final String GET = PREFIX + "/{id}";
     public static final String DELETE = PREFIX + "/{id}";
+    public static final String READ_ALL = PREFIX + "/read-all";
 
     private Notification() {
     }

@@ -9,10 +9,7 @@ import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInp
 import com.hit.classservice.application.input.lesson.GetListLessonDetailBySubjectIdInput;
 import com.hit.classservice.application.input.lesson.UpdateLessonInput;
 import com.hit.classservice.application.input.lesson_student.CreateLessonStudentInput;
-import com.hit.classservice.application.input.notification.CreateNotificationInput;
-import com.hit.classservice.application.input.notification.DeleteNotificationInput;
-import com.hit.classservice.application.input.notification.GetNotificationInput;
-import com.hit.classservice.application.input.notification.ReadNotificationInput;
+import com.hit.classservice.application.input.notification.*;
 import com.hit.classservice.application.input.role.GetListRoleInput;
 import com.hit.classservice.application.input.role.GetRoleInput;
 import com.hit.classservice.application.input.role.UpdateRoleInput;
@@ -29,10 +26,7 @@ import com.hit.classservice.application.interator.lesson.DeleteLessonInteractor;
 import com.hit.classservice.application.interator.lesson.GetListLessonBySubjectIdInteractor;
 import com.hit.classservice.application.interator.lesson.UpdateLessonInteractor;
 import com.hit.classservice.application.interator.lesson_student.CreateLessonStudentInteractor;
-import com.hit.classservice.application.interator.notification.CreateNotificationInteractor;
-import com.hit.classservice.application.interator.notification.DeleteNotificationInteractor;
-import com.hit.classservice.application.interator.notification.GetNotificationInteractor;
-import com.hit.classservice.application.interator.notification.ReadNotificationInteractor;
+import com.hit.classservice.application.interator.notification.*;
 import com.hit.classservice.application.interator.role.GetListRoleInterator;
 import com.hit.classservice.application.interator.role.GetRoleInteractor;
 import com.hit.classservice.application.interator.role.UpdateRoleInterator;
@@ -80,6 +74,7 @@ public class UseCaseBus {
     handlerTypes.put(GetNotificationInput.class, GetNotificationInteractor.class);
     handlerTypes.put(CreateNotificationInput.class, CreateNotificationInteractor.class);
     handlerTypes.put(ReadNotificationInput.class, ReadNotificationInteractor.class);
+    handlerTypes.put(ReadAllNotificationInput.class, ReadAllNotificationInteractor.class);
 
     //subject
     handlerTypes.put(GetListSubjectInput.class, GetListSubjectInteractor.class);

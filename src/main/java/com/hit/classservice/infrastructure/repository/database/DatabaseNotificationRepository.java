@@ -21,4 +21,7 @@ public interface DatabaseNotificationRepository extends NotificationRepository {
 
   @Override
   void deleteById(@Param("id") Long id);
+
+  @Override
+  void readAllNotification(@Param("userId") String userId);
 }
