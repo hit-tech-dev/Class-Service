@@ -1,5 +1,6 @@
 package com.hit.classservice.config;
 
+import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.RabbitMQConstant;
 import org.springframework.amqp.core.Declarables;
 import org.springframework.amqp.core.Queue;
@@ -16,8 +17,8 @@ public class RabbitMQConfig {
 
   @Bean
   public Declarables topicBindings() {
-    Queue topicQueue1 = new Queue(RabbitMQConstant.TOPIC_QUEUE_1_NAME, false);
-    Queue topicQueue2 = new Queue(RabbitMQConstant.TOPIC_QUEUE_2_NAME, false);
+    Queue topicQueue1 = new Queue(RabbitMQConstant.TOPIC_QUEUE_1_NAME, CommonConstant.FALSE);
+    Queue topicQueue2 = new Queue(RabbitMQConstant.TOPIC_QUEUE_2_NAME, CommonConstant.FALSE);
     TopicExchange topicExchange = new TopicExchange(RabbitMQConstant.TOPIC_EXCHANGE_NAME);
     return new Declarables(
         topicQueue1,
