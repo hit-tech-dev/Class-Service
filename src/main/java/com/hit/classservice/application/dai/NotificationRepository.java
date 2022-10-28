@@ -12,4 +12,6 @@ public interface NotificationRepository {
 
   void deleteById(Long id);
 
+  void readAllNotification(String userId);
+
 }

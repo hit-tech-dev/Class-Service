@@ -6,15 +6,9 @@ import com.hit.classservice.adapter.web.v1.transfer.parameter.notification.Creat
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
-import com.hit.classservice.application.input.notification.CreateNotificationInput;
-import com.hit.classservice.application.input.notification.DeleteNotificationInput;
-import com.hit.classservice.application.input.notification.GetNotificationInput;
-import com.hit.classservice.application.input.notification.ReadNotificationInput;
+import com.hit.classservice.application.input.notification.*;
 import com.hit.classservice.application.mapper.NotificationMapper;
-import com.hit.classservice.application.output.notification.CreateNotificationOutput;
-import com.hit.classservice.application.output.notification.DeleteNotificationOutput;
-import com.hit.classservice.application.output.notification.GetNotificationOutput;
-import com.hit.classservice.application.output.notification.ReadNotificationOutput;
+import com.hit.classservice.application.output.notification.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -71,6 +65,16 @@ public class NotificationController {
     DeleteNotificationInput input = new DeleteNotificationInput(id);
     // Get output
     DeleteNotificationOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  @PatchMapping(UrlConstant.Notification.READ_ALL)
+  public ResponseEntity<?> readAllNotificationById() throws Exception {
+    // Create input
+    ReadAllNotificationInput input = new ReadAllNotificationInput();
+    // Get output
+    ReadAllNotificationOutput output = useCaseBus.handle(input);
     // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
