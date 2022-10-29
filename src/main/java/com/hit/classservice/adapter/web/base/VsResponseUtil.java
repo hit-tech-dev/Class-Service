@@ -20,7 +20,7 @@ public class VsResponseUtil {
 
   public static ResponseEntity<RestData<?>> ok(HttpHeaders headers, HttpStatus status, Object data) {
     RestData<?> response = new RestData<>(data);
-    return new ResponseEntity<>(response, status);
+    return new ResponseEntity<>(response, headers, status);
   }
 
   public static ResponseEntity<RestData<?>> error(HttpHeaders headers, HttpStatus status, Object userMessage,
