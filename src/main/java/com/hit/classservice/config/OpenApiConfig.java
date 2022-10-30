@@ -20,6 +20,8 @@ public class OpenApiConfig {
   @Value("${springdoc.server.is_rewrite_by_gateway}")
   private boolean isRewriteByGateway;
 
+  private static final String API_KEY = "Bearer Token";
+
   @Bean
   public OpenAPI customOpenAPI() {
     OpenAPI openAPI = new OpenAPI().info(
@@ -31,17 +33,22 @@ public class OpenApiConfig {
 
     if (isRewriteByGateway && StringUtils.isNotEmpty(serverUrl)) {
       openAPI.addServersItem(new Server().url(serverUrl));
-      openAPI.addSecurityItem(new SecurityRequirement().addList("gateway security"));
-      openAPI.components(
-          new Components()
-              .addSecuritySchemes(
-                  "gateway security",
-                  new SecurityScheme().name("gateway security").type(SecurityScheme.Type.HTTP).scheme("basic")
-              )
-      );
     }
+
+    openAPI.components(
+        new Components()
+            .addSecuritySchemes(
+                API_KEY,
+                new SecurityScheme()
+                    .name("Authorization")
+                    .scheme("Bearer")
+                    .bearerFormat("JWT")
+                    .type(SecurityScheme.Type.APIKEY)
+                    .in(SecurityScheme.In.HEADER)
+            )
+    );
+    openAPI.addSecurityItem(new SecurityRequirement().addList(API_KEY));
 
     return openAPI;
   }
-
 }
