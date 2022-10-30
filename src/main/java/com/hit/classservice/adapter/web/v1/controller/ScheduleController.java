@@ -1,10 +1,12 @@
 package com.hit.classservice.adapter.web.v1.controller;
 
 import com.hit.classservice.adapter.web.base.RestApiV1;
+import com.hit.classservice.adapter.web.base.RestData;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.schedule.UpdateScheduleParameter;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
+import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.UrlConstant;
 import com.hit.classservice.application.input.schedule.GetListScheduleInput;
 import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
@@ -13,6 +15,12 @@ import com.hit.classservice.application.mapper.ScheduleMapper;
 import com.hit.classservice.application.output.schedule.GetListScheduleOutput;
 import com.hit.classservice.application.output.schedule.GetScheduleByIdOutput;
 import com.hit.classservice.application.output.schedule.UpdateScheduleOutput;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +44,24 @@ public class ScheduleController {
     this.scheduleMapper = Mappers.getMapper(ScheduleMapper.class);
   }
 
+  /**
+   * @param id Long
+   * @return ResponseEntity<?>
+   */
+  @Operation(summary = "API get schedule by id")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Found the schedule",
+          content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = GetScheduleByIdOutput.class))
+          }),
+      @ApiResponse(responseCode = "500", description = "Id not exist", content = {
+          @Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = RestData.class))
+      })
+  })
   @GetMapping(UrlConstant.Schedule.GET)
-  public ResponseEntity<?> getScheduleById(@PathVariable("id") Long id) throws Exception {
+  public ResponseEntity<?> getScheduleById(@Parameter(required = true, name = "id", description = "Id of schedule")
+                                             @PathVariable("id") Long id) throws Exception {
     // Create input
     GetScheduleByIdInput input = new GetScheduleByIdInput(id);
     // Get output
@@ -46,8 +70,24 @@ public class ScheduleController {
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
+  /**
+   * @param parameter UpdateScheduleParameter
+   * @return ResponseEntity<?>
+   */
+  @Operation(summary = "API update schedule")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Update success", content = {
+          @Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = UpdateScheduleOutput.class))
+      }),
+      @ApiResponse(responseCode = "500", description = "Id not exist", content = {
+          @Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = RestData.class))
+      })
+  })
   @PutMapping(UrlConstant.Schedule.UPDATE)
-  public ResponseEntity<?> updateScheduleById(@Valid @RequestBody UpdateScheduleParameter parameter) throws Exception {
+  public ResponseEntity<?> updateScheduleById( @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Body of request to update schedule")
+                                                @Valid @RequestBody UpdateScheduleParameter parameter) throws Exception {
     UpdateScheduleInput input = scheduleMapper.toUpdateScheduleInput(parameter);
 
     UpdateScheduleOutput output = useCaseBus.handle(input);
@@ -55,6 +95,15 @@ public class ScheduleController {
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
+  /**
+   * @return ResponseEntity<?>
+   */
+  @Operation(summary = "API get list schedule")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Found the schedule",
+          content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = GetListScheduleOutput.class))})
+  })
   @GetMapping(UrlConstant.Schedule.LIST)
   public ResponseEntity<?> getAllSchedule() throws Exception {
     // Create input
