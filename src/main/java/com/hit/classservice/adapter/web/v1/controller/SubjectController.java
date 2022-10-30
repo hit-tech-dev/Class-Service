@@ -113,7 +113,7 @@ public class SubjectController {
    * @param id Long
    * @return ResponseEntity<?>
    */
-  @Operation(summary = "API update subject")
+  @Operation(summary = "API delete subject")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Delete success", content = {
           @Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
