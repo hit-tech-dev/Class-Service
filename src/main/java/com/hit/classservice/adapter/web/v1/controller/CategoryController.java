@@ -5,6 +5,7 @@ import com.hit.classservice.adapter.web.base.RestData;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.category.CreateCategoryParameter;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.category.UpdateCategoryParameter;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.common.PagingMetaParameter;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.CommonConstant;
@@ -48,9 +49,9 @@ public class CategoryController {
               schema = @Schema(implementation = GetListCategoryOutput.class))})
   })
   @GetMapping(UrlConstant.Category.LIST)
-  public ResponseEntity<?> getAllCategory() throws Exception {
+  public ResponseEntity<?> getAllCategory(@Valid PagingMetaParameter parameter) throws Exception {
     // Create input
-    GetListCategoryInput input = new GetListCategoryInput();
+    GetListCategoryInput input = categoryMapper.toGetListCategoryInput(parameter);
     // Get output
     GetListCategoryOutput output = useCaseBus.handle(input);
     // Return output
