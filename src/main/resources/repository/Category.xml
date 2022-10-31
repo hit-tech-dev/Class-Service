@@ -16,13 +16,128 @@
         </association>
     </resultMap>
 
-    <select id="findAll" resultMap="categoryResultMap">
-        SELECT c.id,
-               c.`name`,
-               c.description
-        FROM category c
-        WHERE c.active_flag = 1
-          AND c.delete_flag = 0;
+    <resultMap id="createdByResultMap" type="com.hit.classservice.domain.dto.CreatedByDto">
+        <association property="id" javaType="java.lang.String">
+            <result column="created_by"/>
+        </association>
+        <association property="fullname" javaType="java.lang.String">
+            <result column="created_fullname"/>
+        </association>
+        <association property="avatar" javaType="java.lang.String">
+            <result column="created_avatar"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="lastModifiedByResultMap" type="com.hit.classservice.domain.dto.LastModifiedByDto">
+        <association property="id" javaType="java.lang.String">
+            <result column="last_modified_by"/>
+        </association>
+        <association property="fullname" javaType="java.lang.String">
+            <result column="last_modified_fullname"/>
+        </association>
+        <association property="avatar" javaType="java.lang.String">
+            <result column="last_modified_avatar"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="categoryDtoResultMap" type="com.hit.classservice.domain.dto.CategoryDto">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="name" javaType="java.lang.String">
+            <result column="name"/>
+        </association>
+        <association property="description" javaType="java.lang.String">
+            <result column="description"/>
+        </association>
+        <association property="createdDate" javaType="java.lang.Long">
+            <result column="created_date"/>
+        </association>
+        <association property="createdBy" resultMap="createdByResultMap" />
+        <association property="lastModifiedBy" resultMap="lastModifiedByResultMap" />
+    </resultMap>
+
+    <select id="countSearchCategory" resultType="java.lang.Long">
+        WITH data_flow_created_by AS (
+            SELECT
+                c.id,
+                c.name,
+                c.description,
+                c.created_by,
+                u.fullname AS 'created_fullname',
+                u.avatar AS 'created_avatar'
+            FROM category c INNER JOIN users u ON c.created_by = u.id
+            WHERE c.delete_flag = 0
+                AND u.delete_flag = 0
+        ),
+        data_flow_last_modifed_by AS (
+            SELECT
+                c.id,
+                c.name,
+                c.description,
+                c.last_modified_by,
+                u.fullname AS 'last_modified_fullname',
+                u.avatar AS 'last_modified_avatar'
+            FROM category c INNER JOIN users u ON c.last_modified_by = u.id
+            WHERE c.delete_flag = 0
+                AND u.delete_flag = 0
+        )
+        SELECT
+            COUNT(1)
+        FROM data_flow_created_by data_1 INNER JOIN data_flow_last_modifed_by data_2
+            ON data_1.id = data_2.id
+        <if test="keyword != null and keyword != ''">
+            WHERE (data_1.name LIKE CONCAT('%', #{keyword}, '%')
+            OR data_1.description LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+    </select>
+
+    <select id="searchCategory" resultMap="categoryDtoResultMap">
+        WITH data_flow_created_by AS (
+            SELECT
+                c.id,
+                c.name,
+                c.description,
+                c.created_by,
+                c.created_date,
+                u.fullname AS 'created_fullname',
+                u.avatar AS 'created_avatar'
+            FROM category c INNER JOIN users u ON c.created_by = u.id
+            WHERE c.delete_flag = 0
+                AND u.delete_flag = 0
+        ),
+        data_flow_last_modifed_by AS (
+            SELECT
+                c.id,
+                c.name,
+                c.description,
+                c.last_modified_by,
+                c.created_date,
+                u.fullname AS 'last_modified_fullname',
+                u.avatar AS 'last_modified_avatar'
+            FROM category c INNER JOIN users u ON c.last_modified_by = u.id
+            WHERE c.delete_flag = 0
+                AND u.delete_flag = 0
+        )
+        SELECT
+            data_1.id,
+            data_1.name,
+            data_1.description,
+            data_1.created_by,
+            data_1.created_fullname,
+            data_1.created_avatar,
+            data_1.created_date,
+            data_2.last_modified_by,
+            data_2.last_modified_fullname,
+            data_2.last_modified_avatar
+        FROM data_flow_created_by data_1 INNER JOIN data_flow_last_modifed_by data_2
+            ON data_1.id = data_2.id
+        <if test="keyword != null and keyword != ''">
+            WHERE (data_1.name LIKE CONCAT('%', #{keyword}, '%')
+            OR data_1.description LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        ORDER BY ${meta.sortBy}  ${meta.sortType}
+        LIMIT #{meta.limit} OFFSET #{meta.offSet}
     </select>
 
     <select id="findById" resultMap="categoryResultMap">
@@ -31,8 +146,8 @@
                c.description
         FROM category c
         WHERE c.id = #{id}
-          AND c.active_flag = 1
-          AND c.delete_flag = 0;
+            AND c.active_flag = 1
+            AND c.delete_flag = 0;
     </select>
 
     <select id="findByName" resultMap="categoryResultMap">
