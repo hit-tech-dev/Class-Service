@@ -1,6 +1,7 @@
 package com.hit.classservice.application.output.subject;
 
 import com.hit.classservice.application.output.Output;
+import com.hit.classservice.application.output.common.PagingMeta;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,7 @@ import java.util.List;
 public class GetListSubjectOutput implements Output {
 
   List<GetListSubjectItemOutput> items;
+
+  private PagingMeta meta;
 
 }
