@@ -19,8 +19,8 @@ public class UrlConstant {
 
   public static final class Subject {
 
-    public static final String LIST = "subjects";
     private static final String PREFIX = "/subjects";
+    public static final String LIST = PREFIX;
     public static final String GET = PREFIX + "/{id}";
     public static final String UPDATE = PREFIX;
     public static final String DELETE = PREFIX + "/{id}";

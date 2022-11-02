@@ -1,7 +1,5 @@
-package com.hit.classservice.application.output.subject;
+package com.hit.classservice.domain.dto;
 
-import com.hit.classservice.application.output.common.CreatedBy;
-import com.hit.classservice.application.output.common.LastModifiedBy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetListSubjectItemOutput {
+public class SubjectDto {
 
   private Long id;
 
@@ -25,9 +23,8 @@ public class GetListSubjectItemOutput {
 
   private Long createdDate;
 
-  private CreatedBy createdBy;
+  private CreatedByDto createdBy;
 
-  private LastModifiedBy lastModifiedBy;
-
+  private LastModifiedByDto lastModifiedBy;
 
 }

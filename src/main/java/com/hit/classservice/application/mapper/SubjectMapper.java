@@ -1,11 +1,14 @@
 package com.hit.classservice.application.mapper;
 
+import com.hit.classservice.adapter.web.v1.transfer.parameter.common.PagingMetaParameter;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.CreateSubjectParam;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.UpdateSubjectParameter;
 import com.hit.classservice.application.input.subject.CreateSubjectInput;
+import com.hit.classservice.application.input.subject.GetListSubjectInput;
 import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.output.subject.GetListSubjectItemOutput;
 import com.hit.classservice.application.output.subject.GetSubjectOutput;
+import com.hit.classservice.domain.dto.SubjectDto;
 import com.hit.classservice.domain.entity.Subject;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -16,15 +19,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface SubjectMapper {
 
-  @Mappings({
-      @Mapping(target = "id", source = "subject.id"),
-      @Mapping(target = "name", source = "subject.name"),
-      @Mapping(target = "avatar", source = "subject.avatar"),
-      @Mapping(target = "description", source = "subject.description")
-  })
-  GetListSubjectItemOutput toGetListSubjectItemOutput(Subject subject);
-
-  List<GetListSubjectItemOutput> toGetListSubjectItemOutput(List<Subject> subjects);
+  List<GetListSubjectItemOutput> toGetListSubjectItemOutputs(List<SubjectDto> subjectDtos);
 
   @Mappings({
       @Mapping(target = "id", source = "subject.id"),
@@ -48,5 +43,7 @@ public interface SubjectMapper {
       @Mapping(target = "description", source = "createSubjectParam.description"),
       @Mapping(target = "categoryId", source = "createSubjectParam.categoryId")})
   CreateSubjectInput toCreateSubjectInput(CreateSubjectParam createSubjectParam);
+
+  GetListSubjectInput toGetListSubjectInput(PagingMetaParameter parameter);
 
 }

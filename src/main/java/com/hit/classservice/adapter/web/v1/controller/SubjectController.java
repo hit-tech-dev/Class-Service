@@ -3,6 +3,7 @@ package com.hit.classservice.adapter.web.v1.controller;
 import com.hit.classservice.adapter.web.base.RestApiV1;
 import com.hit.classservice.adapter.web.base.RestData;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.common.PagingMetaParameter;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.CreateSubjectParam;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.UpdateSubjectParameter;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
@@ -48,9 +49,9 @@ public class SubjectController {
               schema = @Schema(implementation = GetListSubjectOutput.class))})
   })
   @GetMapping(UrlConstant.Subject.LIST)
-  public ResponseEntity<?> getAllSubject() throws Exception {
+  public ResponseEntity<?> getAllSubject(@Valid PagingMetaParameter parameter) throws Exception {
     // Create input
-    GetListSubjectInput input = new GetListSubjectInput();
+    GetListSubjectInput input = subjectMapper.toGetListSubjectInput(parameter);
     // Get output
     GetListSubjectOutput output = useCaseBus.handle(input);
     // Return output
@@ -66,14 +67,14 @@ public class SubjectController {
       @ApiResponse(responseCode = "200", description = "Found the subject",
           content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
               schema = @Schema(implementation = GetSubjectOutput.class))
-      }),
+          }),
       @ApiResponse(responseCode = "500", description = "Id not exits", content = {
           @Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
               schema = @Schema(implementation = RestData.class))
       })
   })
   @GetMapping(UrlConstant.Subject.GET)
-  public ResponseEntity<?> getSubjectById(@Parameter(required = true , name = "id",description = "Id of subject")
+  public ResponseEntity<?> getSubjectById(@Parameter(required = true, name = "id", description = "Id of subject")
                                           @PathVariable("id") Long id) throws Exception {
     // Create input
     GetSubjectInput input = new GetSubjectInput(id);
