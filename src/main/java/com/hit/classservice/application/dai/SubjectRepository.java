@@ -17,4 +17,5 @@ public interface SubjectRepository {
   int delete(Long id);
 
   int save(Subject subject);
+
 }

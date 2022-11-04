@@ -92,8 +92,8 @@ public class UrlConstant {
   }
 
   public static final class Role {
-    private static final String PREFIX = "/roles";
     public static final String LIST = "roles";
+    private static final String PREFIX = "/roles";
     public static final String UPDATE = PREFIX;
     public static final String GET = PREFIX + "/{id}";
 
@@ -106,6 +106,14 @@ public class UrlConstant {
     public static final String CREATE = PREFIX;
 
     private LessonStudent() {
+    }
+  }
+
+  public static final class UserSubject {
+    private static final String PREFIX = "/user-subject";
+    public static final String DELETE = PREFIX;
+
+    private UserSubject() {
     }
   }
 

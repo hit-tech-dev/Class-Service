@@ -47,4 +47,8 @@ public class DevMessageConstant {
     public static final String ERR_NOT_FOUND_BY_ID = "Not found user student by id = %s";
   }
 
+  public static final class UserSubjectRelation {
+    public static final String CAN_NOT_REMOVE_OBJECT = "Can not remove object with userId = %s and subjectId = %s";
+  }
+
 }

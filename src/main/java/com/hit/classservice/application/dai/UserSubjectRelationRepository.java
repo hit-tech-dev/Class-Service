@@ -8,4 +8,6 @@ public interface UserSubjectRelationRepository {
 
   List<UserSubjectRelation> getListUserSubjectRelationBySubjectId(Long subjectId);
 
+  int deleteByUserIdAndSubjectId(String userId, Long subjectId);
+
 }
