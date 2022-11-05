@@ -7,6 +7,7 @@ public class UserMessageConstant {
   public static final String INVALID_SOME_THING_FIELD_IS_REQUIRED = "invalid.general.required";
   public static final String INVALID_SOME_THING_FIELD = "invalid.general";
 
+
   public static final class Category {
     public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.category_id";
   }
@@ -43,4 +44,7 @@ public class UserMessageConstant {
     public static final String ERR_NOT_FOUND_LESSON_BY_ROLE_ID = "invalid.not.found.role.by.role.id";
   }
 
+  public static final class User {
+    public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.user_id";
+  }
 }

@@ -3,11 +3,7 @@ package com.hit.classservice.application;
 import com.hit.classservice.application.input.Input;
 import com.hit.classservice.application.input.category.*;
 import com.hit.classservice.application.input.comment.*;
-import com.hit.classservice.application.input.lesson.CreateLessonInput;
-import com.hit.classservice.application.input.lesson.DeleteLessonInput;
-import com.hit.classservice.application.input.lesson.GetListLessonBySubjectIdInput;
-import com.hit.classservice.application.input.lesson.GetListLessonDetailBySubjectIdInput;
-import com.hit.classservice.application.input.lesson.UpdateLessonInput;
+import com.hit.classservice.application.input.lesson.*;
 import com.hit.classservice.application.input.lesson_student.CreateLessonStudentInput;
 import com.hit.classservice.application.input.notification.*;
 import com.hit.classservice.application.input.role.GetListRoleInput;
@@ -17,14 +13,11 @@ import com.hit.classservice.application.input.schedule.GetListScheduleInput;
 import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
 import com.hit.classservice.application.input.schedule.UpdateScheduleInput;
 import com.hit.classservice.application.input.subject.*;
+import com.hit.classservice.application.input.user_subject.RemoveUserFromSubjectInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
 import com.hit.classservice.application.interator.comment.*;
-import com.hit.classservice.application.interator.lesson.CreateLessonInteractor;
-import com.hit.classservice.application.interator.lesson.GetLessonDetailByIdInteractor;
-import com.hit.classservice.application.interator.lesson.DeleteLessonInteractor;
-import com.hit.classservice.application.interator.lesson.GetListLessonBySubjectIdInteractor;
-import com.hit.classservice.application.interator.lesson.UpdateLessonInteractor;
+import com.hit.classservice.application.interator.lesson.*;
 import com.hit.classservice.application.interator.lesson_student.CreateLessonStudentInteractor;
 import com.hit.classservice.application.interator.notification.*;
 import com.hit.classservice.application.interator.role.GetListRoleInterator;
@@ -34,6 +27,7 @@ import com.hit.classservice.application.interator.schedule.GetListScheduleIntera
 import com.hit.classservice.application.interator.schedule.GetScheduleByIdInterator;
 import com.hit.classservice.application.interator.schedule.UpdateScheduleInteractor;
 import com.hit.classservice.application.interator.subject.*;
+import com.hit.classservice.application.interator.user_subject.RemoveUserFromFromSubjectInteractor;
 import com.hit.classservice.application.output.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -102,6 +96,9 @@ public class UseCaseBus {
 
     //lesson student
     handlerTypes.put(CreateLessonStudentInput.class, CreateLessonStudentInteractor.class);
+
+    //user subject
+    handlerTypes.put(RemoveUserFromSubjectInput.class, RemoveUserFromFromSubjectInteractor.class);
 
   }
 

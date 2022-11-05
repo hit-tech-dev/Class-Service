@@ -16,4 +16,7 @@ public interface DatabaseUserSubjectRelationRepository extends UserSubjectRelati
   @Override
   List<UserSubjectRelation> getListUserSubjectRelationBySubjectId(@Param("subjectId") Long subjectId);
 
+  @Override
+  int deleteByUserIdAndSubjectId(@Param("userId") String userId, @Param("subjectId") Long subjectId);
+
 }
