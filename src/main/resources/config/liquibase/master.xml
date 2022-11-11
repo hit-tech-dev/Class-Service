@@ -42,5 +42,7 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221010215500_v1_init_master_data_schedule.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221111200000_v1_create_table_setting.xml"
+             relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

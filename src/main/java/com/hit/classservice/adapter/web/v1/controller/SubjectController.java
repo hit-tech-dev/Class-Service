@@ -157,5 +157,4 @@ public class SubjectController {
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
 
   }
-
 }
