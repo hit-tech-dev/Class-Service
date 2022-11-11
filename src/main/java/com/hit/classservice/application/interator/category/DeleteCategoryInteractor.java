@@ -6,11 +6,13 @@ import com.hit.classservice.application.dai.CategoryRepository;
 import com.hit.classservice.application.input.category.DeleteCategoryInput;
 import com.hit.classservice.application.input_boundary.category.DeleteCategoryDataCase;
 import com.hit.classservice.application.output.category.DeleteCategoryOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Category;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service("ApplicationDeleteCategoryInteractor")
@@ -27,7 +29,7 @@ public class DeleteCategoryInteractor implements DeleteCategoryDataCase {
     // Find obj by id
     Category oldCategory = categoryRepository.findById(input.getId());
     if (ObjectUtils.isEmpty(oldCategory)) {
-      throw new VsException(UserMessageConstant.Category.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Category.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Category.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }

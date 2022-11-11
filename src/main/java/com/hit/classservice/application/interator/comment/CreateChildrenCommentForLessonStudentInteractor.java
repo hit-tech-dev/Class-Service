@@ -2,12 +2,15 @@ package com.hit.classservice.application.interator.comment;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.CommentRepository;
 import com.hit.classservice.application.dai.LessonStudentRepository;
 import com.hit.classservice.application.input.comment.CreateChildrenCommentForLessonStudentInput;
 import com.hit.classservice.application.input_boundary.comment.CreateChildrenCommentForLessonStudentDataCase;
 import com.hit.classservice.application.output.comment.CreateChildrenCommentForLessonStudentOutput;
 import com.hit.classservice.application.utils.SecurityUtil;
+import com.hit.classservice.config.exception.NotFoundException;
+import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Comment;
 import com.hit.classservice.domain.entity.LessonStudent;
 import lombok.SneakyThrows;
@@ -33,12 +36,14 @@ public class CreateChildrenCommentForLessonStudentInteractor implements CreateCh
     LessonStudent oldLessonStudent = lessonStudentRepository.findById(input.getLessonStudentId());
     Comment parentComment = commentRepository.findById(input.getParentCommentId());
     if (ObjectUtils.isEmpty(oldLessonStudent)) {
-      return new CreateChildrenCommentForLessonStudentOutput(CommonConstant.FALSE, String.format(
-          DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonStudentId()));
+      throw new NotFoundException(UserMessageConstant.LessonStudent.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.LessonStudent.ERR_NOT_FOUND_BY_ID, input.getLessonStudentId()),
+          new String[]{input.getLessonStudentId().toString()});
     }
     if (ObjectUtils.isEmpty(parentComment)) {
-      return new CreateChildrenCommentForLessonStudentOutput(CommonConstant.FALSE, String.format(
-          DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getParentCommentId()));
+      throw new NotFoundException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getParentCommentId()),
+          new String[]{input.getParentCommentId().toString()});
     }
 
     Comment comment = new Comment();

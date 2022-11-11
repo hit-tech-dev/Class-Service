@@ -2,12 +2,15 @@ package com.hit.classservice.application.interator.comment;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.CommentRepository;
 import com.hit.classservice.application.dai.LessonRepository;
 import com.hit.classservice.application.input.comment.CreateParentCommentForLessonInput;
 import com.hit.classservice.application.input_boundary.comment.CreateParentCommentForLessonDataCase;
 import com.hit.classservice.application.output.comment.CreateParentCommentForLessonOutput;
 import com.hit.classservice.application.utils.SecurityUtil;
+import com.hit.classservice.config.exception.NotFoundException;
+import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Comment;
 import com.hit.classservice.domain.entity.Lesson;
 import lombok.SneakyThrows;
@@ -32,8 +35,9 @@ public class CreateParentCommentForLessonInteractor implements CreateParentComme
   public CreateParentCommentForLessonOutput handle(CreateParentCommentForLessonInput input) {
     Lesson oldLesson = lessonRepository.findById(input.getLessonId());
     if (ObjectUtils.isEmpty(oldLesson)) {
-      return new CreateParentCommentForLessonOutput(CommonConstant.FALSE, String.format(
-          DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()));
+      throw new NotFoundException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()),
+          new String[]{input.getLessonId().toString()});
     }
 
     Comment comment = new Comment();
