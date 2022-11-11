@@ -2,11 +2,13 @@ package com.hit.classservice.application.interator.subject;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.input_boundary.subject.UpdateSubjectDataCase;
 import com.hit.classservice.application.mapper.SubjectMapper;
 import com.hit.classservice.application.output.subject.UpdateSubjectOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.domain.entity.Subject;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
@@ -30,8 +32,9 @@ public class UpdateSubjectInteractor implements UpdateSubjectDataCase {
     //find subject by id
     Subject oldSubject = subjectRepository.findById(input.getId());
     if (ObjectUtils.isEmpty(oldSubject))
-      return new UpdateSubjectOutput(CommonConstant.FALSE,
-          String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getId()));
+      throw new NotFoundException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getId()),
+          new String[]{input.getId().toString()});
 
     //check name unique
     Subject oldSubjectByName = subjectRepository.findByName(input.getName());

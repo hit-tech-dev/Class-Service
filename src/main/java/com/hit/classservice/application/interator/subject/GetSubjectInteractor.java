@@ -7,6 +7,7 @@ import com.hit.classservice.application.input.subject.GetSubjectInput;
 import com.hit.classservice.application.input_boundary.subject.GetSubjectDatacase;
 import com.hit.classservice.application.mapper.SubjectMapper;
 import com.hit.classservice.application.output.subject.GetSubjectOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Subject;
 import org.apache.commons.lang3.ObjectUtils;
@@ -28,9 +29,10 @@ public class GetSubjectInteractor implements GetSubjectDatacase {
     Subject subject = subjectRepository.findById(input.getId());
 
     if (ObjectUtils.isEmpty(subject))
-      throw new VsException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
+
     return subjectMapper.toGetSubjectOutput(subject);
   }
 

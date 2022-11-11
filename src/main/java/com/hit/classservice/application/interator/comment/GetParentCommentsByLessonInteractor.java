@@ -9,6 +9,7 @@ import com.hit.classservice.application.input_boundary.comment.GetParentCommentB
 import com.hit.classservice.application.mapper.CommentMapper;
 import com.hit.classservice.application.output.comment.GetParentCommentsByLessonItemOutput;
 import com.hit.classservice.application.output.comment.GetParentCommentsByLessonOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.dto.ParentCommentDTO;
 import com.hit.classservice.domain.entity.Lesson;
@@ -39,7 +40,7 @@ public class GetParentCommentsByLessonInteractor implements GetParentCommentByLe
     Lesson oldLesson = lessonRepository.findById(input.getLessonId());
     //Check if lesson exists
     if (ObjectUtils.isEmpty(oldLesson)) {
-      throw new VsException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()),
           new String[]{input.getLessonId().toString()});
     }

@@ -8,6 +8,7 @@ import com.hit.classservice.application.input_boundary.lesson.GetListLessonBySub
 import com.hit.classservice.application.mapper.LessonMapper;
 import com.hit.classservice.application.output.lesson.GetListLessonBySubjectIdOutput;
 import com.hit.classservice.application.output.lesson.GetListLessonItemOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Lesson;
 import org.apache.commons.lang3.ObjectUtils;
@@ -31,8 +32,8 @@ public class GetListLessonBySubjectIdInteractor implements GetListLessonBySubjec
   public GetListLessonBySubjectIdOutput handle(GetListLessonBySubjectIdInput input) throws Exception {
     List<Lesson> list = lessonRepository.getListLessonBySubjectId(input.getId());
     if (ObjectUtils.isEmpty(list)) {
-      throw new VsException(UserMessageConstant.Lesson.ERR_NOT_FOUND_LESSON_BY_SUBJECT_ID,
-          String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_LESSON_BY_SUBJECT_ID, input.getId()),
+      throw new NotFoundException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }
     List<GetListLessonItemOutput> output = lessonMapper.toGetListLessonBySubjectIdOutput(list);

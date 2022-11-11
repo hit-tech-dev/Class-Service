@@ -9,6 +9,7 @@ import com.hit.classservice.application.input_boundary.comment.GetChildrenCommen
 import com.hit.classservice.application.mapper.CommentMapper;
 import com.hit.classservice.application.output.comment.GetChildrenCommentsByLessonItemOutput;
 import com.hit.classservice.application.output.comment.GetChildrenCommentsByLessonOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.dto.ChildrenCommentDTO;
 import com.hit.classservice.domain.entity.Comment;
@@ -39,13 +40,13 @@ public class GetChildrenCommentsByLessonInteractor implements GetChildrenComment
     Comment parentComment = commentRepository.findById(input.getParentId());
     //Check if lesson exists
     if (ObjectUtils.isEmpty(oldLesson)) {
-      throw new VsException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()),
           new String[]{input.getLessonId().toString()});
     }
     //Check if parent comment exists
     if (ObjectUtils.isEmpty(parentComment)) {
-      throw new VsException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getParentId()),
           new String[]{input.getParentId().toString()});
     }

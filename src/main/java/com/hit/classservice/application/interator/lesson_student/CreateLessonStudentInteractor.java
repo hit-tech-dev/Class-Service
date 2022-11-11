@@ -2,12 +2,14 @@ package com.hit.classservice.application.interator.lesson_student;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.LessonRepository;
 import com.hit.classservice.application.dai.LessonStudentRepository;
 import com.hit.classservice.application.dai.UserRepository;
 import com.hit.classservice.application.input.lesson_student.CreateLessonStudentInput;
 import com.hit.classservice.application.input_boundary.lesson_student.CreateLessonStudentDataCase;
 import com.hit.classservice.application.output.lesson_student.CreateLessonStudentOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.domain.entity.Lesson;
 import com.hit.classservice.domain.entity.LessonStudent;
 import com.hit.classservice.domain.entity.User;
@@ -33,14 +35,16 @@ public class CreateLessonStudentInteractor implements CreateLessonStudentDataCas
   public CreateLessonStudentOutput handle(CreateLessonStudentInput input) throws Exception {
     Lesson oldLesson = lessonRepository.findById(input.getLessonId());
     if (ObjectUtils.isEmpty(oldLesson)) {
-      return new CreateLessonStudentOutput(CommonConstant.FALSE,
-          String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()));
+      throw new NotFoundException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getLessonId()),
+          new String[]{input.getLessonId().toString()});
     }
 
     User oldUser = userRepository.findById(input.getUserId());
     if (ObjectUtils.isEmpty(oldUser)) {
-      return new CreateLessonStudentOutput(CommonConstant.FALSE,
-          String.format(DevMessageConstant.User.ERR_NOT_FOUND_BY_ID, input.getUserId()));
+      throw new NotFoundException(UserMessageConstant.User.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.User.ERR_NOT_FOUND_BY_ID, input.getUserId()),
+          new String[]{input.getUserId().toString()});
     }
 
     LessonStudent lessonStudent = new LessonStudent(input.getLessonId(), input.getUserId(), input.isAttendance());

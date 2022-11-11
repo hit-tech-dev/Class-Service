@@ -2,12 +2,15 @@ package com.hit.classservice.application.interator.comment;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.CommentRepository;
 import com.hit.classservice.application.dai.LessonStudentRepository;
 import com.hit.classservice.application.input.comment.CreateParentCommentForLessonStudentInput;
 import com.hit.classservice.application.input_boundary.comment.CreateParentCommentForLessonStudentDataCase;
 import com.hit.classservice.application.output.comment.CreateParentCommentForLessonStudentOutput;
 import com.hit.classservice.application.utils.SecurityUtil;
+import com.hit.classservice.config.exception.NotFoundException;
+import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Comment;
 import com.hit.classservice.domain.entity.LessonStudent;
 import lombok.SneakyThrows;
@@ -31,8 +34,9 @@ public class CreateParentCommentForLessonStudentInteractor implements CreatePare
   public CreateParentCommentForLessonStudentOutput handle(CreateParentCommentForLessonStudentInput input) {
     LessonStudent oldLessonStudent = lessonStudentRepository.findById(input.getLessonStudentId());
     if (ObjectUtils.isEmpty(oldLessonStudent)) {
-      return new CreateParentCommentForLessonStudentOutput(CommonConstant.FALSE, String.format(
-          DevMessageConstant.LessonStudent.ERR_NOT_FOUND_BY_ID, input.getLessonStudentId()));
+      throw new NotFoundException(UserMessageConstant.LessonStudent.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.LessonStudent.ERR_NOT_FOUND_BY_ID, input.getLessonStudentId()),
+          new String[]{input.getLessonStudentId().toString()});
     }
 
     Comment comment = new Comment();
