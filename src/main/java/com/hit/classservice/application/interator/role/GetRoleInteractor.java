@@ -8,6 +8,7 @@ import com.hit.classservice.application.input_boundary.role.GetRoleDataCase;
 import com.hit.classservice.application.mapper.RoleMapper;
 import com.hit.classservice.application.mapper.ScheduleMapper;
 import com.hit.classservice.application.output.role.GetRoleOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Role;
 import lombok.SneakyThrows;
@@ -31,8 +32,8 @@ public class GetRoleInteractor implements GetRoleDataCase {
   public GetRoleOutput handle(GetRoleInput input) {
     Role role = roleRepository.findById(input.getId());
     if (ObjectUtils.isEmpty(role)){
-      throw new VsException(UserMessageConstant.Role.ERR_NOT_FOUND_BY_ID,
-        String.format(DevMessageConstant.Role.ERR_NOT_FOUND_BY_ID, input.getId()),
+      throw new NotFoundException(UserMessageConstant.Role.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Role.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }
     return roleMapper.toGetRoleOutput(role);

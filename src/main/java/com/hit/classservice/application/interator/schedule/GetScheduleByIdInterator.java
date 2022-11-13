@@ -7,6 +7,7 @@ import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
 import com.hit.classservice.application.input_boundary.schedule.GetScheduleByIdDataCase;
 import com.hit.classservice.application.mapper.ScheduleMapper;
 import com.hit.classservice.application.output.schedule.GetScheduleByIdOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Schedule;
 import lombok.SneakyThrows;
@@ -31,7 +32,7 @@ public class GetScheduleByIdInterator implements GetScheduleByIdDataCase {
     Schedule schedule = scheduleRepository.findById(input.getId());
 
     if (ObjectUtils.isEmpty(schedule)) {
-      throw new VsException(UserMessageConstant.Schedule.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Schedule.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Schedule.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }

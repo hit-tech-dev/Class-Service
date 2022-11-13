@@ -7,6 +7,7 @@ import com.hit.classservice.application.input.notification.GetNotificationInput;
 import com.hit.classservice.application.input_boundary.notification.GetNotificationDataCase;
 import com.hit.classservice.application.mapper.NotificationMapper;
 import com.hit.classservice.application.output.notification.GetNotificationOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Notification;
 import lombok.SneakyThrows;
@@ -30,7 +31,7 @@ public class GetNotificationInteractor implements GetNotificationDataCase {
   public GetNotificationOutput handle(GetNotificationInput input) {
     Notification notification = notificationRepository.findById(input.getId());
     if (ObjectUtils.isEmpty(notification)) {
-      throw new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Notification.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }

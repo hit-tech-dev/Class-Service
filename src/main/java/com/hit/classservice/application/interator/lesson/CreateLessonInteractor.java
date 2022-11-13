@@ -2,6 +2,7 @@ package com.hit.classservice.application.interator.lesson;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.LessonRepository;
 import com.hit.classservice.application.dai.LessonStudentRepository;
 import com.hit.classservice.application.dai.SubjectRepository;
@@ -9,6 +10,7 @@ import com.hit.classservice.application.dai.UserSubjectRelationRepository;
 import com.hit.classservice.application.input.lesson.CreateLessonInput;
 import com.hit.classservice.application.input_boundary.lesson.CreateLessonDataCase;
 import com.hit.classservice.application.output.lesson.CreateLessonOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.domain.entity.Lesson;
 import com.hit.classservice.domain.entity.LessonStudent;
 import com.hit.classservice.domain.entity.Subject;
@@ -40,8 +42,9 @@ public class CreateLessonInteractor implements CreateLessonDataCase {
   public CreateLessonOutput handle(CreateLessonInput input) throws Exception {
     Subject oldSubject = subjectRepository.findById(input.getSubjectId());
     if (ObjectUtils.isEmpty(oldSubject)) {
-      return new CreateLessonOutput(CommonConstant.FALSE,
-          String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getSubjectId()));
+      throw new NotFoundException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getSubjectId()),
+          new String[]{input.getSubjectId().toString()});
     }
 
     // Save lesson

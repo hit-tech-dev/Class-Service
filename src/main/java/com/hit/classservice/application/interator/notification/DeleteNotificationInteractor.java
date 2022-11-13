@@ -7,6 +7,7 @@ import com.hit.classservice.application.dai.NotificationRepository;
 import com.hit.classservice.application.input.notification.DeleteNotificationInput;
 import com.hit.classservice.application.input_boundary.notification.DeleteNotificationDataCase;
 import com.hit.classservice.application.output.notification.DeleteNotificationOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Notification;
 import lombok.SneakyThrows;
@@ -27,7 +28,7 @@ public class DeleteNotificationInteractor implements DeleteNotificationDataCase 
   public DeleteNotificationOutput handle(DeleteNotificationInput input) {
     Notification notification = notificationRepository.findById(input.getId());
     if (ObjectUtils.isEmpty(notification)) {
-      throw new VsException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Notification.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Notification.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }

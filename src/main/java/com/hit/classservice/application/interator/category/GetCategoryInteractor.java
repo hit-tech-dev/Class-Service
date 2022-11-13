@@ -7,6 +7,7 @@ import com.hit.classservice.application.input.category.GetCategoryInput;
 import com.hit.classservice.application.input_boundary.category.GetCategoryDataCase;
 import com.hit.classservice.application.mapper.CategoryMapper;
 import com.hit.classservice.application.output.category.GetCategoryOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Category;
 import lombok.SneakyThrows;
@@ -31,7 +32,7 @@ public class GetCategoryInteractor implements GetCategoryDataCase {
     Category category = categoryRepository.findById(input.getId());
 
     if (ObjectUtils.isEmpty(category)) {
-      throw new VsException(UserMessageConstant.Category.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Category.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Category.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }

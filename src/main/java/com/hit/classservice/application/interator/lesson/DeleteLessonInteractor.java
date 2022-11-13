@@ -8,6 +8,7 @@ import com.hit.classservice.application.input.lesson.DeleteLessonInput;
 import com.hit.classservice.application.input_boundary.lesson.DeleteLessonDataCase;
 import com.hit.classservice.application.mapper.LessonMapper;
 import com.hit.classservice.application.output.lesson.DeleteLessonOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Lesson;
 import lombok.SneakyThrows;
@@ -33,7 +34,7 @@ public class DeleteLessonInteractor implements DeleteLessonDataCase {
   public DeleteLessonOutput handle(DeleteLessonInput input) {
     Lesson lesson = repository.findById(input.getId());
     if (ObjectUtils.isEmpty(lesson))
-      throw new VsException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Lesson.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
 

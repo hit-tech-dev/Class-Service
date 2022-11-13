@@ -2,10 +2,12 @@ package com.hit.classservice.application.interator.role;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.RoleRepository;
 import com.hit.classservice.application.input.role.UpdateRoleInput;
 import com.hit.classservice.application.input_boundary.role.UpdateRoleDataCase;
 import com.hit.classservice.application.output.role.UpdateRoleOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.domain.entity.Role;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,8 +28,9 @@ public class UpdateRoleInterator implements UpdateRoleDataCase {
     Role oldRoleById = roleRepository.findById(input.getId());
     Role oldRoleByName = roleRepository.findByName(input.getName());
     if (ObjectUtils.isEmpty(oldRoleById)) {
-      return new UpdateRoleOutput(CommonConstant.FALSE, String.format(DevMessageConstant.Role.ERR_NOT_FOUND_BY_ID,
-          input.getId()));
+      throw new NotFoundException(UserMessageConstant.Role.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Role.ERR_NOT_FOUND_BY_ID, input.getId()),
+          new String[]{input.getId().toString()});
     } else if (ObjectUtils.isNotEmpty(oldRoleByName)) {
       return new UpdateRoleOutput(CommonConstant.FALSE, String.format(DevMessageConstant.Role.NAME_IS_EXIST,
           input.getName()));

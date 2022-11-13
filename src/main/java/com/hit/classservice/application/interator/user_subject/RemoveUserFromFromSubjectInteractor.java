@@ -9,6 +9,7 @@ import com.hit.classservice.application.dai.UserSubjectRelationRepository;
 import com.hit.classservice.application.input.user_subject.RemoveUserFromSubjectInput;
 import com.hit.classservice.application.input_boundary.user_subject.RemoveUserFromSubjectDataCase;
 import com.hit.classservice.application.output.user_subject.RemoveUserFromSubjectOutput;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Subject;
 import com.hit.classservice.domain.entity.User;
@@ -34,14 +35,14 @@ public class RemoveUserFromFromSubjectInteractor implements RemoveUserFromSubjec
   public RemoveUserFromSubjectOutput handle(RemoveUserFromSubjectInput input) {
     User user = userRepository.findById(input.getUserId());
     if (ObjectUtils.isEmpty(user)) {
-      throw new VsException(UserMessageConstant.User.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.User.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.User.ERR_NOT_FOUND_BY_ID, input.getUserId()),
-          new String[]{input.getUserId()});
+          new String[]{input.getUserId().toString()});
     }
 
     Subject subject = subjectRepository.findById(input.getSubjectId());
     if (ObjectUtils.isEmpty(subject)) {
-      throw new VsException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Subject.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Subject.ERR_NOT_FOUND_BY_ID, input.getSubjectId()),
           new String[]{input.getSubjectId().toString()});
     }

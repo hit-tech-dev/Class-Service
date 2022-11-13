@@ -9,6 +9,7 @@ import com.hit.classservice.application.input.comment.EditCommentInput;
 import com.hit.classservice.application.input_boundary.comment.EditCommentDataCase;
 import com.hit.classservice.application.output.comment.EditCommentOutput;
 import com.hit.classservice.application.utils.SecurityUtil;
+import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Comment;
 import lombok.SneakyThrows;
@@ -34,15 +35,15 @@ public class EditCommentInteractor implements EditCommentDataCase {
 
     // Find obj by id
     if (ObjectUtils.isEmpty(comment)) {
-      throw new VsException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
+      throw new NotFoundException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
           String.format(DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }
 
     // Check comment is from CurrentUserLogin
     if (comment.getUserId().compareTo(SecurityUtil.getCurrentUserLogin()) != 0) {
-      throw new VsException(UserMessageConstant.Comment.ERR_NOT_YOURS,
-          String.format(DevMessageConstant.Comment.ERR_NOT_YOURS, input.getId()),
+      throw new NotFoundException(UserMessageConstant.Comment.ERR_NOT_FOUND_BY_ID,
+          String.format(DevMessageConstant.Comment.ERR_NOT_FOUND_BY_ID, input.getId()),
           new String[]{input.getId().toString()});
     }
 
