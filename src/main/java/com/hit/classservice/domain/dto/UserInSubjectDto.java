@@ -1,16 +1,15 @@
-package com.hit.classservice.domain.entity;
+package com.hit.classservice.domain.dto;
 
-import com.hit.classservice.domain.entity.base.AbstractAuditingEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AbstractAuditingEntity {
+public class UserInSubjectDto {
 
   private String id;
 
@@ -18,17 +17,22 @@ public class User extends AbstractAuditingEntity {
 
   private String birthday;
 
-  private String fullName;
+  private String fullname;
 
   private String email;
 
   private String phone;
 
+  private Integer grade;
+
   private String gender;
 
   private String avatar;
 
-  private Integer grade;
+  private String roleName;
+
+  private CreatedByDto createdBy;
+
+  private LastModifiedByDto lastModifiedBy;
 
 }
-
