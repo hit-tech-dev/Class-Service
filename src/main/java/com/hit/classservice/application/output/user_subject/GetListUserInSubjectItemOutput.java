@@ -1,16 +1,17 @@
-package com.hit.classservice.domain.entity;
+package com.hit.classservice.application.output.user_subject;
 
-import com.hit.classservice.domain.entity.base.AbstractAuditingEntity;
+import com.hit.classservice.application.output.common.CreatedBy;
+import com.hit.classservice.application.output.common.LastModifiedBy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AbstractAuditingEntity {
+public class GetListUserInSubjectItemOutput {
 
   private String id;
 
@@ -30,5 +31,10 @@ public class User extends AbstractAuditingEntity {
 
   private Integer grade;
 
-}
+  private String roleName;
 
+  private CreatedBy createdBy;
+
+  private LastModifiedBy lastModifiedBy;
+
+}

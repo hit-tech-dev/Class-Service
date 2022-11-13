@@ -112,6 +112,7 @@ public class UrlConstant {
   public static final class UserSubject {
     private static final String PREFIX = "/user-subject";
     public static final String DELETE = PREFIX;
+    public static final String LIST_USER = PREFIX + "/users";
 
     private UserSubject() {
     }

@@ -1,4 +1,4 @@
-package com.hit.classservice.application.output.category;
+package com.hit.classservice.application.output.user_subject;
 
 import com.hit.classservice.application.output.Output;
 import com.hit.classservice.application.output.common.PagingMeta;
@@ -7,15 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetListCategoryOutput implements Output {
+public class GetListUserInSubjectOutput implements Output {
 
-  private List<GetListCategoryItemOutput> items;
+  private List<GetListUserInSubjectItemOutput> item;
 
   private PagingMeta meta;
 
