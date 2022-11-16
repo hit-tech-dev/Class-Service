@@ -10,8 +10,12 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221005230200_v1_create_table_image.xml"
              relativeToChangelogFile="false"/>
+<!--    subject-->
     <include file="config/liquibase/changelog/20221007234700_v1_create_table_subject.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221116215700_v3_update_table_subject.xml"
+             relativeToChangelogFile="false"/>
+
     <include file="config/liquibase/changelog/20221008193000_v1_create_table_user_subject_relation.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221006153700_v1_create_table_document.xml"

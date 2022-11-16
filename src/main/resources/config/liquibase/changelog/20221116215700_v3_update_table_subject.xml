@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="20221116215700" author="thang.nguyenvan">
+        <addColumn tableName="subject">
+            <column name="study_form" type="varchar(255)" defaultValue="" />
+            <column name="study_place" type="varchar(255)" defaultValue="" />
+
+        </addColumn>
+        <addNotNullConstraint tableName="subject" columnName="study_form" columnDataType="varchar(255)"/>
+        <addNotNullConstraint tableName="subject" columnName="study_place" columnDataType="varchar(255)"/>
+    </changeSet>
+
+</databaseChangeLog>
