@@ -20,6 +20,12 @@
         <association property="description" javaType="java.lang.String">
             <result column="description"/>
         </association>
+        <association property="studyForm" javaType="java.lang.String">
+            <result column="study_form"/>
+        </association>
+        <association property="studyPlace" javaType="java.lang.String">
+            <result column="study_place"/>
+        </association>
     </resultMap>
 
     <resultMap id="createdByResultMap" type="com.hit.classservice.domain.dto.CreatedByDto">
@@ -166,7 +172,9 @@
         SELECT s.id,
                s.name,
                s.avatar,
-               s.description
+               s.description,
+               s.study_form,
+               s.study_place
         FROM subject s
         WHERE s.active_flag = 1
           AND s.delete_flag = 0
