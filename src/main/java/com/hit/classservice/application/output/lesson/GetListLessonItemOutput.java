@@ -20,4 +20,8 @@ public class GetListLessonItemOutput implements Output {
 
   private Long expiredTimeHomework;
 
+  private String note;
+
+  private String mentor;
+
 }
