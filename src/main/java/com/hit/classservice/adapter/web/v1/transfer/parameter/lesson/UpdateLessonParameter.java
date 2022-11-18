@@ -18,4 +18,8 @@ public class UpdateLessonParameter {
   private String content;
 
   private Long expiredTimeHomework;
+
+  private String note;
+
+  private String mentor;
 }

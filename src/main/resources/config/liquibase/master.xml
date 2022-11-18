@@ -36,6 +36,8 @@
     <!--  lesson  -->
     <include file="config/liquibase/changelog/20221008214000_v1_create_table_lesson.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221118171000_v2_add_column_table_lesson.xml"
+             relativeToChangelogFile="false"/>
 
     <!--  lesson student  -->
     <include file="config/liquibase/changelog/20221008215000_v1_create_table_lesson_student.xml"

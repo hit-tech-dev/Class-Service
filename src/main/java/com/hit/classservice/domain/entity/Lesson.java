@@ -27,6 +27,10 @@ public class Lesson extends AbstractAuditingEntity {
 
   private List<Document> documents;
 
+  private String note;
+
+  private String mentor;
+
   public Lesson(String name, String content, Long expiredTimeHomework, Long subjectId) {
     this.name = name;
     this.content = content;

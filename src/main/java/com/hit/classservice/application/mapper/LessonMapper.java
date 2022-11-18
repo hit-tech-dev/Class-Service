@@ -21,12 +21,22 @@ public interface LessonMapper {
       @Mapping(target = "id", source = "lesson.id"),
       @Mapping(target = "name", source = "lesson.name"),
       @Mapping(target = "content", source = "lesson.content"),
-      @Mapping(target = "expiredTimeHomework", source = "lesson.expiredTimeHomework")
+      @Mapping(target = "expiredTimeHomework", source = "lesson.expiredTimeHomework"),
+      @Mapping(target = "note", source = "lesson.note"),
+      @Mapping(target = "mentor", source = "lesson.mentor"),
   })
   GetListLessonItemOutput toGetListLessonItemOutput(Lesson lesson);
 
   List<GetListLessonItemOutput> toGetListLessonBySubjectIdOutput(List<Lesson> lessons);
 
+  @Mappings({
+      @Mapping(target = "id", source = "parameter.id"),
+      @Mapping(target = "name", source = "parameter.name"),
+      @Mapping(target = "content", source = "parameter.content"),
+      @Mapping(target = "expiredTimeHomework", source = "parameter.expiredTimeHomework"),
+      @Mapping(target = "note" , source = "parameter.note"),
+      @Mapping(target = "mentor" , source = "parameter.mentor")
+  })
   UpdateLessonInput toUpdateLessonInput(UpdateLessonParameter parameter);
 
   CreateLessonInput toCreateLessonInput(CreateLessonParameter parameter);
