@@ -7,7 +7,7 @@ import com.hit.classservice.application.input.setting_by_key.GetSettingByKeyInpu
 import com.hit.classservice.application.input_boundary.setting_by_key.GetSettingByKeyDataCase;
 import com.hit.classservice.application.mapper.SettingByKeyMapper;
 import com.hit.classservice.application.output.setting_by_key.GetSettingByKeyOutput;
-import com.hit.classservice.config.exception.NotFoundException;
+import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Setting;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
@@ -31,7 +31,7 @@ public class GetSettingInterator implements GetSettingByKeyDataCase {
 
     Setting settingByKey = settingByKeyRepository.getSettingByKey(input.getKey());
     if (ObjectUtils.isEmpty(settingByKey)) {
-      throw new NotFoundException(UserMessageConstant.SettingByKey.ERR_NOT_FOUND_SETTING_BY_KEY,
+      throw new VsException(UserMessageConstant.SettingByKey.ERR_NOT_FOUND_SETTING_BY_KEY,
           String.format(DevMessageConstant.SettingByKey.ERR_NOT_FOUND_BY_KEY, input.getKey()),
           new String[]{input.getKey()});
     }
