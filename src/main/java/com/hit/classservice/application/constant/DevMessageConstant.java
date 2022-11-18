@@ -51,4 +51,8 @@ public class DevMessageConstant {
     public static final String CAN_NOT_REMOVE_OBJECT = "Can not remove object with userId = %s and subjectId = %s";
   }
 
+  public static final class SettingByKey{
+    public static final String ERR_NOT_FOUND_BY_KEY = "Not found setting by key = %s";
+  }
+
 }

@@ -53,4 +53,8 @@ public class UserMessageConstant {
   public static final class User {
     public static final String ERR_NOT_FOUND_BY_ID = "invalid.not.found.user_id";
   }
+
+  public static final class SettingByKey{
+    public static final String ERR_NOT_FOUND_SETTING_BY_KEY = "invalid.not.found.setting_key";
+  }
 }
