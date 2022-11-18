@@ -116,8 +116,6 @@
                 WHERE child.parent_id = c.id
                     AND child.active_flag = 1
                     AND child.delete_flag = 0
-                    AND child.active_flag = 1
-                    AND child.delete_flag = 0
                ) AS "total_number_child",
                c.user_id,
                c.created_by,
