@@ -1,6 +1,5 @@
-package com.hit.classservice.domain.entity;
+package com.hit.classservice.application.output.user_subject;
 
-import com.hit.classservice.domain.entity.base.AbstractAuditingEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AbstractAuditingEntity {
+public class GetAllLeaderItemOutput {
 
   private String id;
 
@@ -29,6 +28,4 @@ public class User extends AbstractAuditingEntity {
   private String gender;
 
   private String avatar;
-
 }
-

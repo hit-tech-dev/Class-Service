@@ -37,5 +37,4 @@ public class UserSubjectController {
 
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
-
 }

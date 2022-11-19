@@ -11,8 +11,10 @@ import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.UrlConstant;
 import com.hit.classservice.application.input.subject.*;
+import com.hit.classservice.application.input.user_subject.GetAllLeaderInput;
 import com.hit.classservice.application.mapper.SubjectMapper;
 import com.hit.classservice.application.output.subject.*;
+import com.hit.classservice.application.output.user_subject.GetAllLeaderOutput;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -137,8 +139,10 @@ public class SubjectController {
   }
 
   /**
-   * @param parameter CreateSubjectParam
-   * @return ResponseEntity<?>
+   *
+   * @param createSubjectParam
+   * @return
+   * @throws Exception
    */
   @Operation(summary = "API create new subject")
   @ApiResponses(value = {
@@ -157,5 +161,32 @@ public class SubjectController {
     //Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
 
+  }
+
+  /**
+   * @param id
+   * @return
+   * @throws Exception
+   */
+  @Operation(summary = "API get all leader of subject by id")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Found the subject",
+          content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = GetSubjectOutput.class))
+          }),
+      @ApiResponse(responseCode = "500", description = "Id not exits", content = {
+          @Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = RestData.class))
+      })
+  })
+  @GetMapping(UrlConstant.Subject.LEADERS)
+  public ResponseEntity<?> getAllLeader(@Parameter(required = true, name = "id", description = "Id of subject")
+                                          @PathVariable("id") Long id) throws Exception {
+    //Create input
+    GetAllLeaderInput input = new GetAllLeaderInput(id);
+    //Get output
+    GetAllLeaderOutput output = useCaseBus.handle(input);
+    //Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 }

@@ -1,6 +1,5 @@
-package com.hit.classservice.domain.entity;
+package com.hit.classservice.domain.dto;
 
-import com.hit.classservice.domain.entity.base.AbstractAuditingEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AbstractAuditingEntity {
+public class UserDto {
 
   private String id;
 
@@ -31,4 +30,3 @@ public class User extends AbstractAuditingEntity {
   private String avatar;
 
 }
-

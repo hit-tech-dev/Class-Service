@@ -8,7 +8,10 @@ import com.hit.classservice.application.input.subject.GetListSubjectInput;
 import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.output.subject.GetListSubjectItemOutput;
 import com.hit.classservice.application.output.subject.GetSubjectOutput;
+import com.hit.classservice.application.output.user_subject.GetAllLeaderItemOutput;
+import com.hit.classservice.application.output.user_subject.GetAllLeaderOutput;
 import com.hit.classservice.domain.dto.SubjectDto;
+import com.hit.classservice.domain.dto.UserDto;
 import com.hit.classservice.domain.entity.Subject;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,6 +23,8 @@ import java.util.List;
 public interface SubjectMapper {
 
   List<GetListSubjectItemOutput> toGetListSubjectItemOutputs(List<SubjectDto> subjectDtos);
+
+  List<GetAllLeaderItemOutput> toGetAllLeaderItemOutputs(List<UserDto> userDtos);
 
   @Mappings({
       @Mapping(target = "id", source = "subject.id"),
