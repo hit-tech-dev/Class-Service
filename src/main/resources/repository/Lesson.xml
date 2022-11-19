@@ -38,6 +38,8 @@
         SELECT l.id,
                l.name,
                l.content,
+               l.note,
+               l.mentor,
                l.expired_time_homework,
                l.subject_id,
                l.created_by,
