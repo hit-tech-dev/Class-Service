@@ -20,6 +20,12 @@
         <association property="description" javaType="java.lang.String">
             <result column="description"/>
         </association>
+        <association property="studyForm" javaType="java.lang.String">
+            <result column="study_form"/>
+        </association>
+        <association property="studyPlace" javaType="java.lang.String">
+            <result column="study_place"/>
+        </association>
     </resultMap>
 
     <resultMap id="createdByResultMap" type="com.hit.classservice.domain.dto.CreatedByDto">
@@ -196,7 +202,9 @@
         SELECT s.id,
                s.name,
                s.avatar,
-               s.description
+               s.description,
+               s.study_form,
+               s.study_place
         FROM subject s
         WHERE s.active_flag = 1
           AND s.delete_flag = 0
@@ -225,8 +233,10 @@
     <update id="update" parameterType="com.hit.classservice.domain.entity.Subject">
         UPDATE subject
         SET `name`             = #{item.name},
-            `avatar`           = #{item.avatar},
-            `description`      = #{item.description},
+            avatar             = #{item.avatar},
+            description        = #{item.description},
+            study_form         = #{item.study_form},
+            study_place        = #{item.study_place},
             last_modified_date = UNIX_TIMESTAMP(NOW()),
             last_modified_by   = #{item.lastModifiedBy}
         WHERE id = #{item.id};
@@ -250,10 +260,10 @@
     </delete>
 
     <insert id="save" parameterType="com.hit.classservice.domain.entity.Subject">
-        INSERT INTO subject(`name`, avatar, description, categoryId, delete_flag, active_flag, created_date, created_by,
+        INSERT INTO subject(`name`, avatar, description, category_id, delete_flag, active_flag, created_date, created_by,
                             last_modified_date, last_modified_by)
         VALUES (#{item.name}, #{item.avatar},
-                #{item.description}, #{categoryId}, b'0', b'1', UNIX_TIMESTAMP(NOW()), #{item.createdBy},
+                #{item.description}, #{item.categoryId}, b'0', b'1', UNIX_TIMESTAMP(NOW()), #{item.createdBy},
                 UNIX_TIMESTAMP(NOW()),
                 #{item.lastModifiedBy})
     </insert>

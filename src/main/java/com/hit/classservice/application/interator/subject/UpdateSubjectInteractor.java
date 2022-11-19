@@ -41,9 +41,12 @@ public class UpdateSubjectInteractor implements UpdateSubjectDataCase {
     if (ObjectUtils.isNotEmpty(oldSubjectByName) && !input.getId().equals(oldSubjectByName.getId()))
       return new UpdateSubjectOutput(CommonConstant.FALSE,
           String.format(DevMessageConstant.Subject.DUPLICATE_NAME, input.getName()));
+
     oldSubject.setName(input.getName());
     oldSubject.setAvatar(input.getAvatar());
     oldSubject.setDescription(input.getDescription());
+    oldSubject.setStudyForm(input.getStudyForm());
+    oldSubject.setStudyPlace(input.getStudyPlace());
     subjectRepository.update(oldSubject);
     return new UpdateSubjectOutput(CommonConstant.TRUE, "Update successful");
   }

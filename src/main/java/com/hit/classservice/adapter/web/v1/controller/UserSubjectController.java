@@ -2,18 +2,24 @@ package com.hit.classservice.adapter.web.v1.controller;
 
 import com.hit.classservice.adapter.web.base.RestApiV1;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.user_subject.GetListUserInSubjectParameter;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.user_subject.RemoveUserFromSubjectParameter;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
 import com.hit.classservice.application.constant.UrlConstant;
+import com.hit.classservice.application.input.user_subject.GetListUserInSubjectInput;
 import com.hit.classservice.application.input.user_subject.RemoveUserFromSubjectInput;
 import com.hit.classservice.application.mapper.UserSubjectMapper;
+import com.hit.classservice.application.output.user_subject.GetListUserInSubjectOutput;
 import com.hit.classservice.application.output.user_subject.RemoveUserFromSubjectOutput;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.validation.Valid;
 
 @RestApiV1
 public class UserSubjectController {
@@ -37,4 +43,14 @@ public class UserSubjectController {
 
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
+
+  @GetMapping(UrlConstant.UserSubject.LIST_USER)
+  public ResponseEntity<?> getListUserBySubjectId(@Valid GetListUserInSubjectParameter parameter) throws Exception {
+    GetListUserInSubjectInput input = userSubjectMapper.toGetListUserInSubjectInput(parameter);
+
+    GetListUserInSubjectOutput output = useCaseBus.handle(input);
+
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
 }

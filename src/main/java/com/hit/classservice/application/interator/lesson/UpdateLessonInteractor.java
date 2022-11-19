@@ -8,8 +8,8 @@ import com.hit.classservice.application.input.lesson.UpdateLessonInput;
 import com.hit.classservice.application.input_boundary.lesson.UpdateLessonDataCase;
 import com.hit.classservice.application.output.lesson.UpdateLessonOutput;
 import com.hit.classservice.config.exception.NotFoundException;
-import com.hit.classservice.config.exception.VsException;
 import com.hit.classservice.domain.entity.Lesson;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,9 @@ public class UpdateLessonInteractor implements UpdateLessonDataCase {
     this.lessionRepository = lessionRepository;
   }
 
+  @SneakyThrows
   @Override
-  public UpdateLessonOutput handle(UpdateLessonInput input) throws Exception {
+  public UpdateLessonOutput handle(UpdateLessonInput input){
     Lesson lesson = lessionRepository.findById(input.getId());
 
     if(ObjectUtils.isEmpty(lesson)) {
@@ -36,6 +37,8 @@ public class UpdateLessonInteractor implements UpdateLessonDataCase {
     lesson.setName(input.getName());
     lesson.setContent(input.getContent());
     lesson.setExpiredTimeHomework(input.getExpiredTimeHomework());
+    lesson.setNote(input.getNote());
+    lesson.setMentor(input.getMentor());
     lessionRepository.update(lesson);
     return new UpdateLessonOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
   }

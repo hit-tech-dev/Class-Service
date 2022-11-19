@@ -19,4 +19,8 @@ public class UpdateLessonInput implements Input {
   private String content;
 
   private Long expiredTimeHomework;
+
+  private String note;
+
+  private String mentor;
 }

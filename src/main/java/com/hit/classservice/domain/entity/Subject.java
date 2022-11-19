@@ -22,6 +22,10 @@ public class Subject extends AbstractAuditingEntity {
 
   private Long categoryId;
 
+  private String studyForm;
+
+  private String studyPlace;
+
   public Subject(String name, String avatar, String description, Long categoryId) {
     this.name = name;
     this.avatar = avatar;

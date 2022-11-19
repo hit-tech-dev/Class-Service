@@ -20,4 +20,8 @@ public class GetSubjectOutput implements Output {
 
   private String description;
 
+  private String studyForm;
+
+  private String studyPlace;
+
 }

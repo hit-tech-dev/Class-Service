@@ -20,4 +20,7 @@ public class UpdateSubjectInput implements Input {
 
   private String description;
 
+  private String studyForm;
+
+  private String studyPlace;
 }
