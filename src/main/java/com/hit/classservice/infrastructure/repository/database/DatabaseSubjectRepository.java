@@ -3,7 +3,9 @@ package com.hit.classservice.infrastructure.repository.database;
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.output.common.PagingMeta;
 import com.hit.classservice.domain.dto.SubjectDto;
+import com.hit.classservice.domain.dto.UserDto;
 import com.hit.classservice.domain.entity.Subject;
+import com.hit.classservice.domain.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -34,5 +36,8 @@ public interface DatabaseSubjectRepository extends SubjectRepository {
 
   @Override
   int save(@Param("item") Subject subject);
+
+  @Override
+  List<UserDto> getAllLeader(@Param("id") Long subjectId);
 
 }

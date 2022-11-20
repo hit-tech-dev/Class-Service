@@ -75,6 +75,36 @@
         <association property="lastModifiedBy" resultMap="lastModifiedByResultMap"/>
     </resultMap>
 
+    <resultMap id="leaderSubjectResultMap" type="com.hit.classservice.domain.dto.UserDto">
+        <association property="id" javaType="java.lang.String">
+            <result column="id"/>
+        </association>
+        <association property="roleId" javaType="java.lang.Long">
+            <result column="role_id"/>
+        </association>
+        <association property="studentCode" javaType="java.lang.String">
+            <result column="student_code"/>
+        </association>
+        <association property="birthday" javaType="java.lang.String">
+            <result column="birthday"/>
+        </association>
+        <association property="fullName" javaType="java.lang.String">
+            <result column="fullname"/>
+        </association>
+        <association property="email" javaType="java.lang.String">
+            <result column="email"/>
+        </association>
+        <association property="phone" javaType="java.lang.String">
+            <result column="phone"/>
+        </association>
+        <association property="gender" javaType="java.lang.String">
+            <result column="gender"/>
+        </association>
+        <association property="avatar" javaType="java.lang.String">
+            <result column="avatar"/>
+        </association>
+    </resultMap>
+
     <select id="countSearchSubject" resultType="java.lang.Long">
         WITH data_flow_created_by AS (
             SELECT
@@ -179,6 +209,25 @@
         WHERE s.active_flag = 1
           AND s.delete_flag = 0
           AND s.id = #{id};
+    </select>
+
+    <select id="getAllLeader" resultMap="leaderSubjectResultMap">
+        SELECT u.id,
+               u.role_id,
+               u.student_code,
+               u.birthday,
+               u.fullName,
+               u.email,
+               u.phone,
+               u.gender,
+               u.avatar
+        FROM users u
+            inner join roles r on u.role_id = r.id
+            inner join user_subject_relation s on u.id = s.user_id
+        WHERE s.active_flag = 1
+          AND s.delete_flag = 0
+          AND s.id = #{id}
+          AND r.name = 'LEADER'
     </select>
 
     <update id="update" parameterType="com.hit.classservice.domain.entity.Subject">
