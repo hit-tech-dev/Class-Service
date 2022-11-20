@@ -1,6 +1,7 @@
 package com.hit.classservice.infrastructure.repository.database;
 
 import com.hit.classservice.application.dai.UserSubjectRelationRepository;
+import com.hit.classservice.domain.entity.Subject;
 import com.hit.classservice.domain.entity.UserSubjectRelation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,4 +20,6 @@ public interface DatabaseUserSubjectRelationRepository extends UserSubjectRelati
   @Override
   int deleteByUserIdAndSubjectId(@Param("userId") String userId, @Param("subjectId") Long subjectId);
 
+  @Override
+  List<Subject> getListSubjectFromUserByUserId(@Param("user_id") String user_id);
 }

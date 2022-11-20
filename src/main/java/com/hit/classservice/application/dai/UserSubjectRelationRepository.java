@@ -1,5 +1,6 @@
 package com.hit.classservice.application.dai;
 
+import com.hit.classservice.domain.entity.Subject;
 import com.hit.classservice.domain.entity.UserSubjectRelation;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface UserSubjectRelationRepository {
 
   int deleteByUserIdAndSubjectId(String userId, Long subjectId);
 
+  List<Subject> getListSubjectFromUserByUserId(String user_id);
 }

@@ -14,14 +14,48 @@
         </association>
     </resultMap>
 
+    <resultMap id="subjectResultMap" type="com.hit.classservice.domain.entity.Subject">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="name" javaType="java.lang.String">
+            <result column="name"/>
+        </association>
+        <association property="avatar" javaType="java.lang.String">
+            <result column="avatar"/>
+        </association>
+        <association property="description" javaType="java.lang.String">
+            <result column="description"/>
+        </association>
+    </resultMap>
+
     <select id="getListUserSubjectRelationBySubjectId" resultMap="userSubjectRelationResultMap">
         SELECT u.id,
                u.subject_id,
                u.user_id
         FROM user_subject_relation u
         WHERE u.subject_id = #{subjectId}
-            AND u.active_flag = 1
-            AND u.delete_flag = 0;
+          AND u.active_flag = 1
+          AND u.delete_flag = 0;
+    </select>
+
+    <select id="getListSubjectFromUserByUserId" resultMap="subjectResultMap">
+        SELECT
+            s.id,
+            s.name,
+            s.avatar,
+            s.description
+        FROM
+            subject s
+        WHERE
+                s.id IN (
+                SELECT
+                    usr.subject_id
+                FROM
+                    user_subject_relation usr
+                WHERE
+                    usr.user_id = #{user_id}
+            );
     </select>
 
     <delete id="deleteByUserIdAndSubjectId">
@@ -29,7 +63,7 @@
         SET u.delete_flag = 1,
             u.active_flag = 0
         WHERE u.subject_id = #{subjectId}
-            AND u.user_id = #{userId}
+          AND u.user_id = #{userId}
     </delete>
 
 </mapper>

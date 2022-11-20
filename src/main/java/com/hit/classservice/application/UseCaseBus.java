@@ -13,6 +13,7 @@ import com.hit.classservice.application.input.schedule.GetListScheduleInput;
 import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
 import com.hit.classservice.application.input.schedule.UpdateScheduleInput;
 import com.hit.classservice.application.input.subject.*;
+import com.hit.classservice.application.input.user_subject.GetListSubjectFromUserInput;
 import com.hit.classservice.application.input.user_subject.RemoveUserFromSubjectInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
@@ -27,8 +28,10 @@ import com.hit.classservice.application.interator.schedule.GetListScheduleIntera
 import com.hit.classservice.application.interator.schedule.GetScheduleByIdInterator;
 import com.hit.classservice.application.interator.schedule.UpdateScheduleInteractor;
 import com.hit.classservice.application.interator.subject.*;
+import com.hit.classservice.application.interator.user_subject.GetListSubjectFromUserInterator;
 import com.hit.classservice.application.interator.user_subject.RemoveUserFromFromSubjectInteractor;
 import com.hit.classservice.application.output.Output;
+import com.hit.classservice.application.output.user_subject.GetListSubjectFromUserOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -99,6 +102,7 @@ public class UseCaseBus {
 
     //user subject
     handlerTypes.put(RemoveUserFromSubjectInput.class, RemoveUserFromFromSubjectInteractor.class);
+    handlerTypes.put(GetListSubjectFromUserInput.class, GetListSubjectFromUserInterator.class);
 
   }
 
