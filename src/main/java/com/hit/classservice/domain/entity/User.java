@@ -14,6 +14,8 @@ public class User extends AbstractAuditingEntity {
 
   private String id;
 
+  private Long roleId;
+
   private String studentCode;
 
   private String birthday;
@@ -27,6 +29,8 @@ public class User extends AbstractAuditingEntity {
   private String gender;
 
   private String avatar;
+
+  private Integer grade;
 
 }
 

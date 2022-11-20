@@ -14,6 +14,8 @@ import com.hit.classservice.application.input.schedule.GetScheduleByIdInput;
 import com.hit.classservice.application.input.schedule.UpdateScheduleInput;
 import com.hit.classservice.application.input.subject.*;
 import com.hit.classservice.application.input.user_subject.GetListSubjectFromUserInput;
+import com.hit.classservice.application.input.user_subject.GetAllLeaderInput;
+import com.hit.classservice.application.input.user_subject.GetListUserInSubjectInput;
 import com.hit.classservice.application.input.user_subject.RemoveUserFromSubjectInput;
 import com.hit.classservice.application.input_boundary.UseCase;
 import com.hit.classservice.application.interator.category.*;
@@ -29,6 +31,8 @@ import com.hit.classservice.application.interator.schedule.GetScheduleByIdIntera
 import com.hit.classservice.application.interator.schedule.UpdateScheduleInteractor;
 import com.hit.classservice.application.interator.subject.*;
 import com.hit.classservice.application.interator.user_subject.GetListSubjectFromUserInterator;
+import com.hit.classservice.application.interator.user_subject.GetAllLeaderInteractor;
+import com.hit.classservice.application.interator.user_subject.GetListUserInSubjectInteractor;
 import com.hit.classservice.application.interator.user_subject.RemoveUserFromFromSubjectInteractor;
 import com.hit.classservice.application.output.Output;
 import com.hit.classservice.application.output.user_subject.GetListSubjectFromUserOutput;
@@ -103,6 +107,8 @@ public class UseCaseBus {
     //user subject
     handlerTypes.put(RemoveUserFromSubjectInput.class, RemoveUserFromFromSubjectInteractor.class);
     handlerTypes.put(GetListSubjectFromUserInput.class, GetListSubjectFromUserInterator.class);
+    handlerTypes.put(GetAllLeaderInput.class, GetAllLeaderInteractor.class);
+    handlerTypes.put(GetListUserInSubjectInput.class, GetListUserInSubjectInteractor.class);
 
   }
 

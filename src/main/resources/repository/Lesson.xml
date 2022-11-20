@@ -17,6 +17,12 @@
         <association property="expiredTimeHomework" javaType="java.lang.Long">
             <result column="expired_time_homework"/>
         </association>
+        <association property="note" javaType="java.lang.String">
+            <result column="note"/>
+        </association>
+        <association property="mentor" javaType="java.lang.String">
+            <result column="mentor"/>
+        </association>
         <association property="subjectId" javaType="java.lang.Long">
             <result column="subject_id"/>
         </association>
@@ -32,6 +38,8 @@
         SELECT l.id,
                l.name,
                l.content,
+               l.note,
+               l.mentor,
                l.expired_time_homework,
                l.subject_id,
                l.created_by,
@@ -49,7 +57,9 @@
             content = #{item.content},
             expired_time_homework = #{item.expiredTimeHomework},
             last_modified_date = UNIX_TIMESTAMP(NOW()),
-            last_modified_by = #{item.lastModifiedBy}
+            last_modified_by = #{item.lastModifiedBy},
+            note = #{item.note},
+            mentor = #{item.mentor}
         WHERE id = #{item.id};
     </update>
 
@@ -68,7 +78,9 @@
                l.expired_time_homework,
                l.subject_id,
                l.created_by,
-               l.created_date
+               l.created_date,
+               l.note,
+               l.mentor
         FROM lesson l
         WHERE l.id = #{id}
           AND l.active_flag = 1

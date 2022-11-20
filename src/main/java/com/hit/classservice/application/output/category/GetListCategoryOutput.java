@@ -1,6 +1,5 @@
 package com.hit.classservice.application.output.category;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hit.classservice.application.output.Output;
 import com.hit.classservice.application.output.common.PagingMeta;
 import lombok.AllArgsConstructor;

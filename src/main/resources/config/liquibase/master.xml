@@ -10,8 +10,12 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221005230200_v1_create_table_image.xml"
              relativeToChangelogFile="false"/>
+<!--    subject-->
     <include file="config/liquibase/changelog/20221007234700_v1_create_table_subject.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221116215700_v3_update_table_subject.xml"
+             relativeToChangelogFile="false"/>
+
     <include file="config/liquibase/changelog/20221008193000_v1_create_table_user_subject_relation.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221006153700_v1_create_table_document.xml"
@@ -32,6 +36,8 @@
     <!--  lesson  -->
     <include file="config/liquibase/changelog/20221008214000_v1_create_table_lesson.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221118171000_v2_add_column_table_lesson.xml"
+             relativeToChangelogFile="false"/>
 
     <!--  lesson student  -->
     <include file="config/liquibase/changelog/20221008215000_v1_create_table_lesson_student.xml"
@@ -43,6 +49,8 @@
     <include file="config/liquibase/changelog/20221010215500_v1_init_master_data_schedule.xml"
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221111200000_v1_create_table_setting.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221118161500_v2_update_table_setting.xml"
              relativeToChangelogFile="false"/>
 
     <!-- user subject relation -->
