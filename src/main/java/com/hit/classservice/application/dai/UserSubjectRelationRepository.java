@@ -1,5 +1,6 @@
 package com.hit.classservice.application.dai;
 
+import com.hit.classservice.domain.entity.Subject;
 import com.hit.classservice.application.output.common.PagingMeta;
 import com.hit.classservice.domain.dto.UserInSubjectDto;
 import com.hit.classservice.domain.entity.UserSubjectRelation;
@@ -11,6 +12,8 @@ public interface UserSubjectRelationRepository {
   List<UserSubjectRelation> getListUserSubjectRelationBySubjectId(Long subjectId);
 
   int deleteByUserIdAndSubjectId(String userId, Long subjectId);
+
+  List<Subject> getListSubjectFromUserByUserId(String userId);
 
   long countSearchUserInSubject(Long subjectId, String keyword);
 
