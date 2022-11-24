@@ -13,12 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetListSubjectFromUserOutput implements Output {
-  private List<GetSubjectFromUserItemOutput> subjects;
 
-  @Override
-  public String toString() {
-    return "GetListSubjectFromUserOutput{" +
-        "subjects=" + subjects +
-        '}';
-  }
+  private List<GetSubjectFromUserItemOutput> items;
+
 }

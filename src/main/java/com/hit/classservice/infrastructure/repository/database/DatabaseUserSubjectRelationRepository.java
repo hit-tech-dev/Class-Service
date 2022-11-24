@@ -22,7 +22,7 @@ public interface DatabaseUserSubjectRelationRepository extends UserSubjectRelati
   int deleteByUserIdAndSubjectId(@Param("userId") String userId, @Param("subjectId") Long subjectId);
 
   @Override
-  List<Subject> getListSubjectFromUserByUserId(@Param("user_id") String user_id);
+  List<Subject> getListSubjectFromUserByUserId(@Param("userId") String userId);
 
   long countSearchUserInSubject(@Param("subjectId") Long subjectId, @Param("keyword") String keyword);
 

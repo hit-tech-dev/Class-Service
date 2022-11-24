@@ -6,7 +6,6 @@ import com.hit.classservice.application.input_boundary.user_subject.GetListSubje
 import com.hit.classservice.application.mapper.UserSubjectMapper;
 import com.hit.classservice.application.output.user_subject.GetListSubjectFromUserOutput;
 import com.hit.classservice.application.output.user_subject.GetSubjectFromUserItemOutput;
-import com.hit.classservice.domain.entity.Schedule;
 import com.hit.classservice.domain.entity.Subject;
 import lombok.SneakyThrows;
 import org.mapstruct.factory.Mappers;
@@ -17,7 +16,6 @@ import java.util.List;
 
 @Service("getAllSubjectFromUserInterator")
 public class GetListSubjectFromUserInterator implements GetListSubjectFromUserDataCase {
-
   private final UserSubjectRelationRepository repository;
   private final UserSubjectMapper mapper;
 
@@ -26,14 +24,14 @@ public class GetListSubjectFromUserInterator implements GetListSubjectFromUserDa
     this.mapper = Mappers.getMapper(UserSubjectMapper.class);
   }
 
-
   @SneakyThrows
   @Override
   public GetListSubjectFromUserOutput handle(GetListSubjectFromUserInput input) {
-    List<Subject> subjects = repository.getListSubjectFromUserByUserId(input.getUser_id());
+    List<Subject> subjects = repository.getListSubjectFromUserByUserId(input.getUserId());
 
     List<GetSubjectFromUserItemOutput> output = mapper.toGetListSubjectItemOutputs(subjects);
 
     return new GetListSubjectFromUserOutput(output);
   }
+
 }

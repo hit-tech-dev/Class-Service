@@ -106,7 +106,7 @@
         FROM subject s
         WHERE s.id IN (SELECT usr.subject_id
                        FROM user_subject_relation usr
-                       WHERE usr.user_id = #{user_id});
+                       WHERE usr.user_id = #{userId});
     </select>
 
     <delete id="deleteByUserIdAndSubjectId">
@@ -117,60 +117,72 @@
           AND u.user_id = #{userId}
     </delete>
 
-    <select id="countSearchUserInSubject" resultType="java.lang.Long">
-        WITH data_flow_created_by AS (SELECT u.id,
-                                             u.student_code,
-                                             u.birthday,
-                                             u.fullname,
-                                             u.email,
-                                             u.phone,
-                                             u.grade,
-                                             u.gender,
-                                             u.avatar,
-                                             u.created_date,
-                                             r.name AS 'role_name', u2.id AS 'created_by_id', u2.fullname AS 'created_fullname', u2.avatar AS 'created_avatar'
-                                      FROM users u
-                                               INNER JOIN users u2 ON u.created_by = u2.id
-                                               INNER JOIN roles r ON r.id = u.role_id
-                                      WHERE u.delete_flag = 0
-                                        AND u2.delete_flag = 0
-                                        AND r.delete_flag = 0
-                                        AND r.active_flag = 1),
-             data_flow_last_modified_by AS (SELECT u.id,
-                                                   u.student_code,
-                                                   u.birthday,
-                                                   u.fullname,
-                                                   u.email,
-                                                   u.phone,
-                                                   u.grade,
-                                                   u.gender,
-                                                   u.avatar,
-                                                   u.created_date,
-                                                   r.name AS 'role_name', u2.id AS 'last_modified_by_id', u2.fullname AS 'last_modified_fullname', u2.avatar AS 'last_modified_avatar'
-                                            FROM users u
-                                                     INNER JOIN users u2 ON u.last_modified_by = u2.id
-                                                     INNER JOIN roles r ON r.id = u.role_id
-                                            WHERE u.delete_flag = 0
-                                              AND u2.delete_flag = 0
-                                              AND r.delete_flag = 0
-                                              AND r.active_flag = 1),
-             cte_user AS (SELECT data_1.*,
-                                 data_2.last_modified_by_id,
-                                 data_2.last_modified_fullname,
-                                 data_2.last_modified_avatar
-                          FROM data_flow_created_by data_1
-                                   INNER JOIN data_flow_last_modified_by data_2 ON data_1.id = data_2.id)
+        <select id="countSearchUserInSubject" resultType="java.lang.Long">
+        WITH data_flow_created_by AS (
+            SELECT u.id,
+                   u.student_code,
+                   u.birthday,
+                   u.fullname,
+                   u.email,
+                   u.phone,
+                   u.grade,
+                   u.gender,
+                   u.avatar,
+                   u.created_date,
+                   r.name AS 'role_name',
+                    u2.id AS 'created_by_id',
+                    u2.fullname AS 'created_fullname',
+                    u2.avatar AS 'created_avatar'
+            FROM users u
+                 INNER JOIN users u2 ON u.created_by = u2.id
+                 INNER JOIN roles r ON r.id = u.role_id
+            WHERE u.delete_flag = 0
+                AND u2.delete_flag = 0
+                AND r.delete_flag = 0
+                AND r.active_flag = 1
+        ),
+         data_flow_last_modified_by AS (
+             SELECT u.id,
+                    u.student_code,
+                    u.birthday,
+                    u.fullname,
+                    u.email,
+                    u.phone,
+                    u.grade,
+                    u.gender,
+                    u.avatar,
+                    u.created_date,
+                    r.name AS 'role_name',
+                     u2.id AS 'last_modified_by_id',
+                     u2.fullname AS 'last_modified_fullname',
+                     u2.avatar AS 'last_modified_avatar'
+             FROM users u
+                  INNER JOIN users u2 ON u.last_modified_by = u2.id
+                  INNER JOIN roles r ON r.id = u.role_id
+             WHERE u.delete_flag = 0
+                AND u2.delete_flag = 0
+                AND r.delete_flag = 0
+                AND r.active_flag = 1
+         ),
+         cte_user AS (
+             SELECT data_1.*,
+                    data_2.last_modified_by_id,
+                    data_2.last_modified_fullname,
+                    data_2.last_modified_avatar
+             FROM data_flow_created_by data_1
+                  INNER JOIN data_flow_last_modified_by data_2 ON data_1.id = data_2.id
+         )
         SELECT COUNT(1)
         FROM cte_user cu
-                 INNER JOIN user_subject_relation usr ON cu.id = usr.user_id
-                 INNER JOIN subject s ON s.id = usr.subject_id
+             INNER JOIN user_subject_relation usr ON cu.id = usr.user_id
+             INNER JOIN subject s ON s.id = usr.subject_id
         WHERE usr.subject_id = #{subjectId}
-          AND usr.active_flag = 1
-          AND usr.delete_flag = 0
-          AND s.active_flag = 1
-          AND s.delete_flag = 0
-          AND (
-                    cu.student_code LIKE CONCAT('%', #{keyword}, '%')
+            AND usr.active_flag = 1
+            AND usr.delete_flag = 0
+            AND s.active_flag = 1
+            AND s.delete_flag = 0
+            AND (
+                cu.student_code LIKE CONCAT('%', #{keyword}, '%')
                 OR cu.birthday LIKE CONCAT('%', #{keyword}, '%')
                 OR cu.fullname LIKE CONCAT('%', #{keyword}, '%')
                 OR cu.email LIKE CONCAT('%', #{keyword}, '%')
@@ -182,59 +194,71 @@
     </select>
 
     <select id="searchUserInSubject" resultMap="userInSubjectResultMap">
-        WITH data_flow_created_by AS (SELECT u.id,
-                                             u.student_code,
-                                             u.birthday,
-                                             u.fullname,
-                                             u.email,
-                                             u.phone,
-                                             u.grade,
-                                             u.gender,
-                                             u.avatar,
-                                             u.created_date,
-                                             r.name AS 'role_name', u2.id AS 'created_by_id', u2.fullname AS 'created_fullname', u2.avatar AS 'created_avatar'
-                                      FROM users u
-                                               INNER JOIN users u2 ON u.created_by = u2.id
-                                               INNER JOIN roles r ON r.id = u.role_id
-                                      WHERE u.delete_flag = 0
-                                        AND u2.delete_flag = 0
-                                        AND r.delete_flag = 0
-                                        AND r.active_flag = 1),
-             data_flow_last_modified_by AS (SELECT u.id,
-                                                   u.student_code,
-                                                   u.birthday,
-                                                   u.fullname,
-                                                   u.email,
-                                                   u.phone,
-                                                   u.grade,
-                                                   u.gender,
-                                                   u.avatar,
-                                                   u.created_date,
-                                                   r.name AS 'role_name', u2.id AS 'last_modified_by_id', u2.fullname AS 'last_modified_fullname', u2.avatar AS 'last_modified_avatar'
-                                            FROM users u
-                                                     INNER JOIN users u2 ON u.last_modified_by = u2.id
-                                                     INNER JOIN roles r ON r.id = u.role_id
-                                            WHERE u.delete_flag = 0
-                                              AND u2.delete_flag = 0
-                                              AND r.delete_flag = 0
-                                              AND r.active_flag = 1),
-             cte_user AS (SELECT data_1.*,
-                                 data_2.last_modified_by_id,
-                                 data_2.last_modified_fullname,
-                                 data_2.last_modified_avatar
-                          FROM data_flow_created_by data_1
-                                   INNER JOIN data_flow_last_modified_by data_2 ON data_1.id = data_2.id)
+        WITH data_flow_created_by AS (
+            SELECT u.id,
+                   u.student_code,
+                   u.birthday,
+                   u.fullname,
+                   u.email,
+                   u.phone,
+                   u.grade,
+                   u.gender,
+                   u.avatar,
+                   u.created_date,
+                   r.name AS 'role_name',
+                   u2.id AS 'created_by_id',
+                   u2.fullname AS 'created_fullname',
+                   u2.avatar AS 'created_avatar'
+            FROM users u
+                INNER JOIN users u2 ON u.created_by = u2.id
+                INNER JOIN roles r ON r.id = u.role_id
+            WHERE u.delete_flag = 0
+                AND u2.delete_flag = 0
+                AND r.delete_flag = 0
+                AND r.active_flag = 1
+        ),
+         data_flow_last_modified_by AS (
+             SELECT u.id,
+                    u.student_code,
+                    u.birthday,
+                    u.fullname,
+                    u.email,
+                    u.phone,
+                    u.grade,
+                    u.gender,
+                    u.avatar,
+                    u.created_date,
+                    r.name AS 'role_name',
+                    u2.id AS 'last_modified_by_id',
+                    u2.fullname AS 'last_modified_fullname',
+                    u2.avatar AS 'last_modified_avatar'
+             FROM users u
+                INNER JOIN users u2 ON u.last_modified_by = u2.id
+                INNER JOIN roles r ON r.id = u.role_id
+             WHERE u.delete_flag = 0
+                AND u2.delete_flag = 0
+                AND r.delete_flag = 0
+                AND r.active_flag = 1
+         ),
+         cte_user AS (
+             SELECT data_1.*,
+                    data_2.last_modified_by_id,
+                    data_2.last_modified_fullname,
+                    data_2.last_modified_avatar
+             FROM data_flow_created_by data_1
+                INNER JOIN data_flow_last_modified_by data_2 ON data_1.id = data_2.id
+         )
         SELECT cu.*
         FROM cte_user cu
-                 INNER JOIN user_subject_relation usr ON cu.id = usr.user_id
-                 INNER JOIN subject s ON s.id = usr.subject_id
+            INNER JOIN user_subject_relation usr ON cu.id = usr.user_id
+            INNER JOIN subject s ON s.id = usr.subject_id
         WHERE usr.subject_id = #{subjectId}
-          AND usr.active_flag = 1
-          AND usr.delete_flag = 0
-          AND s.active_flag = 1
-          AND s.delete_flag = 0
-          AND (
-                    cu.student_code LIKE CONCAT('%', #{keyword}, '%')
+            AND usr.active_flag = 1
+            AND usr.delete_flag = 0
+            AND s.active_flag = 1
+            AND s.delete_flag = 0
+            AND (
+                cu.student_code LIKE CONCAT('%', #{keyword}, '%')
                 OR cu.birthday LIKE CONCAT('%', #{keyword}, '%')
                 OR cu.fullname LIKE CONCAT('%', #{keyword}, '%')
                 OR cu.email LIKE CONCAT('%', #{keyword}, '%')
@@ -244,8 +268,7 @@
                 OR cu.role_name LIKE CONCAT('%', #{keyword}, '%')
             ) -- filter
         ORDER BY ${meta.sortBy} ${meta.sortType}
-        LIMIT #{meta.limit}
-        OFFSET #{meta.offSet}
+        LIMIT #{meta.limit} OFFSET #{meta.offSet}
     </select>
 
 </mapper>

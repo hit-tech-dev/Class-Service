@@ -13,7 +13,8 @@ public interface UserSubjectRelationRepository {
 
   int deleteByUserIdAndSubjectId(String userId, Long subjectId);
 
-  List<Subject> getListSubjectFromUserByUserId(String user_id);
+  List<Subject> getListSubjectFromUserByUserId(String userId);
+
   long countSearchUserInSubject(Long subjectId, String keyword);
 
   List<UserInSubjectDto> searchUserInSubject(Long subjectId, String keyword, PagingMeta meta);

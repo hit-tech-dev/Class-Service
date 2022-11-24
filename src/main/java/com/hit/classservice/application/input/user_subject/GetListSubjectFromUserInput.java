@@ -12,5 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class GetListSubjectFromUserInput implements Input {
 
-  private String user_id;
+  private String userId;
+
 }
