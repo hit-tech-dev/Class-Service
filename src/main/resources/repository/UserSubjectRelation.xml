@@ -14,6 +14,21 @@
         </association>
     </resultMap>
 
+    <resultMap id="subjectResultMap" type="com.hit.classservice.domain.entity.Subject">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="name" javaType="java.lang.String">
+            <result column="name"/>
+        </association>
+        <association property="avatar" javaType="java.lang.String">
+            <result column="avatar"/>
+        </association>
+        <association property="description" javaType="java.lang.String">
+            <result column="description"/>
+        </association>
+    </resultMap>
+
     <resultMap id="createdByResultMap" type="com.hit.classservice.domain.dto.CreatedByDto">
         <association property="id" javaType="java.lang.String">
             <result column="created_by_id"/>
@@ -68,9 +83,10 @@
         <association property="roleName" javaType="java.lang.String">
             <result column="role_name"/>
         </association>
-        <association property="createdBy" resultMap="createdByResultMap" />
-        <association property="lastModifiedBy" resultMap="lastModifiedByResultMap" />
+        <association property="createdBy" resultMap="createdByResultMap"/>
+        <association property="lastModifiedBy" resultMap="lastModifiedByResultMap"/>
     </resultMap>
+
 
     <select id="getListUserSubjectRelationBySubjectId" resultMap="userSubjectRelationResultMap">
         SELECT u.id,
@@ -82,6 +98,17 @@
           AND u.delete_flag = 0;
     </select>
 
+    <select id="getListSubjectFromUserByUserId" resultMap="subjectResultMap">
+        SELECT s.id,
+               s.name,
+               s.avatar,
+               s.description
+        FROM subject s
+        WHERE s.id IN (SELECT usr.subject_id
+                       FROM user_subject_relation usr
+                       WHERE usr.user_id = #{userId});
+    </select>
+
     <delete id="deleteByUserIdAndSubjectId">
         UPDATE user_subject_relation u
         SET u.delete_flag = 1,
@@ -90,7 +117,7 @@
           AND u.user_id = #{userId}
     </delete>
 
-    <select id="countSearchUserInSubject" resultType="java.lang.Long">
+        <select id="countSearchUserInSubject" resultType="java.lang.Long">
         WITH data_flow_created_by AS (
             SELECT u.id,
                    u.student_code,
