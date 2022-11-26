@@ -21,4 +21,8 @@ public class CreateSubjectInput implements Input {
 
   private Long categoryId;
 
+  private String studyForm;
+
+  private String studyPlace;
+
 }

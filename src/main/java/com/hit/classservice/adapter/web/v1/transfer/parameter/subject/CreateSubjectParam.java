@@ -24,4 +24,8 @@ public class CreateSubjectParam {
 
   private Long categoryId;
 
+  private String studyForm;
+
+  private String studyPlace;
+
 }
