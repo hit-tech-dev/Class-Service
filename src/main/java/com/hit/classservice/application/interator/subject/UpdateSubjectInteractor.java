@@ -2,12 +2,14 @@ package com.hit.classservice.application.interator.subject;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UrlConstant;
 import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.input_boundary.subject.UpdateSubjectDataCase;
 import com.hit.classservice.application.mapper.SubjectMapper;
 import com.hit.classservice.application.output.subject.UpdateSubjectOutput;
+import com.hit.classservice.application.utils.WebClientUtil;
 import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.domain.entity.Subject;
 import lombok.SneakyThrows;
@@ -15,6 +17,8 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedHashMap;
 
 @Service("ApplicationUpdateSubjectInteractor")
 public class UpdateSubjectInteractor implements UpdateSubjectDataCase {
@@ -41,12 +45,17 @@ public class UpdateSubjectInteractor implements UpdateSubjectDataCase {
     if (ObjectUtils.isNotEmpty(oldSubjectByName) && !input.getId().equals(oldSubjectByName.getId()))
       return new UpdateSubjectOutput(CommonConstant.FALSE,
           String.format(DevMessageConstant.Subject.DUPLICATE_NAME, input.getName()));
+    // Get path image
+    LinkedHashMap<String, Object> res = (LinkedHashMap<String, Object>)
+        WebClientUtil.uploadFile(UrlConstant.UriConstant.UPLOAD_IMAGE_FILE,
+            input.getFile(), Object.class).block();
 
-    oldSubject.setName(input.getName());
-    oldSubject.setAvatar(input.getAvatar());
-    oldSubject.setDescription(input.getDescription());
-    oldSubject.setStudyForm(input.getStudyForm());
-    oldSubject.setStudyPlace(input.getStudyPlace());
+    LinkedHashMap<String, Object> resData = (LinkedHashMap<String, Object>) res.get("data");
+    String pathFile = resData.get("pathImage").toString();
+
+    // Save subject
+    oldSubject = subjectMapper.toSubject(input);
+    oldSubject.setAvatar(pathFile);
     subjectRepository.update(oldSubject);
     return new UpdateSubjectOutput(CommonConstant.TRUE, "Update successful");
   }

@@ -37,9 +37,18 @@ public interface SubjectMapper {
   GetSubjectOutput toGetSubjectOutput(Subject subject);
 
   @Mappings({
+      @Mapping(target = "id", source = "input.id"),
+      @Mapping(target = "name", source = "input.name"),
+      @Mapping(target = "description", source = "input.description"),
+      @Mapping(target = "studyForm", source = "input.studyForm"),
+      @Mapping(target = "studyPlace", source = "input.studyPlace")
+  })
+  Subject toSubject(UpdateSubjectInput input);
+
+  @Mappings({
       @Mapping(target = "id", source = "parameter.id"),
       @Mapping(target = "name", source = "parameter.name"),
-      @Mapping(target = "avatar", source = "parameter.avatar"),
+      @Mapping(target = "file", source = "parameter.file"),
       @Mapping(target = "description", source = "parameter.description")
   })
   UpdateSubjectInput toUpdateSubjectInput(UpdateSubjectParameter parameter);
