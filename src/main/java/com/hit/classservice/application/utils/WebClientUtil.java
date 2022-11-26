@@ -1,6 +1,5 @@
 package com.hit.classservice.application.utils;
 
-import com.hit.classservice.application.output.file.UploadImageOutput;
 import com.hit.classservice.config.exception.VsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,18 +22,6 @@ public class WebClientUtil {
         .uri(uri)
         .retrieve()
         .bodyToMono(clazz);
-  }
-
-  public static UploadImageOutput uploadImage(String uri, MultipartFile file, Class<?> clazz) {
-    MultipartBodyBuilder builder = new MultipartBodyBuilder();
-    builder.part("file", file.getResource());
-    return webClient.post()
-        .uri(uri)
-        .contentType(MediaType.MULTIPART_FORM_DATA)
-        .body(BodyInserters.fromMultipartData(builder.build()))
-        .retrieve()
-        .bodyToMono(UploadImageOutput.class)
-        .block();
   }
 
   public static Mono<?> uploadFile(String uri, MultipartFile file, Class<?> clazz) {
