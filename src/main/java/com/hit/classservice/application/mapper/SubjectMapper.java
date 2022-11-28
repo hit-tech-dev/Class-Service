@@ -9,7 +9,6 @@ import com.hit.classservice.application.input.subject.UpdateSubjectInput;
 import com.hit.classservice.application.output.subject.GetListSubjectItemOutput;
 import com.hit.classservice.application.output.subject.GetSubjectOutput;
 import com.hit.classservice.application.output.user_subject.GetAllLeaderItemOutput;
-import com.hit.classservice.application.output.user_subject.GetAllLeaderOutput;
 import com.hit.classservice.domain.dto.SubjectDto;
 import com.hit.classservice.domain.dto.UserDto;
 import com.hit.classservice.domain.entity.Subject;
@@ -48,9 +47,13 @@ public interface SubjectMapper {
       @Mapping(target = "name", source = "createSubjectParam.name"),
       @Mapping(target = "file", source = "createSubjectParam.file"),
       @Mapping(target = "description", source = "createSubjectParam.description"),
-      @Mapping(target = "categoryId", source = "createSubjectParam.categoryId")})
+      @Mapping(target = "categoryId", source = "createSubjectParam.categoryId"),
+      @Mapping(target = "studyForm", source = "createSubjectParam.studyForm"),
+      @Mapping(target = "studyPlace", source = "createSubjectParam.studyPlace")})
   CreateSubjectInput toCreateSubjectInput(CreateSubjectParam createSubjectParam);
 
   GetListSubjectInput toGetListSubjectInput(PagingMetaParameter parameter);
+
+  Subject toSubject(CreateSubjectInput input);
 
 }
