@@ -38,24 +38,23 @@ public class CommentController {
   }
 
   /**
-   * @param lessonId
-   * @return
-   * @throws Exception
+   * @param lessonId Long
+   * @return ResponseEntity<?>
    */
   @Operation(summary = "API get list parent comment by Lesson")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Found the comment",
           content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
               schema = @Schema(implementation = GetParentCommentsByLessonOutput.class))
-      }),
+          }),
       @ApiResponse(responseCode = "500", description = "lessonId not exist", content = {
           @Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
               schema = @Schema(implementation = RestData.class))
       })
   })
   @GetMapping(UrlConstant.Comment.GET_PARENT_BY_LESSON)
-  public ResponseEntity<?> getParentCommentsByLesson(@Parameter(required = true, name = "lessonId", description = "Id of lesson")
-                                                     @PathVariable Long lessonId) throws Exception {
+  public ResponseEntity<?> getParentCommentsByLesson(
+      @Parameter(required = true, name = "lessonId", description = "Id of lesson") @PathVariable Long lessonId) throws Exception {
     // Create input
     GetParentCommentsByLessonInput input = new GetParentCommentsByLessonInput(lessonId);
     // Get output
@@ -65,10 +64,9 @@ public class CommentController {
   }
 
   /**
-   * @param lessonId
-   * @param parentId
-   * @return
-   * @throws Exception
+   * @param lessonId Long
+   * @param parentId Long
+   * @return ResponseEntity<?>
    */
   @Operation(summary = "API get list children comment by Lesson")
   @ApiResponses(value = {
@@ -82,10 +80,10 @@ public class CommentController {
       })
   })
   @GetMapping(UrlConstant.Comment.GET_CHILDREN_BY_LESSON)
-  public ResponseEntity<?> getChildrenCommentsByLesson(@Parameter(required = true, name = "lessonId", description = "Id of lesson")
-                                                       @PathVariable Long lessonId,
-                                                       @Parameter(required = true, name = "parentId", description = "Id of parent comment")
-                                                       @PathVariable Long parentId) throws Exception {
+  public ResponseEntity<?> getChildrenCommentsByLesson(
+      @Parameter(required = true, name = "lessonId", description = "Id of lesson") @PathVariable Long lessonId,
+      @Parameter(required = true, name = "parentId", description = "Id of parent comment")
+      @PathVariable Long parentId) throws Exception {
     // Create input
     GetChildrenCommentsByLessonInput input = new GetChildrenCommentsByLessonInput(lessonId, parentId);
     // Get output
@@ -95,9 +93,8 @@ public class CommentController {
   }
 
   /**
-   * @param parameter
-   * @return
-   * @throws Exception
+   * @param parameter CreateParentCommentForLessonParameter
+   * @return ResponseEntity<?>
    */
   @Operation(summary = "API create new comment by Lesson")
   @ApiResponses(value = {
@@ -115,13 +112,12 @@ public class CommentController {
     // Get output
     CreateParentCommentForLessonOutput output = useCaseBus.handle(input);
     // Return output
-    return VsResponseUtil.ok(this.responseHeader.postHeader(), output);
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
   /**
-   * @param parameter
-   * @return
-   * @throws Exception
+   * @param parameter CreateChildrenCommentForLessonParameter
+   * @return ResponseEntity<?>
    */
   @Operation(summary = "API reply comment by Lesson")
   @ApiResponses(value = {
@@ -139,13 +135,12 @@ public class CommentController {
     // Get output
     CreateChildrenCommentForLessonOutput output = useCaseBus.handle(input);
     // Return output
-    return VsResponseUtil.ok(this.responseHeader.postHeader(), output);
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
   /**
-   * @param parameter
-   * @return
-   * @throws Exception
+   * @param parameter CreateParentCommentForLessonStudentParameter
+   * @return ResponseEntity<?>
    */
   @Operation(summary = "API create new comment by Lesson Student")
   @ApiResponses(value = {
@@ -164,13 +159,12 @@ public class CommentController {
     // Get output
     CreateParentCommentForLessonStudentOutput output = useCaseBus.handle(input);
     // Return output
-    return VsResponseUtil.ok(this.responseHeader.postHeader(), output);
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
   /**
-   * @param parameter
-   * @return
-   * @throws Exception
+   * @param parameter CreateChildrenCommentForLessonStudentParameter
+   * @return ResponseEntity<?>
    */
   @Operation(summary = "API reply comment by Lesson Student")
   @ApiResponses(value = {
@@ -189,13 +183,12 @@ public class CommentController {
     // Get output
     CreateChildrenCommentForLessonStudentOutput output = useCaseBus.handle(input);
     // Return output
-    return VsResponseUtil.ok(this.responseHeader.postHeader(), output);
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
   /**
-   * @param parameter
-   * @return
-   * @throws Exception
+   * @param parameter EditCommentParameter
+   * @return ResponseEntity<?>
    */
   @Operation(summary = "API update comment")
   @ApiResponses(value = {
@@ -218,13 +211,12 @@ public class CommentController {
     EditCommentOutput output = useCaseBus.handle(input);
 
     // Return output
-    return VsResponseUtil.ok(this.responseHeader.putHeader(), output);
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
   /**
-   * @param id
-   * @return
-   * @throws Exception
+   * @param id Long
+   * @return ResponseEntity<?>
    */
   @Operation(summary = "API delete comment")
   @ApiResponses(value = {
@@ -246,6 +238,7 @@ public class CommentController {
     // Get output
     DeleteCommentOutput output = useCaseBus.handle(input);
     // Return output
-    return VsResponseUtil.ok(this.responseHeader.deleteHeader(), output);
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
+
 }

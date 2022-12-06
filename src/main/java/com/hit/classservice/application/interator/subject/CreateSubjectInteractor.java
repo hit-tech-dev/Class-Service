@@ -2,30 +2,38 @@ package com.hit.classservice.application.interator.subject;
 
 import com.hit.classservice.application.constant.CommonConstant;
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.UriConstant;
 import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.CategoryRepository;
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.input.subject.CreateSubjectInput;
 import com.hit.classservice.application.input_boundary.subject.CreateSubjectDataCase;
+import com.hit.classservice.application.mapper.SubjectMapper;
 import com.hit.classservice.application.output.subject.CreateSubjectOutput;
-import com.hit.classservice.application.utils.FileUtil;
+import com.hit.classservice.application.utils.WebClientUtil;
 import com.hit.classservice.config.exception.NotFoundException;
 import com.hit.classservice.domain.entity.Category;
 import com.hit.classservice.domain.entity.Subject;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedHashMap;
 
 @Service("ApplicationCreateSubjectInteractor")
 public class CreateSubjectInteractor implements CreateSubjectDataCase {
   private final SubjectRepository subjectRepository;
   private final CategoryRepository categoryRepository;
+  private final SubjectMapper subjectMapper;
 
   public CreateSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository,
-                                 @Qualifier("DatabaseCategoryRepository") CategoryRepository categoryRepository) {
+                                 @Qualifier("DatabaseCategoryRepository") CategoryRepository categoryRepository,
+                                 SubjectMapper subjectMapper) {
     this.subjectRepository = subjectRepository;
     this.categoryRepository = categoryRepository;
+    this.subjectMapper = Mappers.getMapper(SubjectMapper.class);
   }
 
   @SneakyThrows
@@ -42,9 +50,20 @@ public class CreateSubjectInteractor implements CreateSubjectDataCase {
       return new CreateSubjectOutput(CommonConstant.FALSE, String.format(DevMessageConstant.Subject.DUPLICATE_NAME,
           input.getName()));
     }
-    Subject subject = new Subject(input.getName(), FileUtil.uploadFile(input.getFile()),
-        input.getDescription(), input.getCategoryId());
+
+    // Get path image
+    LinkedHashMap<String, Object> res = (LinkedHashMap<String, Object>)
+        WebClientUtil.uploadFile(UriConstant.UPLOAD_IMAGE_FILE,
+            input.getFile(), Object.class).block();
+
+    LinkedHashMap<String, Object> resData = (LinkedHashMap<String, Object>) res.get("data");
+    String pathFile = resData.get("pathImage").toString();
+
+    // Save subject
+    Subject subject = subjectMapper.toSubject(input);
+    subject.setAvatar(pathFile);
     subjectRepository.save(subject);
+
     return new CreateSubjectOutput(CommonConstant.TRUE, CommonConstant.EMPTY_STRING);
   }
 
