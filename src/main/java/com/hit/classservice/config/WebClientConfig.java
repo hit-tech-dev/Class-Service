@@ -16,9 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class WebClientConfig {
-
-  private static final String BASE_URL = "https://localhost:6611";
   public static final int TIMEOUT = 5000;
+  private static final String BASE_URL = "https://localhost:6611";
 
   @Bean
   public static WebClient webClient() {
@@ -35,4 +34,5 @@ public class WebClientConfig {
         .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .build();
   }
+
 }

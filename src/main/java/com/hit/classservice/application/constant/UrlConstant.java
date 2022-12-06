@@ -120,4 +120,9 @@ public class UrlConstant {
     }
   }
 
+  public static final class UriConstant {
+
+    public static final String UPLOAD_IMAGE_FILE = "http://localhost:6614/file/api/v1/upload/image";
+  }
+
 }

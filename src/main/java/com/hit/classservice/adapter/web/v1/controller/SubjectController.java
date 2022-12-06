@@ -102,8 +102,7 @@ public class SubjectController {
       })
   })
   @PatchMapping(UrlConstant.Subject.UPDATE)
-  public ResponseEntity<?> updateSubject(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Body of request to update subject")
-                                         @Valid @RequestBody UpdateSubjectParameter parameter) throws Exception {
+  public ResponseEntity<?> updateSubject(@Valid UpdateSubjectParameter parameter) throws Exception {
     // Create input
     UpdateSubjectInput input = subjectMapper.toUpdateSubjectInput(parameter);
     // Get output
