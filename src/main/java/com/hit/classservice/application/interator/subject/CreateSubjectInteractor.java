@@ -29,8 +29,7 @@ public class CreateSubjectInteractor implements CreateSubjectDataCase {
   private final SubjectMapper subjectMapper;
 
   public CreateSubjectInteractor(@Qualifier("DatabaseSubjectRepository") SubjectRepository subjectRepository,
-                                 @Qualifier("DatabaseCategoryRepository") CategoryRepository categoryRepository,
-                                 SubjectMapper subjectMapper) {
+                                 @Qualifier("DatabaseCategoryRepository") CategoryRepository categoryRepository) {
     this.subjectRepository = subjectRepository;
     this.categoryRepository = categoryRepository;
     this.subjectMapper = Mappers.getMapper(SubjectMapper.class);

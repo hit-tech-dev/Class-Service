@@ -28,6 +28,33 @@
         </association>
     </resultMap>
 
+    <resultMap id="subjectCustomDTOResultMap" type="com.hit.classservice.domain.dto.SubjectCustomDTO">
+        <association property="id" javaType="java.lang.Long">
+            <result column="id"/>
+        </association>
+        <association property="name" javaType="java.lang.String">
+            <result column="name"/>
+        </association>
+        <association property="avatar" javaType="java.lang.String">
+            <result column="avatar"/>
+        </association>
+        <association property="description" javaType="java.lang.String">
+            <result column="description"/>
+        </association>
+        <association property="studyForm" javaType="java.lang.String">
+            <result column="study_form"/>
+        </association>
+        <association property="studyPlace" javaType="java.lang.String">
+            <result column="study_place"/>
+        </association>
+        <association property="totalStudent" javaType="java.lang.String">
+            <result column="totalStudent"/>
+        </association>
+        <association property="timeDetail" javaType="java.lang.String">
+            <result column="time_detail"/>
+        </association>
+    </resultMap>
+
     <resultMap id="createdByResultMap" type="com.hit.classservice.domain.dto.CreatedByDto">
         <association property="id" javaType="java.lang.String">
             <result column="created_by"/>
@@ -198,6 +225,52 @@
         LIMIT #{meta.limit} OFFSET #{meta.offSet}
     </select>
 
+    <select id="getListSubjectIsLeader" resultMap="subjectCustomDTOResultMap">
+        SELECT s.id,
+               s.name,
+               s.avatar,
+               s.description,
+               COUNT(user_id) AS 'totalStudent',
+                s.study_form,
+               s.study_place,
+               schedule.time_detail
+        FROM subject s
+                 LEFT JOIN subject_schedule_relation ssr ON ssr.subject_id = s.id
+                 LEFT JOIN schedule ON schedule.id = ssr.schedule_id
+                 LEFT JOIN user_subject_relation usr ON usr.subject_id = s.id
+        WHERE usr.is_leader = #{isLeader}
+          AND usr.user_id = #{userId}
+        GROUP BY s.id,
+                 s.name,
+                 s.avatar,
+                 s.description,
+                 s.study_form,
+                 s.study_place,
+                 schedule.time_detail
+    </select>
+
+    <select id="getListSubjectByCategoryId" resultMap="subjectCustomDTOResultMap">
+        SELECT s.id,
+               s.name,
+               s.avatar,
+               s.description,
+               COUNT(user_id) AS 'totalStudent', s.study_form,
+               s.study_place,
+               schedule.time_detail
+        FROM subject s
+                 LEFT JOIN subject_schedule_relation ssr ON ssr.subject_id = s.id
+                 LEFT JOIN schedule ON schedule.id = ssr.schedule_id
+                 LEFT JOIN user_subject_relation usr ON usr.subject_id = s.id
+        WHERE s.category_id = #{categoryId}
+        GROUP BY s.id,
+                 s.name,
+                 s.avatar,
+                 s.description,
+                 s.study_form,
+                 s.study_place,
+                 schedule.time_detail
+    </select>
+
     <select id="findById" resultMap="subjectResultMap">
         SELECT s.id,
                s.name,
@@ -260,10 +333,12 @@
     </delete>
 
     <insert id="save" parameterType="com.hit.classservice.domain.entity.Subject">
-        INSERT INTO subject(`name`, avatar, description, category_id, study_form, study_place,  delete_flag, active_flag, created_date, created_by,
+        INSERT INTO subject(`name`, avatar, description, category_id, study_form, study_place, delete_flag, active_flag,
+                            created_date, created_by,
                             last_modified_date, last_modified_by)
         VALUES (#{item.name}, #{item.avatar},
-                #{item.description}, #{item.categoryId}, #{item.studyForm}, #{item.studyPlace}, b'0', b'1', UNIX_TIMESTAMP(NOW()), #{item.createdBy},
+                #{item.description}, #{item.categoryId}, #{item.studyForm}, #{item.studyPlace}, b'0', b'1',
+                UNIX_TIMESTAMP(NOW()), #{item.createdBy},
                 UNIX_TIMESTAMP(NOW()),
                 #{item.lastModifiedBy})
     </insert>

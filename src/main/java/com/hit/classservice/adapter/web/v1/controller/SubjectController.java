@@ -60,6 +60,22 @@ public class SubjectController {
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 
+  @Operation(summary = "Api get list subject detail")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Found the subjects",
+          content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = GetListSubjectDetailOutput.class))})
+  })
+  @GetMapping(UrlConstant.Subject.LIST_DETAIL)
+  public ResponseEntity<?> getAllSubjectDetail() throws Exception {
+    // Create input
+    GetListSubjectDetailInput input = new GetListSubjectDetailInput();
+    // Get output
+    GetListSubjectDetailOutput output = useCaseBus.handle(input);
+    // Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
   /**
    * @param id Long
    * @return ResponseEntity<?>
