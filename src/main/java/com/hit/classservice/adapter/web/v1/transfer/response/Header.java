@@ -7,61 +7,16 @@ import org.springframework.stereotype.Component;
 public class Header implements ResponseHeader {
 
   /**
-   * method GET: 基本ヘッダー
-   *
    * @return HttpHeaders
    */
   @Override
   public HttpHeaders getHeader() {
     // ヘッダー作成
-    HttpHeaders headers = buildHeaderCommon();
-    headers.add("Access-Control-Allow-Methods", "GET,OPTIONS");
-    return headers;
-  }
-
-  /**
-   * method POST: 基本ヘッダー
-   *
-   * @return HttpHeaders
-   */
-  @Override
-  public HttpHeaders postHeader() {
-    // ヘッダー作成
-    HttpHeaders headers = buildHeaderCommon();
-    headers.add("Access-Control-Allow-Methods", "POST,OPTIONS");
-    return headers;
-  }
-
-  /**
-   * method PUT: 基本ヘッダー
-   *
-   * @return HttpHeaders
-   */
-  @Override
-  public HttpHeaders putHeader() {
-    // ヘッダー作成
-    HttpHeaders headers = buildHeaderCommon();
-    headers.add("Access-Control-Allow-Methods", "PUT,OPTIONS");
-    return headers;
-  }
-
-  /**
-   * method DELETE: 基本ヘッダー
-   *
-   * @return HttpHeaders
-   */
-  @Override
-  public HttpHeaders deleteHeader() {
-    // ヘッダー作成
-    HttpHeaders headers = buildHeaderCommon();
-    headers.add("Access-Control-Allow-Methods", "DELETE,OPTIONS");
-    return headers;
+    return buildHeaderCommon();
   }
 
   private HttpHeaders buildHeaderCommon() {
     HttpHeaders headers = new HttpHeaders();
-    headers.add("Access-Control-Allow-Origin", "*");
-    headers.add("Access-Control-Allow-Headers", "X-From, Authorization, Content-Type, X-Authorization");
     headers.add("Expires", "Mon, 26 Jul 1997 05:00:00 GMT");
     headers.add("Cache-Control", "no-cache=\"set-cookie\"");
     headers.add("Content-type", "application/json; charset=utf-8");

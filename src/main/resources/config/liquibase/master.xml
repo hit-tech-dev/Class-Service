@@ -57,4 +57,7 @@
     <include file="config/liquibase/changelog/20221104122600_v2_update_table_user_subject_relation.xml"
              relativeToChangelogFile="false"/>
 
+    <include file="config/liquibase/changelog/20221124214000_v4_update_table_subject.xml"
+             relativeToChangelogFile="false"/>
+
 </databaseChangeLog>

@@ -265,8 +265,8 @@
         SET `name`             = #{item.name},
             avatar             = #{item.avatar},
             description        = #{item.description},
-            study_form         = #{item.study_form},
-            study_place        = #{item.study_place},
+            study_form         = #{item.studyForm},
+            study_place        = #{item.studyPlace},
             last_modified_date = UNIX_TIMESTAMP(NOW()),
             last_modified_by   = #{item.lastModifiedBy}
         WHERE id = #{item.id};
