@@ -2,8 +2,10 @@ package com.hit.classservice.application.dai;
 
 import com.hit.classservice.application.output.common.PagingMeta;
 import com.hit.classservice.domain.dto.CategoryDto;
+import com.hit.classservice.domain.dto.ScheduleDto;
 import com.hit.classservice.domain.dto.SubjectDto;
 import com.hit.classservice.domain.dto.UserDto;
+import com.hit.classservice.domain.entity.Schedule;
 import com.hit.classservice.domain.entity.Subject;
 import com.hit.classservice.domain.entity.User;
 
@@ -26,5 +28,9 @@ public interface SubjectRepository {
   int save(Subject subject);
 
   List<UserDto> getAllLeader(Long subjectId);
+
+  long countStudentSubject(Long id);
+
+  ScheduleDto getTimeSubject(Long id);
 
 }
