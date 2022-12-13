@@ -5,6 +5,7 @@ import com.hit.classservice.application.input.category.*;
 import com.hit.classservice.application.input.comment.*;
 import com.hit.classservice.application.input.lesson.*;
 import com.hit.classservice.application.input.lesson_student.CreateLessonStudentInput;
+import com.hit.classservice.application.input.lesson_student.CreateTicketCheckAttendanceInput;
 import com.hit.classservice.application.input.notification.*;
 import com.hit.classservice.application.input.role.GetListRoleInput;
 import com.hit.classservice.application.input.role.GetRoleInput;
@@ -22,6 +23,7 @@ import com.hit.classservice.application.interator.category.*;
 import com.hit.classservice.application.interator.comment.*;
 import com.hit.classservice.application.interator.lesson.*;
 import com.hit.classservice.application.interator.lesson_student.CreateLessonStudentInteractor;
+import com.hit.classservice.application.interator.lesson_student.CreateTicketCheckInteractor;
 import com.hit.classservice.application.interator.notification.*;
 import com.hit.classservice.application.interator.role.GetListRoleInterator;
 import com.hit.classservice.application.interator.role.GetRoleInteractor;
@@ -103,6 +105,7 @@ public class UseCaseBus {
 
     //lesson student
     handlerTypes.put(CreateLessonStudentInput.class, CreateLessonStudentInteractor.class);
+    handlerTypes.put(CreateTicketCheckAttendanceInput.class , CreateTicketCheckInteractor.class);
 
     //user subject
     handlerTypes.put(RemoveUserFromSubjectInput.class, RemoveUserFromFromSubjectInteractor.class);

@@ -12,4 +12,6 @@ public interface LessonStudentRepository {
 
   List<LessonStudent> getListLessonStudentByLessonId(Long lessonId);
 
+  int update(LessonStudent lessonStudent);
+
 }

@@ -105,6 +105,7 @@ public class UrlConstant {
   public static final class LessonStudent {
     private static final String PREFIX = "/lesson-student";
     public static final String CREATE = PREFIX;
+    public static final String UPDATE = PREFIX;
 
     private LessonStudent() {
     }

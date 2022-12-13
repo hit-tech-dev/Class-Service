@@ -21,4 +21,9 @@ public interface DatabaseLessonStudentRepository extends LessonStudentRepository
   @Override
   List<LessonStudent> getListLessonStudentByLessonId(@Param("lessonId") Long lessonId);
 
+
+  @Override
+  int update(@Param("item") LessonStudent lessonStudent);
+
+
 }
