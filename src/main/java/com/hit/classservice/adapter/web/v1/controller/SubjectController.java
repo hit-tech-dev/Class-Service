@@ -44,6 +44,22 @@ public class SubjectController {
   /**
    * @return ResponseEntity<?>
    */
+//  @Operation(summary = "Api get list subject")
+//  @ApiResponses(value = {
+//      @ApiResponse(responseCode = "200", description = "Found the subjects",
+//          content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+//              schema = @Schema(implementation = GetListSubjectOutput.class))})
+//  })
+//  @GetMapping(UrlConstant.Subject.LIST)
+//  public ResponseEntity<?> getAllSubject(@Valid PagingMetaParameter parameter) throws Exception {
+//    // Create input
+//    GetListSubjectInput input = subjectMapper.toGetListSubjectInput(parameter);
+//    // Get output
+//    GetListSubjectOutput output = useCaseBus.handle(input);
+//    // Return output
+//    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+//  }
+
   @Operation(summary = "Api get list subject")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Found the subjects",
@@ -51,22 +67,6 @@ public class SubjectController {
               schema = @Schema(implementation = GetListSubjectOutput.class))})
   })
   @GetMapping(UrlConstant.Subject.LIST)
-  public ResponseEntity<?> getAllSubject(@Valid PagingMetaParameter parameter) throws Exception {
-    // Create input
-    GetListSubjectInput input = subjectMapper.toGetListSubjectInput(parameter);
-    // Get output
-    GetListSubjectOutput output = useCaseBus.handle(input);
-    // Return output
-    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
-  }
-
-  @Operation(summary = "Api get list subject detail")
-  @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "Found the subjects",
-          content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
-              schema = @Schema(implementation = GetListSubjectDetailOutput.class))})
-  })
-  @GetMapping(UrlConstant.Subject.LIST_DETAIL)
   public ResponseEntity<?> getAllSubjectDetail() throws Exception {
     // Create input
     GetListSubjectDetailInput input = new GetListSubjectDetailInput();

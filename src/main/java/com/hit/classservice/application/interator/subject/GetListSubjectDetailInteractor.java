@@ -38,10 +38,11 @@ public class GetListSubjectDetailInteractor implements GetListSubjectDetailDataC
 
   @Override
   public GetListSubjectDetailOutput handle(GetListSubjectDetailInput input) throws Exception {
+    String currentUserLogin = SecurityUtil.getCurrentUserLogin();
     JSONObject results = new JSONObject();
 
-    results.put("mySubjectManagement", subjectRepository.getListSubjectIsLeader(true, SecurityUtil.getCurrentUserLogin()));
-    results.put("mySubject", subjectRepository.getListSubjectIsLeader(false, SecurityUtil.getCurrentUserLogin()));
+    results.put("mySubjectManagement", subjectRepository.getListSubjectIsLeader(true, currentUserLogin));
+    results.put("mySubject", subjectRepository.getListSubjectIsLeader(false, currentUserLogin));
 
     JSONArray lstSubject = new JSONArray();
     List<Category> categories = categoryRepository.getAllCategory();

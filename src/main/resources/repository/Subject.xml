@@ -230,15 +230,16 @@
                s.name,
                s.avatar,
                s.description,
-               COUNT(user_id) AS 'totalStudent',
-                s.study_form,
+               COUNT(user_id) AS 'totalStudent', s.study_form,
                s.study_place,
                schedule.time_detail
         FROM subject s
                  LEFT JOIN subject_schedule_relation ssr ON ssr.subject_id = s.id
                  LEFT JOIN schedule ON schedule.id = ssr.schedule_id
                  LEFT JOIN user_subject_relation usr ON usr.subject_id = s.id
-        WHERE usr.is_leader = #{isLeader}
+        WHERE s.active_flag = 1
+          AND s.delete_flag = 0
+          AND usr.is_leader = #{isLeader}
           AND usr.user_id = #{userId}
         GROUP BY s.id,
                  s.name,
@@ -261,7 +262,9 @@
                  LEFT JOIN subject_schedule_relation ssr ON ssr.subject_id = s.id
                  LEFT JOIN schedule ON schedule.id = ssr.schedule_id
                  LEFT JOIN user_subject_relation usr ON usr.subject_id = s.id
-        WHERE s.category_id = #{categoryId}
+        WHERE s.active_flag = 1
+          AND s.delete_flag = 0
+          AND s.category_id = #{categoryId}
         GROUP BY s.id,
                  s.name,
                  s.avatar,

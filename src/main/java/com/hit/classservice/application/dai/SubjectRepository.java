@@ -17,7 +17,7 @@ public interface SubjectRepository {
 
   List<SubjectDto> searchSubject(String keyword, PagingMeta meta);
 
-  List<SubjectCustomDTO> getListSubjectIsLeader(@Param("isLeader") Boolean isLeader, String userId);
+  List<SubjectCustomDTO> getListSubjectIsLeader(@Param("isLeader") Boolean isLeader, @Param("userId") String userId);
 
   List<SubjectCustomDTO> getListSubjectByCategoryId(@Param("categoryId") Long categoryId);
 

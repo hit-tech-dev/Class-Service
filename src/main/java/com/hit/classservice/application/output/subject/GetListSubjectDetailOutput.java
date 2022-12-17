@@ -19,6 +19,6 @@ import java.util.Map;
 @AllArgsConstructor
 public class GetListSubjectDetailOutput implements Output {
 
-  JSONObject results;
+  private JSONObject results;
 
 }
