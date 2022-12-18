@@ -27,9 +27,9 @@ public interface SubjectRepository {
 
   int save(Subject subject);
 
-  List<UserDto> getAllLeader(Long subjectId);
+  List<UserDto> getAllLeader(Long subjectId, String role);
 
-  long countStudentSubject(Long id);
+  long countStudentSubject(Long id, String role);
 
   ScheduleDto getTimeSubject(Long id);
 

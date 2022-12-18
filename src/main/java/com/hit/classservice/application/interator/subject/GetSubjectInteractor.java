@@ -1,6 +1,7 @@
 package com.hit.classservice.application.interator.subject;
 
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.RoleConstant;
 import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.input.subject.GetSubjectInput;
@@ -38,12 +39,12 @@ public class GetSubjectInteractor implements GetSubjectDatacase {
 
     GetSubjectOutput output = subjectMapper.toGetSubjectOutput(subject);
 
-    output.setLeaders(subjectRepository.getAllLeader(input.getId()));
+    output.setLeaders(subjectRepository.getAllLeader(input.getId(), RoleConstant.ROLE_LEADER));
     JSONObject json = new JSONObject();
     json.put("avatar", subject.getAvatar());
     json.put("description", subject.getDescription());
     json.put("form", subject.getStudyForm());
-    json.put("totalStudent", subjectRepository.countStudentSubject(input.getId()));
+    json.put("totalStudent", subjectRepository.countStudentSubject(input.getId(), RoleConstant.ROLE_STUDENT));
 
     ScheduleDto scheduleDto = subjectRepository.getTimeSubject(input.getId());
     json.put("time", scheduleDto.getTime());

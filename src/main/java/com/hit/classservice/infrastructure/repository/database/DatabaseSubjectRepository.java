@@ -39,10 +39,10 @@ public interface DatabaseSubjectRepository extends SubjectRepository {
   int save(@Param("item") Subject subject);
 
   @Override
-  List<UserDto> getAllLeader(@Param("id") Long subjectId);
+  List<UserDto> getAllLeader(@Param("id") Long subjectId, @Param("role") String role);
 
   @Override
-  long countStudentSubject(@Param("id") Long subjectId);
+  long countStudentSubject(@Param("id") Long subjectId, @Param("role") String role);
 
   @Override
   ScheduleDto getTimeSubject(@Param("id") Long subjectId);
