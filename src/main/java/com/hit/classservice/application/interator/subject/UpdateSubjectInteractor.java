@@ -45,17 +45,20 @@ public class UpdateSubjectInteractor implements UpdateSubjectDataCase {
     if (ObjectUtils.isNotEmpty(oldSubjectByName) && !input.getId().equals(oldSubjectByName.getId()))
       return new UpdateSubjectOutput(CommonConstant.FALSE,
           String.format(DevMessageConstant.Subject.DUPLICATE_NAME, input.getName()));
-    // Get path image
-    LinkedHashMap<String, Object> res = (LinkedHashMap<String, Object>)
-        WebClientUtil.uploadFile(UrlConstant.UriConstant.UPLOAD_IMAGE_FILE,
-            input.getFile(), Object.class).block();
 
-    LinkedHashMap<String, Object> resData = (LinkedHashMap<String, Object>) res.get("data");
-    String pathFile = resData.get("pathImage").toString();
+    // Get path image
+    if(!input.getFile().isEmpty()) {
+      LinkedHashMap<String, Object> res = (LinkedHashMap<String, Object>)
+          WebClientUtil.uploadFile(UrlConstant.UriConstant.UPLOAD_IMAGE_FILE,
+              input.getFile(), Object.class).block();
+
+      LinkedHashMap<String, Object> resData = (LinkedHashMap<String, Object>) res.get("data");
+      String pathFile = resData.get("pathImage").toString();
+      oldSubject.setAvatar(pathFile);
+    }
 
     // Save subject
     oldSubject = subjectMapper.toSubject(input);
-    oldSubject.setAvatar(pathFile);
     subjectRepository.update(oldSubject);
     return new UpdateSubjectOutput(CommonConstant.TRUE, "Update successful");
   }
