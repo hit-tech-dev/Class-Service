@@ -21,6 +21,9 @@ public interface DatabaseCategoryRepository extends CategoryRepository {
   List<CategoryDto> searchCategory(@Param("keyword") String keyword, @Param("meta") PagingMeta meta);
 
   @Override
+  List<Category> getAllCategory();
+
+  @Override
   Category findById(@Param("id") Long id);
 
   @Override

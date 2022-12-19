@@ -140,6 +140,13 @@
         LIMIT #{meta.limit} OFFSET #{meta.offSet}
     </select>
 
+    <select id="getAllCategory" resultMap="categoryResultMap">
+        SELECT c.id,
+               c.`name`,
+               c.description
+        FROM category c
+    </select>
+
     <select id="findById" resultMap="categoryResultMap">
         SELECT c.id,
                c.`name`,

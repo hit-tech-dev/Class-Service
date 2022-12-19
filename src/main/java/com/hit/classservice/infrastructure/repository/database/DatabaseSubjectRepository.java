@@ -3,6 +3,7 @@ package com.hit.classservice.infrastructure.repository.database;
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.output.common.PagingMeta;
 import com.hit.classservice.domain.dto.ScheduleDto;
+import com.hit.classservice.domain.dto.SubjectCustomDTO;
 import com.hit.classservice.domain.dto.SubjectDto;
 import com.hit.classservice.domain.dto.UserDto;
 import com.hit.classservice.domain.entity.Subject;
@@ -22,6 +23,12 @@ public interface DatabaseSubjectRepository extends SubjectRepository {
 
   @Override
   List<SubjectDto> searchSubject(@Param("keyword") String keyword, @Param("meta") PagingMeta meta);
+
+  @Override
+  List<SubjectCustomDTO> getListSubjectIsLeader(@Param("isLeader") Boolean isLeader, String userId);
+
+  @Override
+  List<SubjectCustomDTO> getListSubjectByCategoryId(@Param("categoryId") Long categoryId);
 
   @Override
   Subject findById(@Param("id") Long id);

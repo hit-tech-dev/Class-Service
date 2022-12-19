@@ -78,6 +78,7 @@ public class UseCaseBus {
 
     //subject
     handlerTypes.put(GetListSubjectInput.class, GetListSubjectInteractor.class);
+    handlerTypes.put(GetListSubjectDetailInput.class, GetListSubjectDetailInteractor.class);
     handlerTypes.put(GetSubjectInput.class, GetSubjectInteractor.class);
     handlerTypes.put(UpdateSubjectInput.class, UpdateSubjectInteractor.class);
     handlerTypes.put(DeleteSubjectInput.class, DeleteSubjectInteractor.class);
