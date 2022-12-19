@@ -12,6 +12,8 @@ public interface CategoryRepository {
 
   List<CategoryDto> searchCategory(String keyword, PagingMeta meta);
 
+  List<Category> getAllCategory();
+
   Category findById(Long id);
 
   Category findByName(String name);

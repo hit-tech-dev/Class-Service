@@ -21,6 +21,7 @@ public class UrlConstant {
 
     private static final String PREFIX = "/subjects";
     public static final String LIST = PREFIX;
+    public static final String LIST_DETAIL = PREFIX + "/detail";
     public static final String GET = PREFIX + "/{id}";
     public static final String LEADERS = PREFIX + "/{id}/leaders";
     public static final String UPDATE = PREFIX;
