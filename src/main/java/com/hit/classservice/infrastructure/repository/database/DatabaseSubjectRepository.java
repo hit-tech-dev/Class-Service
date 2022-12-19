@@ -2,6 +2,7 @@ package com.hit.classservice.infrastructure.repository.database;
 
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.output.common.PagingMeta;
+import com.hit.classservice.domain.dto.ScheduleDto;
 import com.hit.classservice.domain.dto.SubjectCustomDTO;
 import com.hit.classservice.domain.dto.SubjectDto;
 import com.hit.classservice.domain.dto.UserDto;
@@ -45,6 +46,11 @@ public interface DatabaseSubjectRepository extends SubjectRepository {
   int save(@Param("item") Subject subject);
 
   @Override
-  List<UserDto> getAllLeader(@Param("id") Long subjectId);
+  List<UserDto> getAllLeader(@Param("id") Long subjectId, @Param("role") String role);
 
+  @Override
+  long countStudentSubject(@Param("id") Long subjectId, @Param("role") String role);
+
+  @Override
+  ScheduleDto getTimeSubject(@Param("id") Long subjectId);
 }

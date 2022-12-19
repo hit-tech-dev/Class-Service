@@ -42,5 +42,4 @@ public interface ScheduleMapper {
   GetListScheduleItemOutput toGetListScheduleItemOutput(Schedule schedule);
 
   List<GetListScheduleItemOutput> toGetListScheduleOutputs(List<Schedule> schedules);
-
 }

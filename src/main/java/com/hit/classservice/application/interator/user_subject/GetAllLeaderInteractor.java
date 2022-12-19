@@ -1,6 +1,7 @@
 package com.hit.classservice.application.interator.user_subject;
 
 import com.hit.classservice.application.constant.DevMessageConstant;
+import com.hit.classservice.application.constant.RoleConstant;
 import com.hit.classservice.application.constant.UserMessageConstant;
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.input.user_subject.GetAllLeaderInput;
@@ -38,7 +39,7 @@ public class GetAllLeaderInteractor implements GetAllLeaderDataCase {
           new String[]{input.getSubjectId().toString()});
     }
 
-    List<UserDto> userDtoList = subjectRepository.getAllLeader(input.getSubjectId());
+    List<UserDto> userDtoList = subjectRepository.getAllLeader(input.getSubjectId(), RoleConstant.ROLE_LEADER);
     List<GetAllLeaderItemOutput> outputs = subjectMapper.toGetAllLeaderItemOutputs(userDtoList);
     
     return new GetAllLeaderOutput(outputs);

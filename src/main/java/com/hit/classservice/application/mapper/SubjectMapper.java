@@ -25,14 +25,6 @@ public interface SubjectMapper {
 
   List<GetAllLeaderItemOutput> toGetAllLeaderItemOutputs(List<UserDto> userDtos);
 
-  @Mappings({
-      @Mapping(target = "id", source = "subject.id"),
-      @Mapping(target = "name", source = "subject.name"),
-      @Mapping(target = "avatar", source = "subject.avatar"),
-      @Mapping(target = "description", source = "subject.description"),
-      @Mapping(target = "studyForm", source = "subject.studyForm"),
-      @Mapping(target = "studyPlace", source = "subject.studyPlace")
-  })
   GetSubjectOutput toGetSubjectOutput(Subject subject);
 
   @Mappings({
