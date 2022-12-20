@@ -83,6 +83,7 @@ public class UseCaseBus {
     handlerTypes.put(UpdateSubjectInput.class, UpdateSubjectInteractor.class);
     handlerTypes.put(DeleteSubjectInput.class, DeleteSubjectInteractor.class);
     handlerTypes.put(CreateSubjectInput.class, CreateSubjectInteractor.class);
+    handlerTypes.put(GetStudentsRankingBySubjectInput.class, GetStudentsRankingBySubjectInteractor.class);
 
     // schedule
     handlerTypes.put(GetScheduleByIdInput.class, GetScheduleByIdInterator.class);
