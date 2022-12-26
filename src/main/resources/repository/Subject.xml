@@ -141,6 +141,24 @@
         </association>
     </resultMap>
 
+    <resultMap id="subjectRankingResultMap" type="com.hit.classservice.domain.dto.StudentsRankingDto">
+        <association property="id" javaType="java.lang.String">
+            <result column="id"/>
+        </association>
+        <association property="fullName" javaType="java.lang.String">
+            <result column="fullname"/>
+        </association>
+        <association property="avatar" javaType="java.lang.String">
+            <result column="avatar"/>
+        </association>
+        <association property="isIncrement" javaType="java.lang.Boolean">
+            <result column="is_increment"/>
+        </association>
+        <association property="totalMark" javaType="java.lang.String">
+            <result column="total_mark"/>
+        </association>
+    </resultMap>
+
     <select id="countSearchSubject" resultType="java.lang.Long">
         WITH data_flow_created_by AS (
             SELECT
@@ -375,5 +393,85 @@
                 UNIX_TIMESTAMP(NOW()),
                 #{item.lastModifiedBy})
     </insert>
+
+    <select id="getStudentsRankingBySubject" resultMap="subjectRankingResultMap">
+        WITH data_now AS (
+            SELECT
+                u.id,
+                fullname,
+                avatar,
+                SUM(d.mark/(
+                    SELECT COUNT(d2.id)
+                    FROM document d2
+                        INNER JOIN lesson l ON l.id = d2.lesson_id
+                    WHERE d2.`type` = 2
+                      AND l.subject_id = usr.subject_id)
+                ) AS 'total_mark',
+                COUNT(CASE WHEN ls.attendance = 0 THEN 1 ELSE NULL END) AS 'total_breaks'
+            FROM users u
+                INNER JOIN user_subject_relation usr ON usr.user_id = u.id
+                INNER JOIN lesson_student ls ON ls.user_id = u.id
+                INNER JOIN document d ON d.lesson_student_id = ls.id
+                INNER JOIN lesson l ON l.id = ls.lesson_id
+            WHERE l.subject_id = 1
+              AND usr.subject_id = 1
+              AND d.`type` = 3
+              AND d.lesson_student_id = ls.id
+            GROUP by
+                u.id,
+                fullname,
+                avatar
+        ),
+        data_last_week AS (
+            SELECT
+                u.id,
+                fullname,
+                avatar,
+                SUM(d.mark/(SELECT COUNT(*) FROM (
+                    SELECT d2.id
+                    FROM document d2
+                        INNER JOIN lesson l ON l.id = d2.lesson_id
+                    WHERE d2.`type` = 2
+                        AND l.subject_id = usr.subject_id
+                    ORDER BY d2.created_date DESC
+                    LIMIT 18446744073709551615 OFFSET 1) cnt)
+                ) AS 'total_mark'
+            FROM users u
+                INNER JOIN user_subject_relation usr ON usr.user_id = u.id
+                INNER JOIN lesson_student ls ON ls.user_id = u.id
+                INNER JOIN document d ON d.lesson_student_id = ls.id
+                INNER JOIN lesson l ON l.id = ls.lesson_id
+            WHERE l.subject_id = 1
+                AND usr.subject_id = 1
+                AND d.`type` = 3
+                AND d.lesson_id != (
+                    SELECT d.lesson_id
+                    FROM document d
+                        INNER JOIN lesson l ON l.id = d.lesson_id
+                    WHERE d.`type` = 2
+                    AND l.subject_id = 1
+                    ORDER BY d.created_date DESC
+                    LIMIT 1
+                )
+            GROUP by
+                u.id,
+                fullname,
+                avatar
+        )
+        SELECT
+            data_1.id,
+            data_1.fullname,
+            data_1.avatar,
+            CONCAT(ROUND(data_1.total_mark, 2), "/100") AS 'total_mark',
+            CASE WHEN data_1.total_mark > data_2.total_mark
+                THEN true
+                ELSE false
+            END AS 'is_increment'
+        FROM data_now data_1
+            INNER JOIN data_last_week data_2 on data_1.id = data_2.id
+        ORDER BY
+            total_mark DESC,
+            total_breaks ASC
+    </select>
 </mapper>
 

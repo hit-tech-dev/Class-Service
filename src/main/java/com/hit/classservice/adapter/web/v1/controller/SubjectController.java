@@ -5,6 +5,7 @@ import com.hit.classservice.adapter.web.base.RestData;
 import com.hit.classservice.adapter.web.base.VsResponseUtil;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.common.PagingMetaParameter;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.CreateSubjectParam;
+import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.GetStudentsRankingBySubjectParameter;
 import com.hit.classservice.adapter.web.v1.transfer.parameter.subject.UpdateSubjectParameter;
 import com.hit.classservice.adapter.web.v1.transfer.response.ResponseHeader;
 import com.hit.classservice.application.UseCaseBus;
@@ -202,6 +203,33 @@ public class SubjectController {
     //Get output
     GetAllLeaderOutput output = useCaseBus.handle(input);
     //Return output
+    return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
+  }
+
+  /**
+   * @param id
+   * @return
+   * @throws Exception
+   */
+  @Operation(summary = "API get ranking of subject by id")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Found the subject",
+          content = {@Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = GetStudentsRankingBySubjectOutput.class))
+          }),
+      @ApiResponse(responseCode = "500", description = "Id not exits", content = {
+          @Content(mediaType = CommonConstant.APPLICATION_JSON_TYPE,
+              schema = @Schema(implementation = RestData.class))
+      })
+  })
+  @GetMapping(UrlConstant.Subject.RANKING)
+  public ResponseEntity<?> getStudentsRankingInSubject(@RequestBody GetStudentsRankingBySubjectParameter parameter)
+      throws Exception {
+    // Create input
+    GetStudentsRankingBySubjectInput input = subjectMapper.toGetStudentsRankingBySubjectInput(parameter);
+    // Get output
+    GetStudentsRankingBySubjectOutput output = useCaseBus.handle(input);
+    // Return output
     return VsResponseUtil.ok(this.responseHeader.getHeader(), output);
   }
 }

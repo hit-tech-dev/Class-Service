@@ -27,6 +27,7 @@ public class UrlConstant {
     public static final String UPDATE = PREFIX;
     public static final String DELETE = PREFIX + "/{id}";
     public static final String CREATE = PREFIX;
+    public static final String RANKING = PREFIX + "/ranking";
 
     private Subject() {
     }

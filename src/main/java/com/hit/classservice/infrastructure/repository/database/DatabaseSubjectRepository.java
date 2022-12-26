@@ -2,10 +2,7 @@ package com.hit.classservice.infrastructure.repository.database;
 
 import com.hit.classservice.application.dai.SubjectRepository;
 import com.hit.classservice.application.output.common.PagingMeta;
-import com.hit.classservice.domain.dto.ScheduleDto;
-import com.hit.classservice.domain.dto.SubjectCustomDTO;
-import com.hit.classservice.domain.dto.SubjectDto;
-import com.hit.classservice.domain.dto.UserDto;
+import com.hit.classservice.domain.dto.*;
 import com.hit.classservice.domain.entity.Subject;
 import com.hit.classservice.domain.entity.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -53,4 +50,7 @@ public interface DatabaseSubjectRepository extends SubjectRepository {
 
   @Override
   ScheduleDto getTimeSubject(@Param("id") Long subjectId);
+
+  @Override
+  List<StudentsRankingDto> getStudentsRankingBySubject(@Param("id") Long subjectId);
 }
